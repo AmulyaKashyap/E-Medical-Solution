@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF -8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!--fonts-->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Goblin+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!--icons-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--fab-icons-->
+    <script src="https://kit.fontawesome.com/cdc9f40634.js" crossorigin="anonymous"></script>
+
+  <!--cdn of materalize css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!--custom css-->
+  <link rel="stylesheet" media="screen and (min-width: 601px)" href="/css/style.css">
+  <link rel="stylesheet" media="screen and (max-width: 600px)" href="/css/style-min.css">
+<title>
+<%=title%>
+</title>
+<link rel="shortcut icon" href="/images/doc-icon.png">
+</head>
+
+<body class="body-content" >
+<!--Sign up option pop-up-->
+  <section class="signupModal">
+    <div class="modal" id="modalSign">
+      <div class="modal-content">
+        <h4 id="info-modal-heading">Sign-Up Options: </h4>
+        <p id="info-modal-content"> ................</p>      
+        <div class="row">
+        <div class="col s6 l6"><a href="#" onclick="toggleModal_doctor();" >As a doctor<i class="material-icons left">person</i></a></div> 
+        <div class="col s6 l6"><a href="#" onclick="toggleModal_patient();" >As a patient<i class="material-icons left">person</i></a></div>     
+      </div>
+      </div>
+        <div class="modal-footer">
+          <a href="#" class="modal-close waves-effect btn-flat">close</a>
+        </div>
+    </div>
+  </section>
+
+  <!--Login Form-->
+<section class="LoginModal">
+  <div class="modal" id="loginF" style="height: auto; overflow: hidden;">
+      <form class="modal-content" action="/users/create-session" method="POST" >
+        <div class="container">
+          <h3 class="subheading"><u>Login</u></h3>
+          <hr>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">email</i>
+              <input placeholder="Placeholder" id="email" name="email" type="email" required class="validate">
+              <label for="first_name">Email id:</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">lock</i>
+              <input placeholder="**********" id="password" name="pass" type="password" required class="validate">
+              <label for="first_name">Password:</label>
+            </div>
+          </div>    
+      <div class=" row">
+        <button class="modal-close waves-effect btn col s12" type="submit">Log In</button>
+      </div>
+      <hr>
+       <span class="body-text">Or login using:</span> 
+       <div class="row">
+        <div class="col s6"> <i class="fab fa-facebook"></i></div>
+        <div class="col s6"><i class="fab fa-google-plus-g"></i></div>
+      </div>    
+  </div>
+</section>
+
+  <!--Sign-UP Doctor Form  :post:signupDoc.php-->
+  <div id="asdoc" class="modal">
+    <a href="#" class="modal-close waves-effect btn-flat"><i class="material-icons">close</i></a>
+    <form class="modal-content" action="/doctors/create" method="POST" >
+      <div class="container">
+        <h3 class="subheading"><u>Sign Up as a Doctor</u></h3>
+        <p style="font-size: 1.6vw;">Please fill in this form to create an account.</p>
+        <!--<hr style="border:5px solid; width:50px;">-->
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">account_circle</i>
+            <input placeholder="First name" id="first_name" name="fname" type="text" class="validate" required>
+          <label for="first_name">First Name</label>
+          </div>
+          <div class="input-field col s6">
+            <i class="material-icons prefix">account_circle</i>
+            <input placeholder="Last name" id="last_name" name="lname" type="text" class="validate" >
+          <label for="first_name">Last Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">email</i>
+            <input placeholder="Placeholder" id="email" name="email" type="email" required class="validate">
+            <label for="first_name">Email id:</label>
+          </div>
+          <div class="input-field col s6">
+            <i class="material-icons prefix">phone</i>
+            <input placeholder="Placeholder" id="phone" name="phone" type="tel" required class="validate">
+          <label for="first_name">Phone no.:</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">lock</i>
+            <input placeholder="**********" id="password" name="pass" type="password" required class="validate">
+            <label for="first_name">Password:</label>
+          </div>
+          <div class="input-field col s6">
+            <i class="material-icons prefix">lock</i>
+            <input placeholder="***********" id="cpassword" name="cpass" type="password" required class="validate">
+          <label for="first_name">Confirm Password:</label>
+          </div>
+        </div>
+        <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">date_range</i>
+          <input type="text" class="datepicker" name="dob" id="dob">
+        <label for="dob">Date of birth:</label>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="input-field col s12">
+        <i class="material-icons prefix">dehaze</i>
+        <select>
+          <option value="" disabled selected>Choose your field</option>
+          <option value="cardiology">Cardiology</option>
+          <option value="Eyecare">Eye care</option>
+          <option value="Dental">Dental care</option>
+          <option value="Pediatrics">Pediatrics</option>
+          <option value="Hepatology">Hepatology</option>
+          <option value="Neurology">Neurology</option>
+        </select>
+        <label for="field">Select your fied -Depatment</label>
+      </div>
+      </div>
+        <p style="font-size: 1.6vw;">By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+        <div class="clearfix row">
+        <button type="button" onclick="document.getElementById('asdoc').style.display='none'" class=" offset-s2 col s4 btn waves-effect waves-light">Clear</button>
+        <button class="btn waves-effect waves-light col s4 offset-s2" type="submit">Sign Up</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!--Floating corner-->
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large blue darken-9 tooltipped" data-tooltip="Login/SignUp" href="#" onclick="toggleModal_login();">
+      <i class="large material-icons">person</i>
+    </a>
+    <!--<ul>
+      <li><a class="btn-floating blue darken-2" title="Consult Now" ><i class="large material-icons">phone</i>Consult now</a></li>
+      <li><a class="btn-floating blue darken-2"><i class="large material-icons">person</i>Login/SignUp</a></li>
+    </ul>-->
+  </div>
+
+
+<!--parallex-->
+<header>  
+<div class="parallax-container">
+<!--Navigation-->
+<nav>
+  <div class="nav-wrapper">
+    <!--<a href="#!" class="brand-logo"><img src="images/doc-icon.png" height="50" width="80"></a>-->
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="#about">About</a></li>
+      <li><a href="#departments">Departments</a></li>
+      <li><a href="#doctors">Doctors</a></li>
+      <li><a href="#"onclick="toggleModal_signup();">SingnUp</a></li>
+      <li><a href="#" onclick="toggleModal_login();">Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="about">About</a></li>
+  <li><a href="#departments">Departments</a></li>
+  <li><a href="#doctors">Doctors</a></li>
+  <li><a href="#"onclick="toggleModal_signup();">SingnUp</a></li>
+  <li><a href="#" onclick="toggleModal_login();">Login</a></li>
+</ul> 
+<br><br>
+<div class=" container "><div class="content-header"> + MediCare</div>
+Online Consultancy - Complete medical solution at your home. <br>No need to step out in this pandemic as well..
+</div>
+  <div class="parallax"><img src="/images/appointment-page.jpg"></div>
+</div>
+</header>
+
+<br>
+<section class="section scrollspy white" id="about">
+  <div class="section">
+    <div class="row ">
+      <div class="col s8 l8 offset-s4 offset-l4 subheading" >
+      Medicare -Get doctor's consult right at your home<br>
+      </div>
+    </div>
+    <br>
+    <div class="row left-align">
+      <div class="col center l5 s6">
+        <div class="slider">
+        <ul class="slides">
+          <li><img src="/images/doctorPotrait.jpg" alt="docImage"  ></a> </li>   
+          <li><img src="/images/477f75c.jpg" alt="docImage"></a></li>
+        </ul>
+        </div>
+        </div>
+      <div class="col center l7 s6"> 
+        <div class="container body-text" >At Fortis Healthcare, our utmost priority is to ensure safety and well being of our patients.<br> To avoid adverse health conditions later, Fortis came up with online video/tele consultations for people who couldn't reach the hospital. At this time, it is even more essential to get an experts consultation to keep ourselves healthy. Taking precautions is always the right choice not only for you but also for your family members.<br>At Fortis Healthcare, our utmost priority is to ensure safety and well being of our patients.<br> To avoid adverse health conditions later, Fortis came up with online video/tele consultations for people who couldn't reach the hospital. At this time, it is even more essential to get an experts consultation to keep ourselves healthy. <br>Taking precautions is always the right choice not only for you but also for your family members.
+        </div></div>
+    </div>
+  </div>
+</section>
+
+<br>
+
+<!--Departments section-->
+<section class="departments scrollspy white" id="departments">
+  <div class="row">
+  <div class="subheading col offset-s5 offset-l5">Departments</div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs swipeable=true">
+        <li class="tab"><a  class="active" href="#cardiology">Cardiology</a></li>
+        <li class="tab"><a href="#eye">Eye</a></li>
+        <li class="tab"><a href="#dental">Dental</a></li>
+        <li class="tab"><a  href="#neuro">Neurology</a></li>
+        <li class="tab"><a href="#pedia">Pediatrics</a></li>
+        <li class="tab"><a href="#hepath">Hepatology</a></li>
+      </ul>
+    </div>
+    
+    <div id="cardiology" class="row body-text">
+      <div class="col offset-s1 s7 "><br><u class="subheading-two">Cardiology</u><br><br>Cardiology is a branch of internal medicine. A cardiologist is not the same as a cardiac surgeon. A cardiac surgeon opens the chest and performs heart surgery.
+        <br>
+        A cardiologist specializes in diagnosing and treating diseases of the cardiovascular system. The cardiologist will carry out tests, and they may perform some procedures, such as heart catheterizations, angioplasty, or inserting a pacemaker.
+        <br>
+        Heart disease relates specifically to the heart, while cardiovascular disease affects the heart, the blood vessels, or both.  <br>
+        </div>
+        <div class="col s4"><img src="images/cardiology.jpg" class="circle responsive-img" alt="cardiology"></div>
+    </div>
+    <div id="eye" class="row">
+      <div class="col offset-s1 s7 "><br><u class="subheading-two">Eye Care</u><br><br>Cardiology is a branch of internal medicine. A cardiologist is not the same as a cardiac surgeon. A cardiac surgeon opens the chest and performs heart surgery.
+        <br>
+        A cardiologist specializes in diagnosing and treating diseases of the cardiovascular system. The cardiologist will carry out tests, and they may perform some procedures, such as heart catheterizations, angioplasty, or inserting a pacemaker.
+        <br>
+        Heart disease relates specifically to the heart, while cardiovascular disease affects the heart, the blood vessels, or both.  <br>
+        </div>
+        <div class="col s4"><img src="images/eye.jpg" class="circle responsive-img" alt="cardiology"></div>
+    </div>
+    <div id="neuro" class="row">
+      <div class="col offset-s1 s7 "><br><u class="subheading-two">Neurology</u><br><br>Cardiology is a branch of internal medicine. A cardiologist is not the same as a cardiac surgeon. A cardiac surgeon opens the chest and performs heart surgery.
+        <br>
+        A cardiologist specializes in diagnosing and treating diseases of the cardiovascular system. The cardiologist will carry out tests, and they may perform some procedures, such as heart catheterizations, angioplasty, or inserting a pacemaker.
+        <br>
+        Heart disease relates specifically to the heart, while cardiovascular disease affects the heart, the blood vessels, or both.  <br>
+        </div>
+        <div class="col s4"><img src="images/neuro.jpg" class="circle responsive-img" alt="cardiology"></div>
+    </div>
+    <div id="pedia" class="row">
+      <div class="col offset-s1 s7 "><br><u class="subheading-two">Pediatrics</u><br><br>Cardiology is a branch of internal medicine. A cardiologist is not the same as a cardiac surgeon. A cardiac surgeon opens the chest and performs heart surgery.
+        <br>
+        A cardiologist specializes in diagnosing and treating diseases of the cardiovascular system. The cardiologist will carry out tests, and they may perform some procedures, such as heart catheterizations, angioplasty, or inserting a pacemaker.
+        <br>
+        Heart disease relates specifically to the heart, while cardiovascular disease affects the heart, the blood vessels, or both.  <br>
+        </div>
+        <div class="col s4"><img src="images/pedia.jpg" class="circle responsive-img" alt="cardiology"></div>
+    </div>
+    <div id="hepath" class="row">
+      <div class="col offset-s1 s7"><br><u class="subheading-two">Hepatology</u><br><br>Cardiology is a branch of internal medicine. A cardiologist is not the same as a cardiac surgeon. A cardiac surgeon opens the chest and performs heart surgery.
+        <br>
+        A cardiologist specializes in diagnosing and treating diseases of the cardiovascular system. The cardiologist will carry out tests, and they may perform some procedures, such as heart catheterizations, angioplasty, or inserting a pacemaker.
+        <br>
+        Heart disease relates specifically to the heart, while cardiovascular disease affects the heart, the blood vessels, or both.  <br>
+        </div>
+        <div class="col s4"><img src="images/hepathology.jpg" class="circle responsive-img" alt="cardiology"></div>
+    </div>
+    <div id="dental" class="row">
+      <div class="col offset-s1 s7 "><br><u class="subheading-two">Dental Care</u><br><br>Cardiology is a branch of internal medicine. A cardiologist is not the same as a cardiac surgeon. A cardiac surgeon opens the chest and performs heart surgery.
+        <br>
+        A cardiologist specializes in diagnosing and treating diseases of the cardiovascular system. The cardiologist will carry out tests, and they may perform some procedures, such as heart catheterizations, angioplasty, or inserting a pacemaker.
+        <br>
+        Heart disease relates specifically to the heart, while cardiovascular disease affects the heart, the blood vessels, or both.  <br>
+        </div>
+        <div class="col s4"><img src="images/dent.jpg" class="circle responsive-img" alt="cardiology"></div>
+    </div>
+  </div>
+</section>
+
+
+<!--Doctor section-->
+<br>
+
+<section class="fdoctors white body-text" id="doctors">
+  <br>
+    <h3 class="subheading center">Doctors Available</h3>
+    <p class="center">We have a great numbers of doctors attached with our application. Some big names among them are :</p>
+    <!--Search by area to be added-->
+    <div class="carousel doctors" >
+        <a href="#" class="carousel-item">
+          <div class="row">
+            <div class="col s12">
+              <div class="card-panel" style="background-color:#012E55 !important;">
+                <img src="images/doc1.png" class="circle responsive-img" alt="">
+                <span class="white-text">Doctor1</span>
+                <p class="grey-text" style="font-size: x-small;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex odit dolorum ipsa quo aliquid accusantium id voluptas, eos iure voluptates aperiam fuga praesentium fugiat delectus quae cupiditate adipisci quis quos.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="carousel-item">
+          <div class="row">
+            <div class="col s12">
+              <div class="card-panel" style="background-color:#012E55 !important;">
+                <img src="images/doc3.jfif" class="circle responsive-img" alt="">   
+                <span class="white-text">Doctor-2</span>
+                <p class="grey-text" style="font-size: x-small;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex odit dolorum ipsa quo aliquid accusantium id voluptas, eos iure voluptates aperiam fuga praesentium fugiat delectus quae cupiditate adipisci quis quos.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="carousel-item">
+          <div class="row">
+            <div class="col s12">
+              <div class="card-panel" style="background-color:#012E55  !important;">
+               <img src="images/doc4.jfif" class="circle responsive-img" alt="">
+                <span class="white-text">Doctor3</span>
+                <p class="grey-text" style="font-size: x-small;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex odit dolorum ipsa quo aliquid accusantium id voluptas, eos iure voluptates aperiam fuga praesentium fugiat delectus quae cupiditate adipisci quis quos.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="carousel-item">
+          <div class="row">
+            <div class="col s12">
+              <div class="card-panel" style="background-color:#012E55  !important;">
+               <img src="images/doc5.jfif" class="circle responsive-img" alt="">
+                <span class="white-text">Doctor4</span>
+                <p class="grey-text" style="font-size: x-small;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex odit dolorum ipsa quo aliquid accusantium id voluptas, eos iure voluptates aperiam fuga praesentium fugiat delectus quae cupiditate adipisci quis quos.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="carousel-item">
+          <div class="row">
+            <div class="col s12">
+              <div class="card-panel" style="background-color:#012E55  !important;">
+                <img src="images/doc6.jfif" class="circle responsive-img" alt="">
+                <span class="white-text">Doctor5</span>
+                <p class="grey-text" style="font-size: x-small;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex odit dolorum ipsa quo aliquid accusantium id voluptas, eos iure voluptates aperiam fuga praesentium fugiat delectus quae cupiditate adipisci quis quos.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="carousel-item">
+          <div class="row">
+            <div class="col s12">
+              <div class="card-panel" style="background-color:#012E55  !important;">
+               <img src="images/doc2.jfif" class="circle responsive-img" alt="">
+                <span class="white-text">Doctor-6</span>
+                <p class="grey-text" style="font-size: x-small;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex odit dolorum ipsa quo aliquid accusantium id voluptas, eos iure voluptates aperiam fuga praesentium fugiat delectus quae cupiditate adipisci quis quos.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+    </div>
+    <p class="center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit minima eos vel architecto praesentium, nulla est deserunt ducimus quos illum suscipit blanditiis adipisci, quasi magnam aspernatur reprehenderit possimus consequuntur excepturi?</p>
+</section>
+
+<!--Footer-->
+<br>
+<br>
+<section class="ffooter">
+  <footer class="footer-one">
+      <div class="conatiner">
+          <div class="row">
+              <div class="col l5 s6 offset-l1">
+                  <h4 class="white-text subheading-two">Contact Us</h4>
+                  <p class="grey-text">
+                      <i class="material-icons left">location_on</i> ABC 222, UP, India
+                  </p>
+                  <p class="grey-text">
+                    <a href="tel:+918297816000" style="color: inherit;" class="tooltipped" data-tooltip="Call us"><i class="material-icons left">local_phone</i>+918297816000</a>
+                  </p>
+                  <p class="grey-text">
+                    <a href="mailto:someone@example.com" style="color: inherit;" class="tooltipped" data-tooltip="Mail us"><i class="material-icons left">email</i>xyz@gmail.com</a>
+                  </p>
+              </div>
+              <div class="col l6 s6">
+                  <h4 class="white-text subheading-two">Social Media</h4>
+                  <p>
+                      <a href="#" class="grey-text"><i class="material-icons left">facebook</i>Facebook</a><br>
+                  </p>
+                  <p>
+                      <a href="#" class="grey-text"><i class="material-icons left">cloud</i>Twitter</a><br>
+                  </p>
+                  <p> 
+                      <a href="#" class="grey-text"><i class="material-icons left">photo_camera</i>Instagram</a>
+                  </p>
+              </div>
+          </div>
+          <div class="row footer-two">
+              <div class="col l6 s12">
+                  <p class="white-text">
+                      &copy; MediCare
+                  </p>
+              </div>
+              <div class="col l6 s12">
+                  <p class="white-text">
+                      Designed by: The Phantoms
+                  </p>
+              </div>
+          </div>
+      </div>
+  </footer>
+</section>
+
+</body>  
+<!--custom js-->
+<script src="js/loader.js"></script>
+<!--M script-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+</html>
