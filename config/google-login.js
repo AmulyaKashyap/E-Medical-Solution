@@ -4,10 +4,11 @@ const crypto = require('crypto');
 const User = require('../models/user');
 
 
+
 // tell passport to use a new strategy for google login
 passport.use(new googleStrategy({
-        clientID: '953138738247-7im47lh42ohvideom2o7204kbau7poht.apps.googleusercontent.com', // e.g. asdfghjkkadhajsghjk.apps.googleusercontent.com
-        clientSecret: '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', // e.g. _ASDFA%KFJWIASDFASD#FAD-
+        clientID: '953138738247-7im47lh42ohvideom2o7204kbau7poht.apps.googleusercontent.com',
+        clientSecret:'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', 
         callbackURL: "http://localhost:8000/users/authentication/google/callback",
     },
 
