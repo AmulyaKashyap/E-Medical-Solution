@@ -13,10 +13,14 @@
   "author": "Amulya Kashyap",
   "license": "ISC",
   "dependencies": {
+    "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.5",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.1",
-    "mongoose": "^6.0.12"
+    "express-session": "^1.17.2",
+    "mongoose": "^6.0.12",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0"
   }
 }

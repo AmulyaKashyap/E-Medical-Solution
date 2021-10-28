@@ -1,11 +1,14 @@
 const User = require('../models/user')
 
 module.exports.profile=function(req,res){
-    res.end('<h1>User Profile</h1>');
+    res.end('Welcome '+req.user.name +'!');
 }
 
 
 module.exports.signUp = function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
     return res.render('sign_up', {
         title:"Patient Sign Up"
     })
@@ -13,8 +16,11 @@ module.exports.signUp = function(req,res){
 }
 
 module.exports.signIn = function(req,res){
-    return res.render('sign_up', {
-        title:"Patient Sign Up"
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+    return res.render('sign_in', {
+        title:"Patient Sign IN"
     })
      
 }
@@ -33,7 +39,7 @@ module.exports.create =function(req,res){
                 if(err){console.log('error in creating user while signing up'); return}
 
                 console.log('object is created');
-                return res.redirect('/users/profile')
+                return res.redirect('back')
             })
         }else{
             console.log('Email is already used');
@@ -47,5 +53,5 @@ module.exports.create =function(req,res){
 
 //create session for loginn
 module.exports.createSession =function(req,res){
-    //todo
+    return res.redirect('/users/profile');
 }
