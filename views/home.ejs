@@ -44,8 +44,8 @@
       <hr>
        <span class="body-text">Or login using:</span> 
        <div class="row">
-        <div class="col s6"> <i class="fab fa-facebook"></i></div>
-        <div class="col s6"><i class="fab fa-google-plus-g"></i></div>
+        <!--<div class="col s6"> <i class="fab fa-facebook"></i></div>-->
+        <a href="/users/authentication/google"><div class="col s6"><i class="fab fa-google-plus-g"></i></div></a>
       </div>    
   </div>
 </section>
@@ -211,8 +211,13 @@
       <li><a href="#about">About</a></li>
       <li><a href="#departments">Departments</a></li>
       <li><a href="#doctors">Doctors</a></li>
+      <% if (locals.user){%>
+        <li><a href="/users/profile"><%=user.name%></a></li>
+        <li><a href="/users/sign-out">SingOut</a></li>
+      <%}else{%>
       <li><a href="#"onclick="toggleModal_signup();">SingnUp</a></li>
       <li><a href="#" onclick="toggleModal_login();">Login</a></li>
+      <%}%>
     </ul>
   </div>
 </nav>
@@ -220,9 +225,12 @@
 <ul class="sidenav" id="mobile-demo">
   <li><a href="about">About</a></li>
   <li><a href="#departments">Departments</a></li>
-  <li><a href="#doctors">Doctors</a></li>
+  <li><a href="#doctors">Doctors</a></li><% if (locals.user){%>
+    <li><a href="/users/sign-out">SingOut</a></li>
+  <%}else{%>
   <li><a href="#"onclick="toggleModal_signup();">SingnUp</a></li>
   <li><a href="#" onclick="toggleModal_login();">Login</a></li>
+  <%}%>
 </ul> 
 <br><br>
 <div class=" container "><div class="content-header"> + MediCare</div>

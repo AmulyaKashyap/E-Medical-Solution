@@ -1,7 +1,9 @@
 const User = require('../models/user')
 
 module.exports.profile=function(req,res){
-    res.end('Welcome '+req.user.name +'!');
+    return res.render('profile', {
+        title:"Patient Profile"
+    })
 }
 
 
@@ -54,4 +56,13 @@ module.exports.create =function(req,res){
 //create session for loginn
 module.exports.createSession =function(req,res){
     return res.redirect('/users/profile');
+}
+
+
+
+//destroy session for logout
+module.exports.destroySession =function(req,res){
+    req.logout();
+    
+    return res.redirect('/');
 }
