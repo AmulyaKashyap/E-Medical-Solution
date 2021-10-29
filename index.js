@@ -9,6 +9,9 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const passportGoogle = require('./config/google-login');
 const MongoStore = require('connect-mongo')(session);
+//own created middleware
+const flash = require('connect-flash');
+const ownMiddleware = require('./config/ownMiddleware');
 
 
 const expressLayouts = require('express-ejs-layouts');
@@ -57,6 +60,11 @@ app.use( session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+app.use(flash());
+app.use(ownMiddleware.setFlash);
+
 
 app.use(passport.setAuthenticatedUser);
 
