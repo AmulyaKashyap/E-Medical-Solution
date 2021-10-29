@@ -38,6 +38,12 @@ function toggleModal_doctor(){
     var instance =M.Modal.getInstance($("#asdoc"));
     instance.open();
 }
+
+function toggleModal_patient(){
+    var instance =M.Modal.getInstance($("#asuser"));
+    instance.open();
+}
+
 function toggleModal_confirm(){
     var instance =M.Modal.getInstance($("#confirm"));
     instance.open();
