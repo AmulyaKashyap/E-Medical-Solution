@@ -7,7 +7,11 @@ const db = require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
-const MongoStore = require('connect-mongo');
+const passportGoogle = require('./config/google-login');
+const MongoStore = require('connect-mongo')(session);
+//own created middleware
+const flash = require('connect-flash');
+const ownMiddleware = require('./config/ownMiddleware');
 
 
 const expressLayouts = require('express-ejs-layouts');
@@ -41,9 +45,9 @@ app.use( session({
     cookie:{
         maxAge:(1000*60*100)
     },
-    store:MongoStore.create(
+    store:new MongoStore(
         {
-            mongoUrl:db,
+            mongooseConnection:db,
             autoRemove:'disabled'
         },
         function(err){
@@ -55,6 +59,11 @@ app.use( session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+app.use(flash());
+app.use(ownMiddleware.setFlash);
+
 
 app.use(passport.setAuthenticatedUser);
 

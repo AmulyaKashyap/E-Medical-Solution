@@ -1,7 +1,9 @@
 const User = require('../models/user')
 
 module.exports.profile=function(req,res){
-    res.end('Welcome '+req.user.name +'!');
+    return res.render('profile', {
+        title:"Patient Profile"
+    })
 }
 
 
@@ -28,21 +30,23 @@ module.exports.signIn = function(req,res){
 //
 module.exports.create =function(req,res){
     if(req.body.pass != req.body.cpass){
+        req.flash('error', 'Passwords do not match');
         return res.redirect('back');
     }
 
     User.findOne({email: req.body.email},  function(err, user){
-        if(err){console.log('error in findig user in signing up'); return}
+        if(err){req.flash('error', err); return}
 
         if(!user){
             User.create({name:req.body.fname, email:req.body.email, password:req.body.pass}, function(err, user){
-                if(err){console.log('error in creating user while signing up'); return}
+                if(err){req.flash('error', err); return}
 
                 console.log('object is created');
+                req.flash('success', 'You have signed up, login to continue!');
                 return res.redirect('back')
             })
         }else{
-            console.log('Email is already used');
+            req.flash('error', 'Email is already is in use');
             return res.redirect('back');
         }
 
@@ -53,5 +57,16 @@ module.exports.create =function(req,res){
 
 //create session for loginn
 module.exports.createSession =function(req,res){
+    req.flash('success', 'Logged in Successfully');
     return res.redirect('/users/profile');
+}
+
+
+
+//destroy session for logout
+module.exports.destroySession =function(req,res){
+    req.logout();
+    req.flash('success', 'You have logged out!');
+
+    return res.redirect('/');
 }
