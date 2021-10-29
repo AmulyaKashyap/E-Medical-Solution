@@ -47,7 +47,6 @@ app.use( session({
     },
     store:new MongoStore(
         {
-
             mongooseConnection:db,
             autoRemove:'disabled'
         },
