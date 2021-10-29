@@ -7,14 +7,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Goblin+One&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-  <!--jquery-->
+  <!--jquery and js of noty-->  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!--icons-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--fab-icons-->
     <script src="https://kit.fontawesome.com/cdc9f40634.js" crossorigin="anonymous"></script>
 
-  <!--cdn of materalize css -->
+  <!--cdn of materalize and noty css  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <!--custom css-->
   <link rel="stylesheet" media="screen and (min-width: 601px)" href="/css/style.css">
@@ -28,5 +30,28 @@
     <%- body %>
     <%- include('_footer'); %>
     <%- script %>
+    <script>
+      <% if (flash.success && flash.success.length > 0) {%>
+          new Noty({
+              theme: 'relax',
+              text: "<%= flash.success %>",
+              type: 'success',
+              layout: 'topRight',
+              timeout: 1500
+              
+          }).show();    
+      <%} %>
+
+      <% if (flash.error && flash.error.length > 0) {%>
+          new Noty({
+              theme: 'relax',
+              text: "<%= flash.error %>",
+              type: 'error',
+              layout: 'topRight',
+              timeout: 1500
+              
+          }).show();    
+      <%} %>
+  </script>
 </body>
 </html>
