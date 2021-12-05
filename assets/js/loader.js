@@ -19,6 +19,11 @@ $(document).ready(function(){
     });
 });
 
+function toggle(e){
+    e.preventDefault(); // The flicker is a codepen thing
+    $(this).toggleClass('toggle-on');
+  };
+
 function toggleModal(){
     var instance =M.Modal.getInstance($("#modal3"));
     instance.open();
@@ -49,3 +54,21 @@ function toggleModal_confirm(){
     instance.open();
 }
 
+
+const loginText = document.querySelector(".title-text .loginP");
+const loginForm = document.querySelector("form.loginP");
+const loginBtn = document.querySelector("label.loginP");
+const signupBtn = document.querySelector("label.loginD");
+const signupLink = document.querySelector("form .loginD-link a");
+signupBtn.onclick = (()=>{
+  loginForm.style.marginLeft = "-50%";
+  loginText.style.marginLeft = "-50%";
+});
+loginBtn.onclick = (()=>{
+  loginForm.style.marginLeft = "0%";
+  loginText.style.marginLeft = "0%";
+});
+signupLink.onclick = (()=>{
+  signupBtn.click();
+  return false;
+});

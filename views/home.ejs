@@ -18,36 +18,75 @@
 
   <!--Login Form-->
 <section class="LoginModal">
-  <div class="modal" id="loginF" style="height: auto; overflow: hidden;">
-      <form class="modal-content" action="/users/create-session" method="POST" >
-        <div class="container">
-          <h3 class="subheading"><u>Login</u></h3>
-          <hr>
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">email</i>
-              <input placeholder="Placeholder" id="email" name="email" type="email" required class="validate">
-              <label for="first_name">Email id:</label>
-            </div>
+  <div class="wrapper">
+  <div class="form-container modal" id="loginF" style="height: auto; overflow: hidden;">
+    <div class="slide-controls">
+       <input type="radio" name="slide" id="loginP" checked>
+       <input type="radio" name="slide" id="loginD">
+       <label for="loginP" class="slide loginP">Patient</label>
+       <label for="loginD" class="slide loginD">Doctor</label>
+       <div class="slider-tab"></div>
+    </div>
+    <div class="form-inner">
+       <form action="/users/create-session" class="loginP" method="post">
+          <div class="field">
+             <input type="email" name="email" placeholder="Email Address" required>
           </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">lock</i>
-              <input placeholder="**********" id="password" name="pass" type="password" required class="validate">
-              <label for="first_name">Password:</label>
-            </div>
-          </div>    
-      <div class=" row">
-        <button class="modal-close waves-effect btn col s12" type="submit">Log In</button>
+          <div class="field">
+             <input type="password" name="pass" placeholder="Password" required>
+          </div>
+          <div class="pass-link">
+             <a href="#">Forgot password?</a>
+          </div><div class="field btn">
+            <div class="btn-layer"></div>
+            <input type="submit" value="Login">
+         </div> 
+          <div class="signup-link">
+             Not a member? <a href="">Signup now</a>
+          </div>
+          <div class="col s12 m6 offset-m3 center-align">
+            <a class="oauth-container btn darken-4 white black-text" href="/users/authentication/google" style="text-transform:none">
+              Login with
+                <div class="right">
+                    <img width="30px" style="margin-top:7px; margin-right:19px; margin-left: -10px;" alt="Google sign-in" 
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                </div>
+            </a>
+        </div>
+       </form>
+      
+
+       <form action="/doctors/create-session" class="loginD" method="post">
+        <div class="field">
+           <input name="email" type="text" placeholder="Email Address" required>
+        </div>
+        <div class="field">
+           <input name="pass" type="password" placeholder="Password" required>
+        </div>
+        <div class="pass-link">
+           <a href="#">Forgot password?</a>
+        </div>
+        <div class="field btn">
+           <div class="btn-layer"></div>
+           <input type="submit" value="Login">
+        </div>
+        <div class="signup-link">
+           Not a member? <a href="">Signup now</a>
+        </div>
+        <div class="col s12 m6 offset-m3 center-align">
+          <a class="oauth-container btn darken-4 white black-text" href="#" style="text-transform:none">
+            Login with
+              <div class="right">
+                  <img width="30px" style="margin-top:7px; margin-right:19px; margin-left: -10px;" alt="Google sign-in" 
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+              </div>
+          </a>
       </div>
-      </form>
-      <hr>
-       <span class="body-text">Or login using:</span> 
-       <div class="row">
-        <!--<div class="col s6"> <i class="fab fa-facebook"></i></div>-->
-        <a href="/users/authentication/google"><div class="col s6"><i class="fab fa-google-plus-g"></i></div></a>
-      </div>    
-  </div>
+     </form>
+     
+    </div>
+ </div>
+</div>
 </section>
 
   <!--Sign-UP Doctor Form  :post:signupDoc.php-->
@@ -92,6 +131,11 @@
             <i class="material-icons prefix">lock</i>
             <input placeholder="***********" id="cpassword" name="cpass" type="password" required class="validate">
           <label for="first_name">Confirm Password:</label>
+          </div>
+          <div class="input-field col s6">
+            <i class="material-icons prefix">lock</i>
+            <input placeholder="specialization" id="specialization" name="specialization" required class="validate">
+          <label for="first_name">Specialization</label>
           </div>
         </div>
         <div class="row">
@@ -202,36 +246,6 @@
 <!--parallex-->
 <header>  
 <div class="parallax-container">
-<!--Navigation-->
-<nav>
-  <div class="nav-wrapper">
-    <!--<a href="#!" class="brand-logo"><img src="images/doc-icon.png" height="50" width="80"></a>-->
-    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="#about">About</a></li>
-      <li><a href="#departments">Departments</a></li>
-      <li><a href="#doctors">Doctors</a></li>
-      <% if (locals.user){%>
-        <li><a href="/users/profile"><%=user.name%></a></li>
-        <li><a href="/users/sign-out">SingOut</a></li>
-      <%}else{%>
-      <li><a href="#"onclick="toggleModal_signup();">SingnUp</a></li>
-      <li><a href="#" onclick="toggleModal_login();">Login</a></li>
-      <%}%>
-    </ul>
-  </div>
-</nav>
-
-<ul class="sidenav" id="mobile-demo">
-  <li><a href="about">About</a></li>
-  <li><a href="#departments">Departments</a></li>
-  <li><a href="#doctors">Doctors</a></li><% if (locals.user){%>
-    <li><a href="/users/sign-out">SingOut</a></li>
-  <%}else{%>
-  <li><a href="#"onclick="toggleModal_signup();">SingnUp</a></li>
-  <li><a href="#" onclick="toggleModal_login();">Login</a></li>
-  <%}%>
-</ul> 
 <br><br>
 <div class=" container "><div class="content-header"> + MediCare</div>
 Online Consultancy - Complete medical solution at your home. <br>No need to step out in this pandemic as well..

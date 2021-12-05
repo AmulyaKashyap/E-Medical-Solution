@@ -3,9 +3,11 @@ const LocalStrategy = require('passport-local').Strategy;
 
 
 const User = require('../models/user');
+const Doctor = require('../models/doctor');
 
-//authenticate
-passport.use(new LocalStrategy({
+
+//authenticate patient
+passport.use('patient',new LocalStrategy({
     usernameField: 'email',
     passwordField:'pass',
     passReqToCallback: true
@@ -30,6 +32,31 @@ passport.use(new LocalStrategy({
 
 ));   
 
+//authenticate doctor
+passport.use('doctor',new LocalStrategy({
+    usernameField: 'email',
+    passwordField:'pass',
+    passReqToCallback: true
+    },
+    function(req,email,password,done){
+        Doctor.findOne({email:email}, function(err, user){
+            if(err){
+                console.log('Error in finding user-->Passport');
+                req.flash('error', err);
+
+            }
+
+            if(!user || user.password != password){
+                console.log('Inalid Username/password');
+                req.flash('error', 'Invalid Username/Password');
+                return done(null, false);
+            }
+            return done(null, user);
+        });        
+    }
+
+));   
+
 
 
 
@@ -37,25 +64,31 @@ passport.use(new LocalStrategy({
 
 //serializing the user 
 passport.serializeUser(function(user,done) {
-    done(null, user.id);
-
+    return done(null, {_id:user.id, specialization:user.specialization});
 });
 
 
 
-
-
 //deserializing the user 
-passport.deserializeUser(function(id, done){
-    User.findById(id, function(err, user){
-        if(err){
-            console.log('Error in finding user-->Passport');
-            return done(err);
-        }
-
-        return done(null, user);
-
-    });
+passport.deserializeUser(function(login, done){
+    if(login.specialization=='None'){
+        User.findById(login, function(err, user){
+            if(err){
+                console.log('Error in finding user-->Passport');
+                return done(err);
+            }
+            return done(null, user);
+        });
+    }
+    else if(login.specialization=='Doctor'){
+        Doctor.findById(login, function(err, user){
+            if(err){
+                console.log('Error in finding user-->Passport');
+                return done(err);
+            }
+            return done(null, user);
+        });
+    }
 
 });
 
@@ -65,11 +98,9 @@ passport.checkAuthentication = function(req,res,next){
     if(req.isAuthenticated()){
         return next();
     }
-
     //if user is not signed in
-    return res.redirect('/users/sign-in'); 
+    return res.redirect('/'); 
 }
-
 
 passport.setAuthenticatedUser  = function(req,res,next){
     if(req.isAuthenticated()){

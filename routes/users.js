@@ -18,8 +18,7 @@ router.get('/authentication/google/callback',passport.authenticate('google', {fa
 router.post('/create',users_controller.create);
 
 //using passport middleware
-router.post('/create-session',passport.authenticate('local',{failureRedirect:'/users/sign-in'}),
-            users_controller.createSession);
+router.post('/create-session',passport.authenticate('patient',{failureRedirect:'/users/sign-in'}), users_controller.createSession);
  
 
 module.exports=router;

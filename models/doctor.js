@@ -1,6 +1,6 @@
 const mongoose =require('mongoose');
 
-const userSchema =new mongoose.Schema({
+const doctorSchema =new mongoose.Schema({
     email:{
         type:String,
         required: true,
@@ -17,13 +17,14 @@ const userSchema =new mongoose.Schema({
     specialization:{
         type: String,
         required: true,
-        default: 'None'
+        default: 'Doctor'
     }
+    
 
 },{
     timestamps: true
 });
 
-const User =mongoose.model('User',userSchema);
+const Doctor =mongoose.model('Doctor',doctorSchema);
 
-module.exports = User;
+module.exports = Doctor;
