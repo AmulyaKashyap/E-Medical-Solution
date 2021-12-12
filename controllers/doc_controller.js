@@ -8,6 +8,21 @@ module.exports.profile=function(req,res){
 }
 
 
+
+module.exports.showDoctor=function(req,res){
+    Doctor.find(function(err, users){
+        if(err){
+            req.flash('error','Error in finding avilabe doctor for you')
+            return res.render('/')
+        }
+        return res.render('doctorList', {
+            title:"Available Doctors",
+            users:users
+        })
+     });
+}
+
+
 module.exports.signUp = function(req,res){
     if(req.isAuthenticated()){
         return res.redirect('/doctors/profile');

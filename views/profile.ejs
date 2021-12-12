@@ -1,6 +1,12 @@
 <h1>Profile</h1>
 <% if (locals.user){%>
-    <li><a href="/users/sign-out">SingOut</a></li>
-    <li><a href="/">Home</a></li>
+  <% if (locals.user.specialization=='None'){%>
+  <li><a href="/users/profile"><%=user.name%></a></li>
+  <li><a href="/users/sign-out">SingOut</a></li>
+  <li><a href="/users/consult">Consult Now</a></li>
+  <%} else if(locals.user.specialization=='Doctor'){%>
+    <li><a href="/doctors/profile"><%=user.name%></a></li>
+    <li><a href="/doctors/sign-out">SingOut</a></li>
   <%}%>
+<%}%>
 <h3><%=user.name%></h3>

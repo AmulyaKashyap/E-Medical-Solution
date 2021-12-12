@@ -1,17 +1,37 @@
 const express=require('express');
 const app=express();
+const http  = require('http').createServer(app);
 const port=8000; //80 while deploying
 const cookieParser =require('cookie-parser');
 const db = require('./config/mongoose');
-
 const session = require('express-session');
 const passport = require('passport');
+
 const passportLocal = require('./config/passport-local-strategy');
 const passportGoogle = require('./config/google-login');
+
 const MongoStore = require('connect-mongo')(session);
 //own created middleware
 const flash = require('connect-flash');
 const ownMiddleware = require('./config/ownMiddleware');
+
+const io = require('socket.io')(http)
+
+io.on('connection', (socket) => {
+    console.log('Connected...')
+    let counter =0
+    let text=['May i know your age sir','Your weight','Please describe your syptoms so we can connect you to our best doctor','Ok,let me find a best doctor for consultant and we all are praying for your speedy recovery']
+    socket.on('message', (msg) => {
+        let msgg={
+            user: 'Medicare',
+            message: text[counter],
+            count:counter++
+        }
+        console.log(msg)
+        io.emit('message', msgg)
+    })
+
+})
 
 
 const expressLayouts = require('express-ejs-layouts');
@@ -72,7 +92,7 @@ app.use(passport.setAuthenticatedUser);
 app.use('/',require('./routes/index'));
 
 
-app.listen(port,function(err){
+http.listen(port,function(err){
     if(err){
         console.log(`Error: ${err}`);
         return;

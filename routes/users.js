@@ -10,12 +10,14 @@ router.get('/profile', passport.checkAuthentication,  users_controller.profile);
 router.get('/sign-in',users_controller.signIn);
 router.get('/sign-up',users_controller.signUp);
 router.get('/sign-out',users_controller.destroySession);
+router.get('/consult',users_controller.consultDoctor);
 
 
 router.get('/authentication/google',passport.authenticate('google', {scope:['profile', 'email']}));
 router.get('/authentication/google/callback',passport.authenticate('google', {failureRedirect: '/users/sign-in'}),users_controller.createSession);
 
 router.post('/create',users_controller.create);
+router.post('/callDoctor',users_controller.callDoctor);
 
 //using passport middleware
 router.post('/create-session',passport.authenticate('patient',{failureRedirect:'/users/sign-in'}), users_controller.createSession);

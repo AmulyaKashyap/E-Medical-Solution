@@ -70,3 +70,17 @@ module.exports.destroySession =function(req,res){
 
     return res.redirect('/');
 }
+
+module.exports.consultDoctor =function(req,res){
+    return res.render('consult', {
+        title:"Consult"
+    })
+}
+
+
+module.exports.callDoctor =function(req,res){
+    req.flash('success','Please a doctor to consult')
+    return res.render('callDoctor', {
+        title:"Call Doctor"
+    })
+}

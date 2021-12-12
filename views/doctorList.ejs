@@ -1,0 +1,30 @@
+<div class="container">
+  <% users.forEach(function(user) {%>
+  <div class="card">
+    <img src="https://image.flaticon.com/icons/png/512/843/843293.png"/>
+    <div class="wrapper">
+      <button>
+        ₹ 100
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        </br>
+        <li class="fa fa-star checked"></li>
+        <li class="fa fa-star checked"></li>
+        <li class="fa fa-star checked"></li>
+        <li class="fa fa-star"></li>
+        <li class="fa fa-star"></li> 
+      </button>
+    </div>
+    <div class="card__content">
+      <h2><%=user.name%></h2>
+      <p>
+         Lorem Ipsum has been the industry's standard dummy text ever          since the 1500s.
+      </p>
+      <a href="#">Pay Now</a>
+    </div>
+  </div>
+  <%})%>
+
+</div>
