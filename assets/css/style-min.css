@@ -81,3 +81,44 @@ nav a {
 #loginF{
   width: 66vw;
 }
+
+/*Dashboard related css*/
+
+.page-header
+{
+    background-color: #0a3f6d;;
+    padding: 15px;
+    color: #fff;
+    font-size: 27px;
+    font-weight: 700;
+}
+.widget-profile, .widget-content{
+background-color: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.dash-widget{
+  border-bottom: 1px solid #f0f0f0;
+    border-right: 0;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    flex-direction: unset;
+    text-align: left;
+    border-bottom: 1px solid #e2e2e2;
+}
+.card-box{
+  background-color: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.dashboard-menu a{
+  text-decoration: none;
+  color: #383737;
+}

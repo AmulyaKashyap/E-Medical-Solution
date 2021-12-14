@@ -230,14 +230,15 @@ form .btn input[type="submit"]{
 }
 
 
-section.chat__section {
+section .chat__section {
   margin:auto;
   width: 60%;
   height: 500px;
-  max-width: 60%%;
+  max-width: 60%;
   background: #fff;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
+
 .brand {
   background: #f1f1f1;
   display: flex;
@@ -288,4 +289,68 @@ textarea {
   left: 0;
   color: #333;
   font-size: 14px;
+}
+
+
+/*Dashboard related css -Amulya*/
+
+.page-header
+{
+    background-color: #0a3f6d;;
+    padding: 15px;
+    color: #fff;
+    font-size: 27px;
+    font-weight: 700;
+}
+.widget-profile, .widget-content{
+background-color: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    padding: 8px;
+}
+
+.card-box{
+  background-color: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.dash-widget{
+  flex-direction: column;
+    text-align: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: flex;
+    border-right: 1px solid #e2e2e2;
+}
+
+.dashboard-menu a{
+  text-decoration: none;
+  color: #383737;
+}
+
+.tag{
+  background-color: #fff;
+    border-radius: 4px;
+    color: #272b41;
+    padding: 5px 10px;
+    position: relative;
+    margin: 0 0.5rem 0.5rem .0;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    display: inline-block;
+}
+
+.tags li{
+  float: left;
+}
+.tag:hover {
+  background-color: #2998e286;
 }
