@@ -186,7 +186,7 @@ module.exports.paymentCallback =function(req,res){
                }else {
                    var status='payment failed'
                }
-               res.render('')
+               res.send(status)
              });
          });
   
