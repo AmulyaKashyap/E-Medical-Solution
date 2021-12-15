@@ -20,9 +20,13 @@
     <div class="card__content">
       <h2><%=user.name%></h2>
       <p>
-         Lorem Ipsum has been the industry's standard dummy text ever          since the 1500s.
+         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
       </p>
-      <a href="#">Pay Now</a>
+      <form action="../users/paynow" method="post">
+        <input type="hidden" name="doctor_id" value="<%=user.id%>">
+        <input type="hidden" name="amount" value="100">
+        <button>Pay Now</button>
+      </form>
     </div>
   </div>
   <%})%>

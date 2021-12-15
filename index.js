@@ -27,7 +27,6 @@ io.on('connection', (socket) => {
             message: text[counter],
             count:counter++
         }
-        console.log(msg)
         io.emit('message', msgg)
     })
 

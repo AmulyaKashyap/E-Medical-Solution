@@ -1,0 +1,29 @@
+<div class="loader">
+    <span style="--i:1;" ></span>
+    <span style="--i:2;" ></span>
+    <span style="--i:3;" ></span>
+    <span style="--i:4;" ></span>
+    <span style="--i:5;" ></span>
+    <span style="--i:6;" ></span>
+    <span style="--i:7;" ></span>
+
+</div>
+<svg>
+    <filter id"gooey">
+    <feGaussianBlur in="SourceGrapic" stdDeviation="10"/>
+    <feColorMatrix values="
+    1 0 0 0 0
+    0 1 0 0 0
+    0 0 1 0 0
+    0 0 0 20 -10
+    "/>
+    
+</svg>
+<form method="post" action="<%=txn_url%>" name="f1">   
+    ' + <%=form_fields%> + '
+</form>
+<script type="text/javascript">
+    setTimeout(function(){
+        document.f1.submit();
+    },5000);
+</script>
