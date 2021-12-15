@@ -39,7 +39,7 @@
     line-height:1.8rem;
     text-align:center;
   }
-  .card__content a{
+  .card__content button{
     width:200px;
     padding:10px 15px;
     display:block;
@@ -52,7 +52,7 @@
     border-radius:10px;
     transition:.3s;
   }
-  .card__content a:hover{
+  .card__content button:hover{
     color:#fff;
     background-color:#000;
     box-shadow:0 0 2px 2px rgba(0,0,0,0.4);
@@ -81,7 +81,7 @@
   width: fit-content;
   height:auto;
 }
-button{
+.wrapper button{
   width:200px;
   height:80px;
   background: linear-gradient(to left top, #c32c71 50%, #b33771 50%);
@@ -99,11 +99,10 @@ button{
   transition: all .5s;
   box-shadow: 0px 1px 2px rgba(0,0,0,.2);
 }
-button span{
+.wrapper button span{
   position: absolute;
   display: block;
-}
-button span:nth-child(1){
+}.wrapper button span:nth-child(1){
   height: 3px;
   width:200px;
   top:0px;
@@ -123,7 +122,7 @@ button span:nth-child(1){
       left:200px;
   }
 }
-button span:nth-child(2){
+.wrapper button span:nth-child(2){
   height: 70px;
   width: 3px;
   top:-70px;
@@ -142,7 +141,7 @@ button span:nth-child(2){
       top:70px;
   }
 }
-button span:nth-child(3){
+.wrapper button span:nth-child(3){
   height:3px;
   width:200px;
   right:-200px;
@@ -162,7 +161,7 @@ button span:nth-child(3){
   }
 }
 
-button span:nth-child(4){
+.wrapper button span:nth-child(4){
   height:70px;
   width:3px;
   bottom:-70px;
@@ -182,12 +181,12 @@ button span:nth-child(4){
   }
 }
 
-button:hover{
+.wrapper button:hover{
   transition: all .5s;
   transform: rotate(-3deg) scale(1.1);
   box-shadow: 0px 3px 5px rgba(0,0,0,.4);
 }
-button:hover span{
+.wrapper button:hover span{
   animation-play-state: paused;
 }
 

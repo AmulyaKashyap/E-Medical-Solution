@@ -48,7 +48,7 @@ function appendMessage(msg, type) {
         markup = `
         <h4>${msg.user}</h4>
         <p>${msg.message}</p>
-        <a href="/doctors/list" class="btn btn-small">Call Now</a>`
+        <a href="/doctors/list" class="btn btn-small">Consult Now</a>`
         document.querySelector('#text').innerHTML = "";
     }
     mainDiv.innerHTML = markup
