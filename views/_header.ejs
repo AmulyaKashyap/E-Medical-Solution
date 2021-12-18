@@ -8,10 +8,10 @@
       <li><a href="#departments">Departments</a></li>
       <li><a href="doctors/login">Doctors</a></li>
       <% if (locals.user){%>
-        <% if (locals.user.specialization=='None'){%>
+        <% if (!locals.user.IsDoctor){%>
         <li><a href="/users/profile"><%=user.name%></a></li>
         <li><a href="/users/sign-out">SingOut</a></li>
-        <%} else if(locals.user.specialization=='Doctor'){%>
+        <%} else if(locals.user.specialization){%>
           <li><a href="/doctors/profile"><%=user.name%></a></li>
           <li><a href="/doctors/sign-out">SingOut</a></li>
         <%}%>

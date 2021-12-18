@@ -23,6 +23,12 @@
   <link rel="stylesheet" media="screen and (max-width: 600px)" href="/css/style-min.css">
   <% if (title=='Available Doctors'){%>
   <link rel="stylesheet" href="/css/showDoctor.css">
+  <%} else if( title=='Calling'){%>
+    <link rel="stylesheet" href="/css/calling.css">
+    <script>
+      const ROOM_ID = "<%=first_id%>/<%= second_id%>";
+    </script>
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
   <%}%>
 <title>
 <%=title%>
@@ -55,7 +61,7 @@
               timeout: 1500
               
           }).show();    
-      <%} %>
+      <%}%>
   </script>
 </body>
 </html>

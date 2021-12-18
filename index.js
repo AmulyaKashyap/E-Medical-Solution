@@ -1,5 +1,5 @@
-const express=require('express');
-const app=express();
+const express = require('express');
+const app = express();
 const http  = require('http').createServer(app);
 const port=8000; //80 while deploying
 const cookieParser =require('cookie-parser');
@@ -15,10 +15,24 @@ const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const ownMiddleware = require('./config/ownMiddleware');
 
-const io = require('socket.io')(http)
+
+
+const io = require('socket.io')(http, {
+    cors: {
+      origin: '*'
+    }
+  });
+
+const { ExpressPeerServer } = require("peer");
+const peerServer = ExpressPeerServer(http, {
+  debug: true,
+});
+
+app.use("/peerjs", peerServer);
+
 
 io.on('connection', (socket) => {
-    console.log('Connected...')
+    console.log(' Socket Connected...')
     let counter =0
     let text=['May i know your age sir','Your weight','Please describe your syptoms so we can connect you to our best doctor','Ok,let me find a best doctor for consultant and we all are praying for your speedy recovery']
     socket.on('message', (msg) => {
@@ -29,6 +43,14 @@ io.on('connection', (socket) => {
         }
         io.emit('message', msgg)
     })
+    socket.on("join-room", (roomId, userId, userName) => {
+        console.log(' Socket Join...')
+        socket.join(roomId);
+        socket.broadcast.to(roomId).emit('user-connected', userId);
+        socket.on("message", (message) => {
+          io.to(roomId).emit("createMessage", message, userName);
+        });
+      });
 
 })
 

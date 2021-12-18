@@ -6,7 +6,7 @@ const passport=require('passport');
 const users_controller =require('../controllers/users_controller');
 
 
-router.get('/profile', passport.checkAuthentication,  users_controller.profile);
+router.get('/profile', passport.checkAuthentication, users_controller.profile);
 
 router.get('/sign-in',users_controller.signIn);
 router.get('/sign-up',users_controller.signUp);
@@ -17,11 +17,11 @@ router.get('/consult',users_controller.consultDoctor);
 router.get('/authentication/google',passport.authenticate('google', {scope:['profile', 'email']}));
 router.get('/authentication/google/callback',passport.authenticate('google', {failureRedirect: '/users/sign-in'}),users_controller.createSession);
 
-router.post('/create',users_controller.create);
-router.post('/callDoctor',users_controller.consultDoctor);
+router.post('/create', users_controller.create);
+router.post('/callDoctor', users_controller.consultDoctor);
 router.post('/paynow', users_controller.payment);
-router.post('/paytm/callback',users_controller.paymentCallback);
-router.get('/callnow',users_controller.callnow);
+router.post('/paytm/callback', users_controller.paymentCallback);
+router.get('/:first/:second_/chat', users_controller.callnow);     //first-patient   second-doctor
 
 
 //using passport middleware

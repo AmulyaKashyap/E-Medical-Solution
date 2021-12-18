@@ -5,7 +5,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 const Doctor = require('../models/doctor');
 
-
 //authenticate patient
 passport.use('patient',new LocalStrategy({
     usernameField: 'email',
@@ -64,14 +63,14 @@ passport.use('doctor',new LocalStrategy({
 
 //serializing the user 
 passport.serializeUser(function(user,done) {
-    return done(null, {_id:user.id, specialization:user.specialization});
+    return done(null, {_id:user.id, isDoctor:user.isDoctor});
 });
 
 
 
 //deserializing the user 
 passport.deserializeUser(function(login, done){
-    if(login.specialization=='None'){
+    if(!login.isDoctor){
         User.findById(login, function(err, user){
             if(err){
                 console.log('Error in finding user-->Passport');
@@ -80,7 +79,7 @@ passport.deserializeUser(function(login, done){
             return done(null, user);
         });
     }
-    else if(login.specialization=='Doctor'){
+    else if(login.isDoctor){
         Doctor.findById(login, function(err, user){
             if(err){
                 console.log('Error in finding user-->Passport');
@@ -94,6 +93,7 @@ passport.deserializeUser(function(login, done){
 
 //checking user authentication 
 passport.checkAuthentication = function(req,res,next){
+    console.log("from checkAuthentication")
     //if user is signed in
     if(req.isAuthenticated()){
         return next();

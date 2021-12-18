@@ -1,14 +1,40 @@
-const { localsName } = require('ejs');
-var checksum_lib = require('./Paytm/checksum');
-const config = require('./Paytm/config');
+const { localsName } = require('ejs')
+var checksum_lib = require('./Paytm/checksum')
+var cookieParser = require('cookie-Parser')
+const config = require('./Paytm/config')
 const User = require('../models/user')
 require('dotenv').config()
 const https =  require("https")
+const Doctor = require('../models/doctor');
+
+
+//for encryption
+const crypto = require('crypto');
+const algorithm = 'aes-256-cbc';
+const key = crypto.randomBytes(32);
+const iv = crypto.randomBytes(16);
+
+
+function encrypt(text) {
+    let cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(key), iv);
+    let encrypted = cipher.update(text);
+    encrypted = Buffer.concat([encrypted, cipher.final()]);
+    return { iv: iv.toString('hex'), encryptedData: encrypted.toString('hex') };
+   }
+   
+   function decrypt(text) {
+    let iv = Buffer.from(text.iv, 'hex');
+    let encryptedText = Buffer.from(text.encryptedData, 'hex');
+    let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), iv);
+    let decrypted = decipher.update(encryptedText);
+    decrypted = Buffer.concat([decrypted, decipher.final()]);
+    return decrypted.toString();
+   }
+
 
 
 module.exports.profile=function(req,res){
 
-    console.log(process.env.PAYTM_MID)
     return res.render('profile', {
         title:"Patient Profile"
     })
@@ -48,8 +74,6 @@ module.exports.create =function(req,res){
         if(!user){
             User.create({name:req.body.fname, email:req.body.email, password:req.body.pass}, function(err, user){
                 if(err){req.flash('error', err); return}
-
-                console.log('object is created');
                 req.flash('success', 'You have signed up, login to continue!');
                 return res.redirect('back')
             })
@@ -66,7 +90,7 @@ module.exports.create =function(req,res){
 //create session for loginn
 module.exports.createSession =function(req,res){
     req.flash('success', 'Logged in Successfully');
-    return res.redirect('/users/profile');
+    res.redirect('/users/profile');
 }
 
 
@@ -89,9 +113,13 @@ module.exports.consultDoctor =function(req,res){
     })
 }
 
+
+//first_id - patient_id, second_id - doctor_id
 module.exports.callnow=function(req,res){
-    res.send("Calling")
+    return res.render('videoroom', {title:'Calling', first_id:req.params.first_id, second_id:req.params.second_id})
 }
+
+
 
 module.exports.payment =function(req,res){
     var paymentDetails = {
@@ -123,10 +151,22 @@ module.exports.payment =function(req,res){
             }
             form_fields += "<input type='hidden' name='CHECKSUMHASH' value='" + checksum + "' >";
             
+           
+            //need to remove given below comment to initiate  payment ---just to bypass the payment process for makhan working 
+
             //res.render('payment_refreshing',{title:'Merchant Checkout Page',form_fields: form_fields,txn_url:txn_url})
-           res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.write('<html><head><title>Merchant Checkout Page</title></head><body><center><h1>Please do not refresh this page...</h1></center><form method="post" action="' + txn_url + '" name="f1">' + form_fields + '</form><script type="text/javascript">document.f1.submit();</script></body></html>');
-            res.end();
+            // var doctor_id = encrypt(Buffer.from(req.body.doctor_id))
+            //res.cookie('login', doctor_id.encryptedData) 
+            //res.writeHead(200, { 'Content-Type': 'text/html' });
+            //res.write('<html><head><title>Merchant Checkout Page</title></head><body><center><h1>Please do not refresh this page...</h1></center><form method="post" action="' + txn_url + '" name="f1">' + form_fields + '</form><script type="text/javascript">document.f1.submit();</script></body></html>');
+            //res.end();
+
+            //req.body.doctor_id - getting from the form
+            var doctor_id = encrypt(Buffer.from(req.body.doctor_id))
+            var patient_id = encrypt(Buffer.from(req.user.id))
+           // res.cookie('login', doctor_id.encryptedData)
+
+            res.render('payment_status',{title:'Payment Status',status:"Succes", first:patient_id.encryptedData, second:doctor_id.encryptedData})
         });
     }
 }
@@ -139,14 +179,18 @@ module.exports.paymentCallback =function(req,res){
        var post_data = req.body;
   
        // received params in callback
-       console.log('Callback Response: ', post_data, "\n");
-  
-  
+       // need to change these two variable name so no one guess that it's our user'id 
+       
+       
+       var doctor_id = req.cookies.login
+       var patient_id = encrypt(Buffer.from(req.user.id))
+       
+
        // verify the checksum
        var checksumhash = post_data.CHECKSUMHASH;
-       // delete post_data.CHECKSUMHASH;
+       // need to check result value if its ture then only we have to proceed ---verifying the payment 
        var result = checksum_lib.verifychecksum(req.body, config.PaytmConfig.key,checksumhash );
-       console.log("Checksum Result => ", result, "\n");
+       
   
   
        // Send Server-to-Server request to verify Order Status
@@ -170,7 +214,7 @@ module.exports.paymentCallback =function(req,res){
          };
   
   
-         // Set up the request
+         // Set up the request to send to paytm server to verify the status with given order_id
          var response = "";
          var post_req = https.request(options, function(post_res) {
            post_res.on('data', function (chunk) {
@@ -186,7 +230,7 @@ module.exports.paymentCallback =function(req,res){
                }else {
                    var status='payment failed'
                }
-               res.send(status)
+               res.render('payment_status',{title:'Payment Status',status:status, first:patient_id.encryptedData, second:doctor_id})
              });
          });
   
