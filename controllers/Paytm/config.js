@@ -1,4 +1,4 @@
-require('dotenv').config()
+const dotenv = require('dotenv').config()
 
 var PaytmConfig = {
     mid: "VxtEhY83424987483813",

@@ -4,29 +4,28 @@
     <img src="https://image.flaticon.com/icons/png/512/843/843293.png"/>
     <div class="wrapper">
       <button>
-        ₹ 100
+        ₹<%=user.price%>
         <span></span>
         <span></span>
         <span></span>
         <span></span>
         </br>
+        <%for(let i=1;i<=user.rating;i++){%>
         <li class="fa fa-star checked"></li>
-        <li class="fa fa-star checked"></li>
-        <li class="fa fa-star checked"></li>
-        <li class="fa fa-star"></li>
-        <li class="fa fa-star"></li> 
-      </button>
+        <%}%>
+        <%for(let i=user.rating;i<5;i++){%>
+          <li class="fa fa-star "></li>
+          <%}%>
+        </button>
     </div>
     <div class="card__content">
       <h2><%=user.name%></h2>
       <p>
          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
       </p>
-      <form action="../users/paynow" method="post">
-        <input type="hidden" name="doctor_id" value="<%=user.id%>">
-        <input type="hidden" name="amount" value="100">
-        <button>Pay Now</button>
-      </form>
+    <a href="/users/bookAppointment/<%=user.id%>">
+        <button>Book Appointment</button>
+    </a>
     </div>
   </div>
   <%})%>

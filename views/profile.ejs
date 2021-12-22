@@ -25,7 +25,7 @@
               <div class="widget-profile" style="text-align: center;">
                 <img style=" width: 120px;height: 120px;" src="/images/patient-avatar.png">  
                 <h5 style="font-weight: 500;"><%=user.name%></h5>
-                <p style="color: gray; font-size:medium;">21 years | Male </p>
+                <p style="color: gray; font-size:medium;"><%=user.age%> | <%=user.gender%> </p>
               </div>
               
               <div class="widget-content">
@@ -136,6 +136,7 @@
                   </tr>
                 </thead>
                 <tbody>
+              
                   <tr>
                     <td><p class="table-avatar"><a class="avatar avatar-sm mr-2" href="/images/doc1.png">
                       <img class="avatar-img rounded-circle" src="/images/doc1.png" alt="User" style="float:left; vertical-align: middle; width: 50px;height: auto;border-radius: 100%;"></a>
@@ -223,7 +224,7 @@
 
  <!--Floating corner-->
  <div class="fixed-action-btn">
-  <a class="btn-floating btn-large blue darken-9 tooltipped" data-tooltip="Consult now" href="/users/consult"  style = "width: 7rem; height: 7rem; background-color: #bf0e1c !important;">
+  <a class="btn-floating btn-large blue darken-9 tooltipped" data-tooltip="Consult now" href="/users/chatBot"  style = "width: 7rem; height: 7rem; background-color: #bf0e1c !important;">
     <img src="/images/consult-now.png" style="width: 5rem; height:6rem;">
   </a>
 </div>

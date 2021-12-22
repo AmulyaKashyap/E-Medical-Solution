@@ -10,7 +10,10 @@ router.get('/profile', passport.checkAuthentication,  doc_controller.profile);
 router.get('/login',doc_controller.login);
 router.get('/sign-up',doc_controller.signUp);
 router.get('/sign-out',doc_controller.destroySession);
-router.get('/list',doc_controller.showDoctor);
+
+//render all doctor's list
+router.get('/list',doc_controller.doctorList);
+
 
 router.get('/authentication/google',passport.authenticate('doctor', {scope:['profile', 'email']}));
 router.get('/authentication/google/callback',passport.authenticate('doctor', {failureRedirect: '/doctors/sign-in'}),doc_controller.createSession);

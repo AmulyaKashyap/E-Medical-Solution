@@ -93,7 +93,6 @@ passport.deserializeUser(function(login, done){
 
 //checking user authentication 
 passport.checkAuthentication = function(req,res,next){
-    console.log("from checkAuthentication")
     //if user is signed in
     if(req.isAuthenticated()){
         return next();

@@ -7,8 +7,10 @@ const doctorSchema =new mongoose.Schema({
     name:{  type: String, required:true},
     isDoctor:{ type: Boolean, required: true, default: true },      // to render doctor specific views/pages
     rating:{ type:Number, min:0, max:5 },
-    isavailable:{ type:Boolean, default:true }    // check online status  - online/offline
-    },{ timestamps: true
+    isavailable:{ type:Boolean, default:false },
+    price : Number // check online status  - online/offline
+    },
+    { timestamps: true
 });
 
 const Doctor =mongoose.model('Doctor',doctorSchema);

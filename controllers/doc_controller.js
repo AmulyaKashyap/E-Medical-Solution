@@ -8,8 +8,8 @@ module.exports.profile=function(req,res){
 }
 
 
-
-module.exports.showDoctor=function(req,res){
+//render all doctor's list
+module.exports.doctorList=function(req,res){
     Doctor.find(function(err, users){
         if(err){
             req.flash('error','Error in finding avilabe doctor for you')

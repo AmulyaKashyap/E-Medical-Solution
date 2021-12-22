@@ -1,0 +1,342 @@
+
+  /*Universal Elements*/
+  p ,.para {
+    line-height: 2rem;
+    font-size: 1.3rem;
+  }
+  .subheading{
+    font-size: 3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .subheading-two{
+    font-size: 2.4rem;
+    color: #2fccd0;
+    font-weight: 500;
+    text-shadow: 1px 1px 1px rgb(107, 106, 106);
+    text-transform: uppercase;
+  }
+  i{
+    color: #2fccd0;
+  }
+  .avatar-img{
+    border-radius: 50%;
+      height: 150px;
+      width: 150px;
+      display: block;
+      position: relative;
+      transition: all 1s ease;
+      overflow: hidden;
+  }
+  .avatar-img:hover{
+    transform: scale(1.08);
+  }
+  
+  .inline-list{
+    position: relative;
+    display: flex;
+  }
+  .inline-list li{
+    list-style: none;
+    margin-right: 15px;
+  }
+  .inline-list li a{
+    text-decoration: none;
+  }
+  
+  .navbar{
+    background-color: #00050523;
+    width: 100%;
+    height: 13vh;
+    box-shadow: none;
+    color: white;
+   display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+  }
+  .brand-logo{
+    color: white;
+    font-weight: 600;
+    font-size: 2rem;
+    width: 25%;
+    text-align: center;
+  }
+  .menus{
+    align-items: flex-end;
+    display: flex;
+  }
+  
+  
+  /*Types of button*/
+  .btn-white{
+    padding: 12px 30px; 
+    border-radius: 4px;
+    outline: none; 
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500; 
+    text-decoration: none;
+     letter-spacing: 1px;
+     background-color: white;
+     color:#09859b;
+     margin:0 10px;
+     transition:all 0.5s ease;
+  }
+  .btn-teal{
+    padding: 12px 30px; 
+    border-radius: 4px;
+    outline: none; 
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500; 
+    text-decoration: none;
+     letter-spacing: 1px;
+     background-color: #09859b;
+     color:#ffffff;
+     transition:all 0.5s ease;
+  }
+  .btn-teal:hover{
+    color:#09859b;
+    background-color: white;
+  }
+  .btn-white:hover{
+    background-color: #09859b;
+    color:#ffffff;
+  }
+  
+  /*Changing context*/
+  .changetext::after{
+    content: '' ;
+    animation: changetext 10s infinite linear;
+    color:#d1021f;
+  }
+  @keyframes changetext {
+    0% {content: "Book Appointment";}
+    20% {content: "Consult Online";}
+    40% {content: "Find Doctors";}
+    60% {content: "Buy Medicine";}
+    80% {content: "Save Records";}
+    100% {content: "Consult Online";}
+  }
+  /*about section- home page*/
+  .about{
+    width: 100%;
+    height: auto;
+    background-color: white;
+    margin:100px 0;
+    text-align: center;
+  
+  }
+  .extra-div{
+    
+    border: medium none;
+    padding: 50px !important;
+    border-radius: 3px ;
+    transition: 0.3s;
+  }
+  .extra-div a{
+    color: black !important;
+  }
+  .extra-div h4{
+    font-size: 1rem;
+    margin: 20px 0 15px 0;
+    font-weight: 600;
+    line-height: 1.1;
+    word-spacing: 4px;
+    text-transform: uppercase;
+  }
+  .extra-div:hover{
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.3);
+    transform: translateY(-20px);
+  }
+  
+  /*Department Section: home page*/
+  .departments{
+    margin: 100px 0;
+  }
+  .tabs{
+    font-size: 2w;
+    color: #012E55;
+  }
+  .tabs .tab a{
+    font-size: 2w;
+    color: #012E55;
+  }
+  
+  /*--Count-rep section home*/
+  .count-rep{
+    margin: 100px 0;
+  }
+  .count-rep h1{
+    text-align: center;
+  
+  }
+  /*Doctors Available*/
+  .carousel {
+    height: 800px;
+    perspective: 750px;
+    transform: translateY(-100px);
+  }
+  .carousel .carousel-item  {
+    width: 300px;
+  }
+  .carousel h4 {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #000;
+    box-sizing: border-box;
+    padding: 10px 5px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .parallax-container {
+    min-height: 580px;
+    line-height: 0;
+    height: 100vh;
+    color: rgba(255,255,255,.9);
+  }
+    .parallax-container .section {
+      width: 100%;
+    }
+  
+  @media only screen and (max-width : 992px) {
+    .parallax-container .section {
+      position: absolute;
+      top: 40%;
+    }
+    #index-banner .section {
+      top: 10%;
+    }
+  }
+  
+  @media only screen and (max-width : 600px) {
+    #index-banner .section {
+      top: 0;
+    }
+  }
+  
+  .icon-block {
+    padding: 0 15px;
+  }
+  .icon-block .material-icons {
+    font-size: inherit;
+  }
+  
+  footer.page-footer {
+    margin: 0;
+  }
+  
+  
+  /*Book appointment page css*/
+  .book-appontment{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../review-background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .cont1{
+    position: relative;
+    min-width: 80vw;
+    min-height: 550px;
+    display: flex;
+    z-index: 1000;
+  }
+  
+  .docInfo{
+    position: absolute;
+    top:40px;
+    width: 350px;
+    height: calc(100% - 80px);
+    background: #012E55;
+    z-index: 1;
+    padding: 40px;
+    display: flex;
+    justify-content: center;flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+  
+  }
+  
+  .book-info{
+    position: absolute;
+    padding: 70px 50px;
+    padding-left: 250px;
+    margin-left: 150px;
+    width: calc(100% - 150px);
+    background-color: #feffff;
+    height: 100%;
+    box-shadow: 0 50px 55px rgba(0, 0, 0, 0.25);
+  }
+  .book-info span{
+    font-size: 1.5rem;
+  }
+  .heading-slot{
+    text-transform: uppercase; font-size: 1.5rem; font-weight: 600; color:black
+  }
+  
+  @media (max-width: 1200px) {
+  .cont1{
+    margin: 20px;
+    width: 90%;
+    min-width: auto;
+    position: relative;
+    min-height: 550px;
+    display: flex;
+    z-index: 1000;
+  }
+    
+  .docInfo{
+    position: absolute;
+    top:40px;
+    width: 250px;
+    height: calc(100% - 80px);
+    background: #012E55;
+    z-index: 1;
+    padding: 40px;
+    display: flex;
+    justify-content: center;flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+  }
+  .book-info{
+    position: absolute;
+    padding: 70px 50px;
+    padding-left: 150px;
+    margin-left: 150px;
+    width: calc(100% - 150px);
+    background-color: #feffff;
+    height: 100%;
+    box-shadow: 0 50px 55px rgba(0, 0, 0, 0.25);
+  } 
+  }
+  
+  @media (max-width: 650px){
+   .cont1{
+     display: flex;
+     flex-direction:column-reverse;
+   }
+   .docInfo{
+     width: 100%;
+     height: auto;
+     position: relative;
+     
+   }
+   .book-info{
+     width:100%;
+     height: auto;
+     top:0;
+     position: relative;
+     box-shadow: none;
+     margin: 0;
+     padding: 20px;
+   }
+  }

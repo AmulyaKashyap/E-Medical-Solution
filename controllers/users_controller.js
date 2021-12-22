@@ -3,40 +3,33 @@ var checksum_lib = require('./Paytm/checksum')
 var cookieParser = require('cookie-Parser')
 const config = require('./Paytm/config')
 const User = require('../models/user')
-require('dotenv').config()
+const dotenv = require('dotenv').config()
 const https =  require("https")
 const Doctor = require('../models/doctor');
+const Appointment = require('../models/appointment');
 
+//importing files for sending calender invite
+const sendCalender = require('../features/calenderInvite.js')
 
-//for encryption
-const crypto = require('crypto');
-const algorithm = 'aes-256-cbc';
-const key = crypto.randomBytes(32);
-const iv = crypto.randomBytes(16);
-
-
-function encrypt(text) {
-    let cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(key), iv);
-    let encrypted = cipher.update(text);
-    encrypted = Buffer.concat([encrypted, cipher.final()]);
-    return { iv: iv.toString('hex'), encryptedData: encrypted.toString('hex') };
-   }
-   
-   function decrypt(text) {
-    let iv = Buffer.from(text.iv, 'hex');
-    let encryptedText = Buffer.from(text.encryptedData, 'hex');
-    let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), iv);
-    let decrypted = decipher.update(encryptedText);
-    decrypted = Buffer.concat([decrypted, decipher.final()]);
-    return decrypted.toString();
-   }
+const encrypt_decrypt = require('../features/encrypt_decrypt.js')
 
 
 
+//render user profile
 module.exports.profile=function(req,res){
+    Appointment.findOne({patientId:req.user.id}).populate("doctorId").exec(function(err,p){
+        if(err) console.log("error ",err)
+       // console.log(p.doctorId.id)
+    })
+    return res.render('profile', {title:"Patient Profile"})
+}
 
-    return res.render('profile', {
-        title:"Patient Profile"
+//render chatBot to collect information
+module.exports.chatBot =function(req,res){
+    req.flash('success','Please a doctor to consult')
+
+    return res.render('chatBot', {
+        title:"Chat with Bot"
     })
 }
 
@@ -47,8 +40,7 @@ module.exports.signUp = function(req,res){
     }
     return res.render('sign_up', {
         title:"Patient Sign Up"
-    })
-     
+    })   
 }
 
 module.exports.signIn = function(req,res){
@@ -56,7 +48,7 @@ module.exports.signIn = function(req,res){
         return res.redirect('/users/profile');
     }
     return res.render('sign_in', {
-        title:"Patient Sign IN"
+        title:"Patient Sign In"
     })
      
 }
@@ -97,21 +89,13 @@ module.exports.createSession =function(req,res){
 
 //destroy session for logout
 module.exports.destroySession =function(req,res){
+    const name=req.user.name
     req.logout();
-    req.flash('success', 'You have logged out!');
+    req.flash('success', name +' Logged out!');
 
     return res.redirect('/');
 }
 
-
-
-module.exports.consultDoctor =function(req,res){
-    req.flash('success','Please a doctor to consult')
-
-    return res.render('consult', {
-        title:"Call Doctor"
-    })
-}
 
 
 //first_id - patient_id, second_id - doctor_id
@@ -121,13 +105,41 @@ module.exports.callnow=function(req,res){
 
 
 
+module.exports.bookAppointment=function(req,res){
+    //need to encrypt the doctor id from originating i.e doc_controller/doctorList 
+    Doctor.findOne({id: req.params.doctor_id},  function(err, doctor){
+        if(err){req.flash('error', "Ther is an error in this booking"); return}
+        if(doctor){
+            return res.render('bookAppointment', {title:'Book Appointment',doc:doctor})
+        }
+    });
+}
+
+
+//redirection from users to paytm
 module.exports.payment =function(req,res){
+
     var paymentDetails = {
         amount: req.body.amount,
         customerId: req.user.id,
         customerEmail: req.user.email,
-        customerPhone: 1234567890
+        customerPhone: req.user.phoneNumber
     }
+    
+    //getting data from the form
+   const appointment = new Appointment({
+        patientId : req.user.id,
+        doctorId :  req.body.doctor_id,
+        date :      req.body.date,
+        time  :     req.body.time,      
+        meeting :   true                    //need to received from the form
+    })
+    appointment.save()
+    //saving the id  of appointment in cookie so we can access it when paytm send response
+    var detail = encrypt_decrypt.encrypt(appointment.id)
+    res.cookie("details", detail)
+    
+
     if(!paymentDetails.amount || !paymentDetails.customerId || !paymentDetails.customerEmail || !paymentDetails.customerPhone) {
         res.status(400).send('Payment failed')
     } else {
@@ -153,20 +165,16 @@ module.exports.payment =function(req,res){
             
            
             //need to remove given below comment to initiate  payment ---just to bypass the payment process for makhan working 
-
-            //res.render('payment_refreshing',{title:'Merchant Checkout Page',form_fields: form_fields,txn_url:txn_url})
-            // var doctor_id = encrypt(Buffer.from(req.body.doctor_id))
-            //res.cookie('login', doctor_id.encryptedData) 
-            //res.writeHead(200, { 'Content-Type': 'text/html' });
-            //res.write('<html><head><title>Merchant Checkout Page</title></head><body><center><h1>Please do not refresh this page...</h1></center><form method="post" action="' + txn_url + '" name="f1">' + form_fields + '</form><script type="text/javascript">document.f1.submit();</script></body></html>');
-            //res.end();
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write('<html><head><title>Merchant Checkout Page</title></head><body><center><h1>Please do not refresh this page...</h1></center><form method="post" action="' + txn_url + '" name="f1">' + form_fields + '</form><script type="text/javascript">document.f1.submit();</script></body></html>');
+        res.end();
 
             //req.body.doctor_id - getting from the form
-            var doctor_id = encrypt(Buffer.from(req.body.doctor_id))
-            var patient_id = encrypt(Buffer.from(req.user.id))
+            //var doctor_id = encrypt(Buffer.from(req.body.doctor_id))
+            //var patient_id = encrypt(Buffer.from(req.user.id))
            // res.cookie('login', doctor_id.encryptedData)
-
-            res.render('payment_status',{title:'Payment Status',status:"Succes", first:patient_id.encryptedData, second:doctor_id.encryptedData})
+        
+           // res.render('payment_status',{title:'Payment Status',status:"Succes"})
         });
     }
 }
@@ -179,13 +187,6 @@ module.exports.paymentCallback =function(req,res){
        var post_data = req.body;
   
        // received params in callback
-       // need to change these two variable name so no one guess that it's our user'id 
-       
-       
-       var doctor_id = req.cookies.login
-       var patient_id = encrypt(Buffer.from(req.user.id))
-       
-
        // verify the checksum
        var checksumhash = post_data.CHECKSUMHASH;
        // need to check result value if its ture then only we have to proceed ---verifying the payment 
@@ -222,7 +223,6 @@ module.exports.paymentCallback =function(req,res){
            });
   
            post_res.on('end', function(){
-             console.log('S2S Response: ', response, "\n");
   
              var _result = JSON.parse(response);
                if(_result.STATUS == 'TXN_SUCCESS') {
@@ -230,7 +230,33 @@ module.exports.paymentCallback =function(req,res){
                }else {
                    var status='payment failed'
                }
-               res.render('payment_status',{title:'Payment Status',status:status, first:patient_id.encryptedData, second:doctor_id})
+               
+               const transactionId=_result.TXNID
+               const transactionStatus=_result.STATUS
+               const appointmentDetails = encrypt_decrypt.decrypt(req.cookies.details)
+               
+               Appointment.findOne({_id: appointmentDetails}).then(function(appointment) {
+                appointment.transactionId=transactionId,             
+                appointment.transactionStatus=transactionStatus,
+                appointment.isDone=false
+                appointment.save()
+
+                const startTime = appointment.date       // eg : moment()
+                const endTime =  appointment.date             // eg : moment(1,'days')
+                const eventSummary =  "Save the date and time of Your Appointment"       // 'Summary of your event'
+                const eventDescription =  "Be Ready to consult with Dr.Aman within 15 mintues" // 'More description'
+                const eventLocation =  "Online - Medicare "
+                //const organizerName = appointment.doctorId.name
+                //console.log("organizerName ",organizerName)
+
+                //generatring ics object to send over mail....ics object which is a media type that allows users to store and exchange calendaring and scheduling information 
+                const calenderObject = sendCalender.getIcalObjectInstance(startTime,endTime,eventSummary,eventDescription,eventLocation)
+                sendCalender.sendInvitaion(calenderObject)
+                  
+
+
+               })
+               res.render('payment_status',{title:'Payment Status',status:status})
              });
          });
   

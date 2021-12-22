@@ -1,0 +1,100 @@
+<!--<section class="appointment">
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="box">
+		<div class="square" style="--i:0;"></div>
+		<div class="square" style="--i:1;"></br>Booking for Dr. <%=doc.name%></br><%=doc.rating%> Rated</div>
+		<div class="square" style="--i:2;">Available Timing Slot</br> 9-10, 11-12</div>
+		<div class="square" style="--i:3;"></div>
+		<div class="square" style="--i:4;"></div>
+            <div class="container">
+            <form action="/users/paynow" method="post">
+                <div class="form">
+                    <h2>Appointment form</h2>
+                    <div class="inputBox">
+                        <input type="text" placeholder="Time">
+                    </div>
+                    <div class="inputBox">
+                        <input type="date" >
+                    </div>
+                        <input type="hidden" name="doctor_id" value="<%=doc.id%>">
+                        <input type="hidden" name="date" value="2/1/22">
+                        <input type="hidden" name="time" value="12:35:45">
+                        <input type="hidden" name="meeting" value="<%=doc.id%>">
+                        <input type="hidden" name="amount" value="<%=doc.price%>">
+                        <div class="inputBox">
+                            <input type="submit" value="Pay Now">
+                        </div>
+                </div>
+            </form>
+            </div>  
+        </div>
+</section>
+-->
+
+        <section class="book-appontment">
+            <div class="container  cont1">
+                <div class="  docInfo" style="font-size: 1.2rem; align-items: center; text-align: center; color: #fff;">
+                    <h5 class="subheading-two" style="font-size: 1rem;">Doctor's Information:</h5>
+                    <ul class="info">
+                        <li>
+                            <span><img src="eye.jpg" alt="" class="avatar-img"></span>
+                            <span><br>Dr. RD Singh<br>Cardiologist<br><i style="color:white;" class="fas fa-map-marker-alt"></i> Delhi,India</span>
+                            <br>
+                            <span>
+                            <ul class="inline-list" style="padding: 15px 40px;">
+                                <li><a href="#"><i style="color:white;" class="fas fa-envelope"></i></a></li>
+                                <li><a href="#"><i style="color:white;"class="fas fa-phone-alt"></i></a></li>
+                                <li><a href="#"><i style="color:white;"class="fas fa-id-card"></i></a></li>
+                            </ul>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="book-info">
+                    <h5 class="heading-slot">Select your Slot:</h5>
+                    <form action="/users/paynow" method="post" style="padding: 20px;">
+                            <div class="row">
+                            <div class="input-field col s12">
+                                <span><i class="fas fa-calendar-alt"></i> Select a date:</span>
+                                <input type="text" class="datepicker" name="date">
+                            </div>
+                            <div class="input-field col s12" style="margin-bottom: 45px;">
+                                <span><i class="fas fa-hourglass-half"></i> Select appropriate Slot:</span>
+                                <select class="slot-options" name="time">
+                                <option value="1">10:00am - 11:00am</option>
+                                <option value="2">11:00am - 12:00pm</option>
+                                <option value="3">1:00pm - 2:00pm</option>
+                                <option value="3">2:00pm - 3:00pm</option>
+                                <option value="3">3:00pm - 4:00pm</option>
+                                <option value="3">4:00pm - 5:00pm</option>
+                                </select>
+                            </div>
+                            <input type="hidden" name="doctor_id" value="<%=doc.id%>">
+                            <!--need to add "meeting" feild in the form-->                            
+                            <input type="hidden" name="meeting" value="online">                 
+                            <input type="hidden" name="amount" value="<%=doc.price%>">
+                            <div class=" col m12 buttons" >
+                            <div class="row">
+                                <button class="col s12 m12 l4 btn waves-effect waves-light" name="action" style="margin:10px 10px;">Cancel
+                                <i class=" material-icons right" style="color: #fff;">cancel</i>
+                            </button>
+                            <button class="col s12 m12 l4 btn waves-effect waves-light" style="margin:10px 10px;" type="submit" name="action">Submit
+                                <i class="material-icons right" style="color: #fff;">send</i>
+                            </div>
+                            </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+         <!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!--Counter-up-->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+<script src="/css/materialize/js/materialize.js"></script>
+<script src="/js/loader.js"></script>
