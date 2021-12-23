@@ -10,7 +10,8 @@ router.get('/profile', passport.checkAuthentication,  doc_controller.profile);
 router.get('/login',doc_controller.login);
 router.get('/sign-up',doc_controller.signUp);
 router.get('/sign-out',doc_controller.destroySession);
-
+router.get('/addBlog',doc_controller.addBlog);
+router.get('/myReviews',doc_controller.myReviews);
 //render all doctor's list
 router.get('/list',doc_controller.doctorList);
 

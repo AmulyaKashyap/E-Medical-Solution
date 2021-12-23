@@ -20,7 +20,7 @@ passport.use('patient',new LocalStrategy({
             }
 
             if(!user || user.password != password){
-                console.log('Inalid Username/password');
+                console.log('Invalid Username/password');
                 req.flash('error', 'Invalid Username/Password');
                 return done(null, false);
             }
@@ -42,12 +42,10 @@ passport.use('doctor',new LocalStrategy({
             if(err){
                 console.log('Error in finding user-->Passport');
                 req.flash('error', err);
-
             }
-
             if(!user || user.password != password){
-                console.log('Inalid Username/password');
-                req.flash('error', 'Invalid Username/Password');
+                console.log('Invaid Username/password');
+                req.flash('error', 'Invaid Username/Password');
                 return done(null, false);
             }
             return done(null, user);

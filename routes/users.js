@@ -6,6 +6,7 @@ const passport=require('passport');
 const users_controller =require('../controllers/users_controller');
 
 
+
 router.get('/profile', passport.checkAuthentication, users_controller.profile);
 
 //open chatBot

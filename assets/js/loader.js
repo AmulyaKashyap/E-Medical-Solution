@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $('.modal').modal();
     $('.parallax').parallax();
+    $('.carousel').carousel();
     $('.sidenav').sidenav();
     $(".dropdown-trigger").dropdown({ hover: false });
     $('.parallax').parallax();
@@ -17,6 +18,30 @@ $(document).ready(function(){
         shift : 55,
         padding :20,
     });
+    /*$('.carousel .carousel-slider').carousel({
+        fullWidth: true,
+        indicators: true,
+        height : 800,
+        interval: 100,
+      });*/
+    $('.count').counterUp({
+        delay: 30,
+        time: 1000
+      });
+      //get button
+    mybtn = document.getElementById("goto-top") ;
+    
+    //When user scroll 20px from top then show the btn
+    window.onscroll = function(){scrollFunction()};
+    
+    function scrollFunction(){
+      if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){
+        mybtn.style.display= "block" ;
+      }
+      else{
+        mybtn.style.display = "none";
+      }
+    }
 });
 
 function toggle(e){

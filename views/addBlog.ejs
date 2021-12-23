@@ -1,0 +1,132 @@
+<div style="background-color: #f8f9fa;">
+    <div class="page-header">
+      Add Blog
+    </div>
+    <div class="content" style="min-height:44.5px; padding-top: 20px;">
+      <div class="container-fluid" style="padding-left: 20px;padding-right: 20px;">
+        <div class="row">
+          <div class="col s12 m5 l4 xl3 SideBar">
+            <div style="position:sticky; top:20px;">
+              <div class="profile-slidebar">
+                <div class="widget-profile" style="text-align: center;">
+                  <img style="border:4px solid #32acdf;border-radius: 50%; width: 120px;height: 120px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="/images/doc1.png">  
+                  <h5 style="font-weight: 500;">Dr.User</h5>
+                  <p style="color: gray; font-size:medium;">BDS, MDS - Oral & Maxillofacial Surgery</p>
+                </div>
+                
+                <div class="widget-content">
+                  <div class="dashboard-menu nav" style="padding: 20px; font-size: 1.5rem;">
+                    <div class="nav-item" style="margin-bottom: 5px;">
+                      <a href="" class="active" aria-current="page">
+                        <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">
+                          dashboard
+                        </i><span>Dashboard</span>
+                      </a>
+                    </div>
+                    <div class="nav-item" style="margin-bottom: 5px;">
+                      <a href="" class="active" aria-current="page">
+                        <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">
+                         date_range
+                        </i><span>Appointements</span>
+                      </a>
+                    </div>
+                    <div class="nav-item" style="margin-bottom: 5px;">
+                      <a href="" class="active" aria-current="page">
+                       <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">group</i>
+                       <span>My Patients</span>
+                      </a>
+                    </div>
+                    <div class="nav-item" style="margin-bottom: 5px;">
+                      <a href="" class="active" aria-current="page">
+                       <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">question_answer</i>
+                       <span>Messages</span>
+                      </a>
+                    </div>
+                    <div class="nav-item" style="margin-bottom: 5px;">
+                      <a href="" class="active" aria-current="page">
+                       <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">manage_accounts</i>
+                       <span>Edit Profile</span>
+                      </a>
+                    </div>
+                    <div class="nav-item">
+                      <a href="" class="active" aria-current="page">
+                       <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">logout</i>
+                       <span>LogOut</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+          <div class="col s12 m7 l8 xl9">
+              <div class="row add-blog" style="background-color: white; color: rgb(7, 7, 65);padding: 50px;">
+                <div class="col s12">
+                    <div>
+                        <form method="post" enctype="multipart/form-data" autocomplete="off"  action="">
+                            <div class="service-fields m3">
+                                <div class="row">
+                                    <div class="col l12">
+                                        <div class="form-group">
+                                            <label style="font-size: 1.2rem; color: #363636">Blog Title <span style="color: red;">*</span></label>
+                                            <input class="form-control" type="text" name="service_title" id="service_title" required="" placeholder="Title of your blog">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="service-fields m3">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="form-group">
+                                            <label  style="font-size: 1.2rem; color: #363636;">Category <span style="color: red;">*</span></label>
+                                            <div style="margin-top: 1.2rem;"> 
+                                                <select class="browser-default" name="category" required="">
+                                                <option value="1">Dental</option>
+                                                <option value="2">Cardiology</option>
+                                                <option value="3">Children</option>
+                                                <option value="4">Disease</option>
+                                                <option value="5">Appointment</option>
+                                                <option value="6">Neurology</option>
+                                                <option value="7">Eye Care</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">mode_edit</i>
+                                  <textarea id="textarea1" class="materialize-textarea" required=""></textarea>
+                                  <label for="textarea1">Add Content for blog</label>
+                                </div>
+                              </div>
+                            <div class="row">
+                                <div class="col l12">
+                                    <div class="service-upload" style="border: 1px solid #dcdcdc; border-radius: 0.25rem;text-align: center; padding: 70px 0; margin-bottom: 30px; position: relative; ">
+                                        <i class="fas fa-cloud-upload-alt" style="font-size: 60px;color: #808080b5;"></i><p>Upload Blog Images <span style="color: red;">*</span></p>
+                                        <input type="file" name="images[]" id="images" multiple="" accept="image/jpeg, image/png, image/gif," style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;opacity: 0;cursor: pointer;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="submit-section" style="text-align: center;">
+                                <button class="btn submit-btn" type="submit" name="form_submit" value="submit">Submit</button>
+                            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  
+  
+  <script>
+    $(document).ready(function(){
+     $('.tabs').tabs();});
+     $('select').formSelect();
+  </script>
+  <!--M script-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 

@@ -6,6 +6,7 @@ const cookieParser =require('cookie-parser');
 const db = require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
+const path =require('path');
 
 const passportLocal = require('./config/passport-local-strategy');
 const passportGoogle = require('./config/google-login');
@@ -65,11 +66,13 @@ app.use(cookieParser());
 
 //use static files:
 app.use(express.static('./assets'));
+app.use('/users',express.static('./assets'));
+app.use('/doctors',express.static('./assets'));
 
 app.use(expressLayouts);
 // extract style and scripts from sub pages into the layout
-app.set('layout extractStyles', true);
-app.set('layout extractScripts', true);
+app.set('layout extractStyles','layoutN extractStyles', true);
+app.set('layout extractScripts', 'layoutN extractScripts', true);
 
 
 //setting up a view engine

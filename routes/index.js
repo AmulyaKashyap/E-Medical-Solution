@@ -4,7 +4,10 @@ const home_controller=require('../controllers/home_controller');
 
 console.log('Router is loaded.');
 
-router.get('/',home_controller.home);
+router.get('/',home_controller.homeP);
+router.get('/home',home_controller.homeP);
+router.get('/findDoc',home_controller.findDoc);
+router.get('/blogs',home_controller.blogs);
 router.use('/users',require('./users'));
 router.use('/doctors',require('./doctors'));
 

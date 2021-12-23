@@ -21,13 +21,12 @@ module.exports.profile=function(req,res){
         if(err) console.log("error ",err)
        // console.log(p.doctorId.id)
     })
-    return res.render('profile', {title:"Patient Profile"})
+    return res.render('profile', {title:"MediCare|User-Dashboard"})
 }
 
 //render chatBot to collect information
 module.exports.chatBot =function(req,res){
-    req.flash('success','Please a doctor to consult')
-
+    req.flash('success','Please select a doctor to consult')
     return res.render('chatBot', {
         title:"Chat with Bot"
     })

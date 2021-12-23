@@ -1,0 +1,697 @@
+  <!--Login Form-->
+  <section class="LoginModal">
+    <div class="wrapper">
+    <div class="form-container modal" id="loginF" style="height: auto; overflow: hidden;">
+      <div class="slide-controls">
+         <input type="radio" name="slide" id="loginP" checked>
+         <input type="radio" name="slide" id="loginD">
+         <label for="loginP" class="slide loginP">Patient</label>
+         <label for="loginD" class="slide loginD">Doctor</label>
+         <div class="slider-tab"></div>
+      </div>
+      <div class="form-inner">
+         <form action="/users/create-session" class="loginP" method="post">
+            <div class="field">
+               <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="field">
+               <input type="password" name="pass" placeholder="Password" required>
+            </div>
+            <div class="pass-link">
+               <a href="#">Forgo password?</a>
+            </div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="Login">
+            </div> 
+            <div class="signup-link" style="font-size: 1.5rem;">
+               Not a member? <a href="" style="font-size: 1.5rem;">Signup now</a>
+            </div>
+            <div class="col s12 m6 offset-m3 center-align">
+              <a class="oauth-container btn darken-4 white black-text" href="/users/authentication/google" style="text-transform:none">
+                Login with
+                  <div class="right">
+                      <img width="30px" style="margin-top:7px; margin-right:19px; margin-left: -10px;" alt="Google sign-in" 
+                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                  </div>
+              </a>
+          </div>
+         </form>
+         <form action="/doctors/create-session" class="loginD" method="post">
+          <div class="field">
+             <input name="email" type="text" placeholder="Email Address" required>
+          </div>
+          <div class="field">
+             <input name="pass" type="password" placeholder="Password" required>
+          </div>
+          <div class="pass-link">
+             <a href="#">Forgot password?</a>
+          </div>
+          <div class="field btn">
+             <div class="btn-layer"></div>
+             <input type="submit" value="Login">
+          </div>
+          <div class="signup-link" style="font-size: 1.5rem;">
+             Not a member? <a href="" style="font-size: 1.5rem;">Signup now</a>
+          </div>
+          <div class="col s12 m6 offset-m3 center-align">
+            <a class="oauth-container btn darken-4 white black-text" href="#" style="text-transform:none">
+              Login with
+                <div class="right">
+                    <img width="30px" style="margin-top:7px; margin-right:19px; margin-left: -10px;" alt="Google sign-in" 
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                </div>
+            </a>
+        </div>
+       </form>
+      </div>
+   </div>
+  </div>
+  </section>
+
+
+  <!--Sign UP Modal-->
+<section class="signupModal">
+<div class="container modal" id="modalSign">
+	<div class="modal-content form-container sign-up-container">
+		<form action="/doctors/create" method="POST">
+			<h1 class="subheading-two" style="font-size: 1.8rem;">As Doctor</h1>
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+			</div>
+			<span>or use your email for registration</span>
+			<input type="email" name="email" placeholder="Email" />
+			<input type="password" name="pass" placeholder="Password" />
+            <input type="password" name="cpass" placeholder="Confirm Password" />
+			<button>Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="/users/create" method="POST">
+			<h1 class="subheading-two" style="font-size: 1.8rem;">As Patient</h1>
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+			</div>
+			<span>or use your email for registration</span>
+			<input type="email" name="email" placeholder="Email" />
+			<input type="password" name="pass" placeholder="Password" />
+            <input type="password" name="cpass" placeholder="Confirm Password" />
+			<button>Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1 class="subheading-two white-text" style="font-size: 1.8rem;">Hello, Doctor !</h1>
+				<p>Enter your personal details and keep connected with your patients.</p>
+				<button class="ghost" id="signIn">If Patient</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1 class="subheading-two white-text" style="font-size: 1.8rem;">Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="ghost" id="signUp">If Doctor</button>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+
+
+
+<!--Navigation header including parallaex-->
+<header class="header"id="top" style="clip-path:polygon(100% 0%, 100% 77%, 50% 100%, 0 75%,0 0 );">
+  <nav class="navbar" style="padding: 10px;">
+    <div class="container" style="width: 95%;">
+    <div class="nav-wrapper">
+    <a class="brand-logo animate__animated animate__infinite	infinite animate__pulse">MEDICARE</a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a> 
+    <ul class="right hide-on-med-and-down" style="font-size: 1rem;">
+      <li><a class="nav-item" href="#">Home</a></li>
+      <li><a class="nav-item"href="/findDoc">Find Doctor</a></li>
+      <li><a class="nav-item"href="">Book Appointment</a></li>
+      <li><a class="nav-item"href="/blogs">Blogs</a></li>
+      <% if (locals.user){%>
+        <% if (locals.user.isDoctor){%>
+        <li><a href="/users/profile">Dr. <%=user.name%></a></li>
+        <li><a href="/users/sign-out">SingOut</a></li>
+        <%} else{%>
+          <li><a href="/doctors/profile"><%=user.name%></a></li>
+          <li><a href="/doctors/sign-out">SingOut</a></li>
+        <%}%>
+      <%}else{%>
+      <li><a class="nav-item modal-trigger" href="#modalSign">SignUp</a></li>
+      <li><a class="nav-item" href="#" onclick="toggleModal_login();">Login</a></li>
+      <%}%>     
+    </ul>
+    </div>
+    </div>
+  </nav>
+  <!--Mobile navigations-->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a class="nav-item" href="#">Home</a></li>
+        <li><a class="nav-item"href="/findDoc">Find Doctor</a></li>
+        <li><a class="nav-item"href="">Book Appointment</a></li>
+        <li><a class="nav-item"href="/blogs">Blogs</a></li>
+        <li><a class="nav-item modal-trigger" href="#modalSign">Sign-Up</a></li>
+        <li><a class="nav-item" href="#" onclick="toggleModal_login();">Log-In</a></li>            
+  </ul>
+  
+  <section class="header-section">
+      <div class="container center white-text"> 
+        <h4 class="heading" style=" font-weight: 700; letter-spacing:3px; text-shadow: 1px 1px 2px black; ">Medi<span style="color: red;">Care</span> </h4>
+        <h1 class="subheading" style="margin: 30px 0 20px 0;font-weight: 700; text-shadow: 2px 1px 5px black; text-transform: uppercase;">Complete Medical Solution</h1>
+        <p style="font-size: 25px; word-spacing: 2px; margin-bottom: 25px; text-shadow: 1px 1px 1px black;">An easy way to <span class="changetext"></span></p>
+        <div class="header-btns">
+        <a href=""class="btn-white" style="margin:10px 10px ;">Book Appointment</a>
+        <a href=""class="btn-white hide-on-small-only">Login/Sign-Up</a>
+      </div>
+      </div>
+    </div>
+  </section>
+</header>
+
+<!--About us and facilities section-->
+<section class="about">
+  <div class="container">
+    <div class="row">
+      <div class="extra-div col l4 m4 s12">
+        <a href="#">
+          <i class="fa-3x fas fa-user-clock"></i>
+          <h4>Save your time</h4>
+          <p>
+            Book your appointement online, and cut your waiting time with us.
+          </p>
+        </a>
+      </div>
+      <div class="extra-div col l4 m4 s12">
+        <a href="#">
+          <i class="fa-3x fas fa-bed"></i>
+          <h4>Be in your confort-zone</h4>
+          <p>
+            Get consultation in the way you want either chatting, calling or video-call.
+          </p>
+        </a>
+      </div>
+      <div class="extra-div col l4 m4 s12">
+        <a href="#">
+          <i class="fa-3x fas fa-globe-asia"></i>
+          <h4>Get expert consultation around world</h4>
+          <p>
+            Book your appointement online, and cut your waiting time with us.
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Browse by specialists-->
+<section class="specialists center" style="height:80vh;padding-top:15px;background-color: rgba(12, 132, 180, 0.233);">
+  <div class="container subheading-two">
+    Browse by specialists
+  </div>
+  <p style="margin-top: 0px; margin-bottom: 10px;"class="grey-text">Choose type of doctor you want according to their speciality..</p>
+  <div class="container center">
+    <div class="row">
+      <div class="col s6 m4 l4">
+        <div tabindex="-1" style="width: 100%; display: inline-block;">
+          <div class="speicality-item center">
+            <div class="speicality-img">
+              <img src="images/download.png" class="img-fluid" alt="Speciality">
+              <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+            </div>
+            <p>Urology</p>
+          </div>
+        </div>
+      </div>
+      <div class="col s6 m4 l4">
+        <div tabindex="-1" style="width: 100%; display: inline-block;">
+          <div class="speicality-item center">
+            <div class="speicality-img">
+              <img src="images/ortho.png" class="img-fluid" alt="Speciality">
+              <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+            </div>
+            <p>Orthology</p>
+          </div>
+        </div>
+      </div>
+      <div class="col s6 m4 l4">
+        <div tabindex="-1" style="width: 100%; display: inline-block;">
+          <div class="speicality-item center">
+            <div class="speicality-img">
+              <img src="images/brain.png" class="img-fluid" alt="Speciality">
+              <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+            </div>
+            <p>Neurology</p>
+          </div>
+        </div>
+      </div>
+      <div class="col s6 m4 l4">
+        <div tabindex="-1" style="width: 100%; display: inline-block;">
+          <div class="speicality-item center">
+            <div class="speicality-img">
+              <img src="images/dental-icon.png" class="img-fluid" alt="Speciality">
+              <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+            </div>
+            <p>Dentist</p>
+          </div>
+        </div>
+      </div>
+      <div class="col s6 m4 l4 center">
+        <div tabindex="-1" style="width: 100%; display: inline-block;">
+          <div class="speicality-item center">
+            <div class="speicality-img">
+              <img src="images/cardio.png" class="img-fluid" alt="Speciality">
+              <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+            </div>
+            <p>Cardiology</p>
+          </div>
+        </div>
+      </div>
+      <div class="col s6 m4 l4">
+        <div tabindex="-1" style="width: 100%; display: inline-block;">
+          <div class="speicality-item center">
+            <div class="speicality-img">
+              <img src="images/brain.png" class="img-fluid" alt="Speciality">
+              <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+            </div>
+            <p>Eye Epecialist</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!--Count representation-->
+<section class="count-rep">
+  <div class="container subheading-two" style="text-align: center;" >
+      Registered With us..
+  </div>
+  <div class="conatiner"style="display:flex;justify-content:space-around; align-items: center;text-align: center;">
+    <div>
+      <h1 class="count">1500</h1>
+      <p>Patients</p>
+    </div>
+    <div>
+      <h1 class="count">500</h1>
+      <p>Doctors</p>
+    </div>
+    <div>
+      <h1 class="count">00</h1>
+      <p>Pharmacy</p>
+    </div>
+  </div>
+</section>
+
+<!--Docs available-->
+<section class="doc-available">
+  <div class="container subheading-two" style="text-shadow: none;color: white; margin-bottom: -90px;font-size:1.8rem;text-align: center;" >
+      Book Our best doctors :
+  </div>
+  <div class="carousel">
+    <div class="carousel-item" href="#one!">
+    <h4>Dr.RamSwaroop</h4><img src="images/pedia.jpg">
+    <p>BDS | Neurology<br>
+      <i class="fas fa-map-marker-alt"></i>Delhi, India<br>
+      <span class="btn-teal" style="display: block; height: 45px;">View Profile</span><br>
+    </p>
+    </div>
+    <div class="carousel-item" href="#two!"><h4>Dr.RamSwaroop</h4><img src="images/dental.jpg">
+      <p>BDS | Neurology<br>
+        <i class="fas fa-map-marker-alt"></i>Delhi, India<br>
+        <span class="btn-teal" style="display: block; height: 45px;">View Profile</span><br>
+      </p>
+    </div>
+    <div class="carousel-item" href="#three!"><h4>Dr.RamSwaroop</h4><img src="images/cardiology.jpg">
+      <p>BDS | Neurology<br>
+        <i class="fas fa-map-marker-alt"></i>Delhi, India<br>
+        <span class="btn-teal" style="display: block; height: 45px;">View Profile</span><br>
+      </p>
+    </div>
+    <div class="carousel-item" href="#four!"><h4>Dr.RamSwaroop</h4><img src="images/g.jpg">
+      <p>BDS | Neurology<br>
+        <i class="fas fa-map-marker-alt"></i>Delhi, India<br>
+        <span class="btn-teal" style="display: block; height: 45px;">View Profile</span><br>
+      </p>
+    </div>
+    <div class="carousel-item" href="#five!"><h4>Dr.RamSwaroop</h4><img src="images/eye.jpg">
+      <p>BDS | Neurology<br>
+        <i class="fas fa-map-marker-alt"></i>Delhi, India<br>
+        <span class="btn-teal" style="display: block; height: 45px;">View Profile</span><br>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!--Section : Departments Available-->
+<!--Departments section-->
+<section class="departments scrollspy" id="departments">
+  <div class="row">
+  <div class="subheading center">Departments</div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs swipeable=true" style="background-color: rgba(207, 228, 227, 0.13);">
+        <li class="tab"><a  class="active" href="#cardiology">Cardiology</a></li>
+        <li class="tab"><a href="#eye">Eye</a></li>
+        <li class="tab"><a href="#dental">Dental</a></li>
+        <li class="tab"><a  href="#neuro">Neurology</a></li>
+        <li class="tab"><a href="#pedia">Pediatrics</a></li>
+        <li class="tab"><a href="#hepath">Hepatology</a></li>
+      </ul>
+    </div>
+    
+    <div id="cardiology" class="row body-text">
+      <div class="para col offset-s1 s7 "><br><u class="subheading-two">Cardiology</u><br><br>Cardiology is a branch of internal medicine. A cardiologist is not the same as a cardiac surgeon. A cardiac surgeon opens the chest and performs heart surgery.
+        <br>
+        A cardiologist specializes in diagnosing and treating diseases of the cardiovascular system. The cardiologist will carry out tests, and they may perform some procedures, such as heart catheterizations, angioplasty, or inserting a pacemaker.
+        <br>
+        Heart disease relates specifically to the heart, while cardiovascular disease affects the heart, the blood vessels, or both.  <br>
+        </div>
+        <div class="col s4"><img src="images/cardiology.jpg" class="circle responsive-img" alt="cardiology"></div>
+    </div>
+    <div id="eye" class="row body-text">
+      <div class="para col offset-s1 s7 "><br><u class="subheading-two">Eye Care</u><br><br>Cardiology is a branch of internal medicine. A cardiologist is not the same as a cardiac surgeon. A cardiac surgeon opens the chest and performs heart surgery.
+        <br>
+        A cardiologist specializes in diagnosing and treating diseases of the cardiovascular system. The cardiologist will carry out tests, and they may perform some procedures, such as heart catheterizations, angioplasty, or inserting a pacemaker.
+        <br>
+        Heart disease relates specifically to the heart, while cardiovascular disease affects the heart, the blood vessels, or both.  <br>
+        </div>
+        <div class="col s4"><img src="images/eye.jpg" class="circle responsive-img" alt="cardiology"></div>
+    </div>
+    <div id="neuro" class="row body-text">
+      <div class="para col offset-s1 s7 "><br><u class="subheading-two">Neurology</u><br><br>Cardiology is a branch of internal medicine. A cardiologist is not the same as a cardiac surgeon. A cardiac surgeon opens the chest and performs heart surgery.
+        <br>
+        A cardiologist specializes in diagnosing and treating diseases of the cardiovascular system. The cardiologist will carry out tests, and they may perform some procedures, such as heart catheterizations, angioplasty, or inserting a pacemaker.
+        <br>
+        Heart disease relates specifically to the heart, while cardiovascular disease affects the heart, the blood vessels, or both.  <br>
+        </div>
+        <div class="col s4"><img src="images/neuro.jpg" class="circle responsive-img" alt="cardiology"></div>
+    </div>
+    <div id="pedia" class="row body-text">
+      <div class="para col offset-s1 s7 "><br><u class="subheading-two">Pediatrics</u><br><br>Cardiology is a branch of internal medicine. A cardiologist is not the same as a cardiac surgeon. A cardiac surgeon opens the chest and performs heart surgery.
+        <br>
+        A cardiologist specializes in diagnosing and treating diseases of the cardiovascular system. The cardiologist will carry out tests, and they may perform some procedures, such as heart catheterizations, angioplasty, or inserting a pacemaker.
+        <br>
+        Heart disease relates specifically to the heart, while cardiovascular disease affects the heart, the blood vessels, or both.  <br>
+        </div>
+        <div class="col s4"><img src="images/pedia.jpg" class="circle responsive-img" alt="cardiology"></div>
+    </div>
+    <div id="hepath" class="row body-text">
+      <div class="para col offset-s1 s7"><br><u class="subheading-two">Hepatology</u><br><br>Cardiology is a branch of internal medicine. A cardiologist is not the same as a cardiac surgeon. A cardiac surgeon opens the chest and performs heart surgery.
+        <br>
+        A cardiologist specializes in diagnosing and treating diseases of the cardiovascular system. The cardiologist will carry out tests, and they may perform some procedures, such as heart catheterizations, angioplasty, or inserting a pacemaker.
+        <br>
+        Heart disease relates specifically to the heart, while cardiovascular disease affects the heart, the blood vessels, or both.  <br>
+        </div>
+        <div class="col s4"><img src="images/hepathology.jpg" class="circle responsive-img" alt="hepatology"></div>
+    </div>
+    <div id="dental" class="row body-text">
+      <div class="para col offset-s1 s7 "><br><u class="subheading-two">Dental Care</u><br><br>Cardiology is a branch of internal medicine. A cardiologist is not the same as a cardiac surgeon. A cardiac surgeon opens the chest and performs heart surgery.
+        <br>
+        A cardiologist specializes in diagnosing and treating diseases of the cardiovascular system. The cardiologist will carry out tests, and they may perform some procedures, such as heart catheterizations, angioplasty, or inserting a pacemaker.
+        <br>
+        Heart disease relates specifically to the heart, while cardiovascular disease affects the heart, the blood vessels, or both.  <br>
+        </div>
+        <div class="col s4"><img src="images/dental.jpg" class="circle responsive-img" alt="dental"></div>
+    </div>
+  </div>
+</section>
+
+
+<!--Some Blogs-->
+<section class="blogs center">
+  <div class="container text-center">
+    <div class="" style="text-align: center;">
+    <h2 class="subheading-two">blogs and news</h2></div>
+    <div class="carousel carousel-slider hide-on-med-and-down" style="height: 60vh !important;">
+      <div class="carousel-item">
+        <div class="row">
+          <div class="col m4 l4 s12">
+            <div class="blog card-box grid-blog">
+              <div class="blog-image">
+                  <a href="">
+                      <img class="img-fluid" src="images/dental.jpg" alt="Post" >
+                  </a>
+              </div>
+              <div class="blog-content">
+                  <ul class="entry-meta" style="display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  flex-wrap: wrap;
+                  margin-bottom: 0;">
+                      <li><div class="post-author" style="width: 189px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;    display: flex; align-items: center; "><a href="">
+                          <span style="vertical-align:middle; position:relative; display: inline-block; height: 30px;width: 30px;"><img class="avatar-image" src="/images/doc1.png" alt="" ></span>
+                          <span style="font-weight: 500;">Dr.Annanya</span></a></div></li>
+                          <li>
+                          <i class="far fa-clock"></i> 4 Dec 2019</li>
+                      </ul>
+                  <h3 class="blog-title" style="font-size: 1.5rem; font-weight: 600;margin: 0rem;">
+                      <a href="/template/blog/blog-details" style="color:black;">Doccure – Making your clinic painless visit?</a>
+                  </h3>
+                  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.</p>
+              </div>
+              
+          </div>
+          </div>
+          <div class="col m4 l4 s12">
+            <div class="blog card-box grid-blog">
+              <div class="blog-image">
+                  <a href="">
+                      <img class="img-fluid" src="images/dental.jpg" alt="Post" >
+                  </a>
+              </div>
+              <div class="blog-content">
+                  <ul class="entry-meta" style="display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  flex-wrap: wrap;
+                  margin-bottom: 0;">
+                      <li><div class="post-author" style="width: 189px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;    display: flex; align-items: center; "><a href="">
+                          <span style="vertical-align:middle; position:relative; display: inline-block; height: 30px;width: 30px;"><img class="avatar-image" src="/images/doc1.png" alt="" ></span>
+                          <span style="font-weight: 500;">Dr.Annanya</span></a></div></li>
+                          <li>
+                          <i class="far fa-clock"></i> 4 Dec 2019</li>
+                      </ul>
+                  <h3 class="blog-title" style="font-size: 1.5rem; font-weight: 600;margin: 0rem;">
+                      <a href="/template/blog/blog-details" style="color:black;">Doccure – Making your clinic painless visit?</a>
+                  </h3>
+                  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.</p>
+              </div>
+          </div>
+          </div>
+          <div class="col m4 l4 s12">
+            <div class="blog card-box grid-blog">
+              <div class="blog-image">
+                  <a href="">
+                      <img class="img-fluid" src="images/dental.jpg" alt="Post" >
+                  </a>
+              </div>
+              <div class="blog-content">
+                  <ul class="entry-meta" style="display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  flex-wrap: wrap;
+                  margin-bottom: 0;">
+                      <li><div class="post-author" style="width: 189px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;    display: flex; align-items: center; "><a href="">
+                          <span style="vertical-align:middle; position:relative; display: inline-block; height: 30px;width: 30px;"><img class="avatar-image" src="/images/doc1.png" alt="" ></span>
+                          <span style="font-weight: 500;">Dr.Annanya</span></a></div></li>
+                          <li>
+                          <i class="far fa-clock"></i> 4 Dec 2019</li>
+                      </ul>
+                  <h3 class="blog-title" style="font-size: 1.5rem; font-weight: 600;margin: 0rem;">
+                      <a href="/template/blog/blog-details" style="color:black;">Doccure – Making your clinic painless visit?</a>
+                  </h3>
+                  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.</p>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="row">
+        <div class="col m4 l4 s12">
+          <div class="blog card-box grid-blog">
+            <div class="blog-image">
+                <a href="">
+                    <img class="img-fluid" src="dental.jpg" alt="Post" >
+                </a>
+            </div>
+            <div class="blog-content">
+                <ul class="entry-meta" style="display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                margin-bottom: 0;">
+                    <li><div class="post-author" style="width: 189px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;    display: flex; align-items: center; "><a href="">
+                        <span style="vertical-align:middle; position:relative; display: inline-block; height: 30px;width: 30px;"><img class="avatar-image" src="/images/doc1.png" alt="" ></span>
+                        <span style="font-weight: 500;">Dr.Annanya</span></a></div></li>
+                        <li>
+                        <i class="far fa-clock"></i> 4 Dec 2019</li>
+                    </ul>
+                <h3 class="blog-title" style="font-size: 1.5rem; font-weight: 600;margin: 0rem;">
+                    <a href="/template/blog/blog-details" style="color:black;">Doccure – Making your clinic painless visit?</a>
+                </h3>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.</p>
+            </div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!--Small device-->
+    <div class="carousel carousel-slider show-on-medium-and-down hide-on-large-only " style="height: 60vh !important;">
+      <div class="carousel-item">
+        <div class="row">
+          <div class="col m12 l4 s12">
+            <div class="blog card-box grid-blog">
+              <div class="blog-image">
+                  <a href="">
+                      <img class="img-fluid" src="images/dental.jpg" alt="Post" >
+                  </a>
+              </div>
+              <div class="blog-content">
+                  <ul class="entry-meta" style="display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  flex-wrap: wrap;
+                  margin-bottom: 0;">
+                      <li><div class="post-author" style="width: 189px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;    display: flex; align-items: center; "><a href="">
+                          <span style="vertical-align:middle; position:relative; display: inline-block; height: 30px;width: 30px;"><img class="avatar-image" src="/images/doc1.png" alt="" ></span>
+                          <span style="font-weight: 500;">Dr.Annanya</span></a></div></li>
+                          <li>
+                          <i class="far fa-clock"></i> 4 Dec 2019</li>
+                      </ul>
+                  <h3 class="blog-title" style="font-size: 1.5rem; font-weight: 600;margin: 0rem;">
+                      <a href="/template/blog/blog-details" style="color:black;">Doccure – Making your clinic painless visit?</a>
+                  </h3>
+                  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.</p>
+              </div>
+              
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="row">
+        <div class="col m12 l4 s12">
+          <div class="blog card-box grid-blog">
+            <div class="blog-image">
+                <a href="">
+                    <img class="images/img-fluid" src="dental.jpg" alt="Post" >
+                </a>
+            </div>
+            <div class="blog-content">
+                <ul class="entry-meta" style="display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                margin-bottom: 0;">
+                    <li><div class="post-author" style="width: 189px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;    display: flex; align-items: center; "><a href="">
+                        <span style="vertical-align:middle; position:relative; display: inline-block; height: 30px;width: 30px;"><img class="avatar-image" src="/images/doc1.png" alt="" ></span>
+                        <span style="font-weight: 500;">Dr.Annanya</span></a></div></li>
+                        <li>
+                        <i class="far fa-clock"></i> 4 Dec 2019</li>
+                    </ul>
+                <h3 class="blog-title" style="font-size: 1.5rem; font-weight: 600;margin: 0rem;">
+                    <a href="/template/blog/blog-details" style="color:black;">Doccure – Making your clinic painless visit?</a>
+                </h3>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.</p>
+            </div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <a href="/blogs" class="btn-teal center">View all</a>
+   </div>
+</section>
+
+<!--NewsLetter-->
+<section class="newLetter center" style="margin: 80px 0;">
+  <div class="container text-center">
+    <div class="" style="text-align: center;">
+    <h2 class="subheading-two" style="margin-bottom: 0;">Subscribe to our newsletter</h2></div>
+    <p class="grey-text" style="margin-top: 0;">Get regular updates, blogs, news, etc...</p>
+    
+    <form class="newsletter-subs" action="action_page.php">
+      <input type="email" placeholder="Write your email address" name="email">
+      <button type="submit" class="btn-teal" style="margin-top: 20px;"><i class="material-icons right center" style="color: #fff;">send</i>Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!--Footer-->
+<section class="ffooter">
+  <footer class="footer-one">
+      <div class="conatiner">
+          <div class="row">
+              <div class="col l5 s6 offset-l1">
+                  <h4 class="white-text subheading-two">Contact Us</h4>
+                  <p class="white-text">
+                      <i class="material-icons left">location_on</i> ABC 222, UP, India
+                  </p>
+                  <p class="white-text">
+                    <a href="tel:+918297816000" style="color: inherit;" class="tooltipped" data-tooltip="Call us"><i class="material-icons left">local_phone</i>+918297816000</a>
+                  </p>
+                  <p class="white-text">
+                    <a href="mailto:someone@example.com" style="color: inherit;" class="tooltipped" data-tooltip="Mail us"><i class="material-icons left">email</i>xyz@gmail.com</a>
+                  </p>
+              </div>
+              <div class="col l6 s6">
+                  <h4 class="white-text subheading-two">Social Media</h4>
+                  <p>
+                      <a href="#" class="white-text"><i class="material-icons left">facebook</i>Facebook</a><br>
+                  </p>
+                  <p>
+                      <a href="#" class="white-text"><i class="material-icons left">cloud</i>Twitter</a><br>
+                  </p>
+                  <p> 
+                      <a href="#" class="white-text"><i class="material-icons left">photo_camera</i>Instagram</a>
+                  </p>
+              </div>
+          </div>
+          <div class="row footer-two">
+              <div class="col l6 s12">
+                  <p class="white-text">
+                      &copy; MediCare
+                  </p>
+              </div>
+              <div class="col l6 s12">
+                  <p class="white-text">
+                      Designed by: The Phantoms
+                  </p>
+              </div>
+          </div>
+      </div>
+  </footer>
+</section>
+
+<!--Floating corner-->
+<div class="fixed-action-btn" style="margin: 20px;" >
+<a class="btn-floating btn-large cyan scale-transition  scale-in" style="display: none;" id="goto-top" href="#top">
+  <i class="large material-icons">arrow_upward</i>
+</a>
+</div>
+
+
+<script>
+    //signup modal
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('modalSign');
+
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+});
+
+</script>

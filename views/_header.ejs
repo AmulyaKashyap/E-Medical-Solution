@@ -1,35 +1,158 @@
-      <!--Navigation-->
-<nav>
+   <!--Login Form-->
+   <section class="LoginModal">
+    <div class="wrapper">
+    <div class="form-container modal" id="loginF" style="height: auto; overflow: hidden;">
+      <div class="slide-controls">
+         <input type="radio" name="slide" id="loginP" checked>
+         <input type="radio" name="slide" id="loginD">
+         <label for="loginP" class="slide loginP">Patient</label>
+         <label for="loginD" class="slide loginD">Doctor</label>
+         <div class="slider-tab"></div>
+      </div>
+      <div class="form-inner">
+         <form action="/users/create-session" class="loginP" method="post">
+            <div class="field">
+               <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="field">
+               <input type="password" name="pass" placeholder="Password" required>
+            </div>
+            <div class="pass-link">
+               <a href="#">Forgot password?</a>
+            </div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="Login">
+            </div> 
+            <div class="signup-link" style="font-size: 1.5rem;">
+               Not a member? <a href="" style="font-size: 1.5rem;">Signup now</a>
+            </div>
+            <div class="col s12 m6 offset-m3 center-align">
+              <a class="oauth-container btn darken-4 white black-text" href="/users/authentication/google" style="text-transform:none">
+                Login with
+                  <div class="right">
+                      <img width="30px" style="margin-top:7px; margin-right:19px; margin-left: -10px;" alt="Google sign-in" 
+                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                  </div>
+              </a>
+          </div>
+         </form>
+         <form action="/doctors/create-session" class="loginD" method="post">
+          <div class="field">
+             <input name="email" type="text" placeholder="Email Address" required>
+          </div>
+          <div class="field">
+             <input name="pass" type="password" placeholder="Password" required>
+          </div>
+          <div class="pass-link">
+             <a href="#">Forgot password?</a>
+          </div>
+          <div class="field btn">
+             <div class="btn-layer"></div>
+             <input type="submit" value="Login">
+          </div>
+          <div class="signup-link" style="font-size: 1.5rem;">
+             Not a member? <a href="" style="font-size: 1.5rem;">Signup now</a>
+          </div>
+          <div class="col s12 m6 offset-m3 center-align">
+            <a class="oauth-container btn darken-4 white black-text" href="#" style="text-transform:none">
+              Login with
+                <div class="right">
+                    <img width="30px" style="margin-top:7px; margin-right:19px; margin-left: -10px;" alt="Google sign-in" 
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                </div>
+            </a>
+        </div>
+       </form>
+      </div>
+   </div>
+  </div>
+  </section>
+
+
+  <!--Sign UP Modal-->
+<section class="signupModal">
+<div class="container modal" id="modalSign">
+	<div class="modal-content form-container sign-up-container">
+		<form action="/doctors/create" method="POST">
+			<h1 class="subheading-two" style="font-size: 1.8rem;">As Doctor</h1>
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+			</div>
+			<span>or use your email for registration</span>
+			<input type="email" name="email" placeholder="Email" />
+			<input type="password" name="pass" placeholder="Password" />
+            <input type="password" name="cpass" placeholder="Confirm Password" />
+			<button>Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="/users/create" method="POST">
+			<h1 class="subheading-two" style="font-size: 1.8rem;">As Patient</h1>
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+			</div>
+			<span>or use your email for registration</span>
+			<input type="email" name="email" placeholder="Email" />
+			<input type="password" name="pass" placeholder="Password" />
+            <input type="password" name="cpass" placeholder="Confirm Password" />
+			<button>Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1 class="subheading-two white-text" style="font-size: 1.8rem;">Hello, Doctor !</h1>
+				<p>Enter your personal details and keep connected with your patients.</p>
+				<button class="ghost" id="signIn">If Patient</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1 class="subheading-two white-text" style="font-size: 1.8rem;">Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="ghost" id="signUp">If Doctor</button>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+
+ 
+ 
+ <!--Navigation-->
+ <nav class="navbar" style="background-color: #09859b;padding: 10px;">
+  <div class="container" style="width: 95%;">
   <div class="nav-wrapper">
-    <!--<a href="#!" class="brand-logo"><img src="images/doc-icon.png" height="50" width="80"></a>-->
-    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="#about">About</a></li>
-      <li><a href="#departments">Departments</a></li>
-      <li><a href="doctors/login">Doctors</a></li>
-      <% if (locals.user){%>
-        <% if (!locals.user.IsDoctor){%>
+  <a class="brand-logo animate__animated animate__infinite	infinite animate__pulse">MEDICARE</a>
+  <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a> 
+  <ul class="right hide-on-med-and-down" style="font-size: 1rem;">
+    <li><a class="nav-item" href="/home">Home</a></li>
+    <li><a class="nav-item"href="/findDoc">Find Doctor</a></li>
+    <li><a class="nav-item"href="">Book Appointment</a></li>
+    <li><a class="nav-item"href="/blogs">Blogs</a></li>
+    <% if (locals.user){%>
+      <% if (locals.user.isDoctor){%>
+      <li><a href="/doctors/profile">Dr. <%=user.name%></a></li>
+      <li><a href="/doctors/sign-out">SignOut</a></li>
+      <%} else{%>
         <li><a href="/users/profile"><%=user.name%></a></li>
-        <li><a href="/users/sign-out">SingOut</a></li>
-        <%} else if(locals.user.specialization){%>
-          <li><a href="/doctors/profile"><%=user.name%></a></li>
-          <li><a href="/doctors/sign-out">SingOut</a></li>
-        <%}%>
-      <%}else{%>
-      <li><a href="#"onclick="toggleModal_signup();">SingnUp</a></li>
-      <li><a href="#" onclick="toggleModal_login();">Login</a></li>
+        <li><a href="/users/sign-out">SignOut</a></li>
       <%}%>
-    </ul>
+    <%}else{%>
+    <li><a class="nav-item modal-trigger" href="#modalSign">SignUp</a></li>
+    <li><a class="nav-item" href="#" onclick="toggleModal_login();">Login</a></li>
+    <%}%>     
+  </ul>
+  </div>
   </div>
 </nav>
-
+<!--Mobile navigations-->
 <ul class="sidenav" id="mobile-demo">
-  <li><a href="about">About</a></li>
-  <li><a href="#departments">Departments</a></li>
-  <li><a href="#doctors">Doctors</a></li><% if (locals.user){%>
-    <li><a href="/users/sign-out">SingOut</a></li>
-  <%}else{%>
-  <li><a href="#"onclick="toggleModal_signup();">SingnUp</a></li>
-  <li><a href="#" onclick="toggleModal_login();">Login</a></li>
-  <%}%>
-</ul> 
+  <li><a class="nav-item" href="/home">Home</a></li>
+      <li><a class="nav-item"href="/findDoc">Find Doctor</a></li>
+      <li><a class="nav-item"href="">Book Appointment</a></li>
+      <li><a class="nav-item"href="/blogs">Blogs</a></li>
+      <li><a class="nav-item modal-trigger" href="#modalSign">Sign-Up</a></li>
+      <li><a class="nav-item" href="#" onclick="toggleModal_login();">Log-In</a></li>            
+</ul>

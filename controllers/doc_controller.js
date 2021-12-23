@@ -2,8 +2,20 @@ const Doctor = require('../models/doctor')
 
 module.exports.profile=function(req,res){
     res.locals.user = req.user;
-    return res.render('profile', {
-        title:"Doctor Profile"
+    return res.render('doc-dashboard', {
+        title:"MediCare|Doctor's-Dashboard"
+    })
+}
+module.exports.addBlog=function(req,res){
+    res.locals.user = req.user;
+    return res.render('addBlog', {
+        title:"MediCare|Add-Blog"
+    })
+}
+module.exports.myReviews=function(req,res){
+    res.locals.user = req.user;
+    return res.render('myReviews', {
+        title:"MediCare|Reviews"
     })
 }
 
