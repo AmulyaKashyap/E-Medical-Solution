@@ -1066,3 +1066,30 @@ background-color: #fff;
   color: #f8ce0b;
 }
 
+.success-cont i {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #09e5ab;
+  border-radius: 50%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+  background-color: #09e5ab;
+}
+.apt-success{
+  width: 50%;
+}
+@media (max-width:700px){
+  .apt-success{
+    width: 100%;
+  }
+}

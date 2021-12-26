@@ -11,6 +11,7 @@ router.get('/blogs',home_controller.blogs);
 router.use('/users',require('./users'));
 router.use('/doctors',require('./doctors'));
 router.use('/forgotPass',home_controller.forgotPass);
+router.use('/aptSuccess',home_controller.aptSuccess);
 
 //for any further routes access from here
 //router.use('/routeName',require('./routerfile'));
