@@ -6,6 +6,7 @@ const Schema =mongoose.Schema;
 
 const reportSchema =new mongoose.Schema({
     report:String,
+    type:String,
     uploadByPat:{ type:Schema.Types.ObjectId, ref: 'User' },
     uploadByDoc:{ type: Schema.Types.ObjectId, ref: 'Doctor' },
     patientId:{ type: Schema.Types.ObjectId, ref: 'User' },
