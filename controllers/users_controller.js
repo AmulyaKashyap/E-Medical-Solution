@@ -39,7 +39,12 @@ module.exports.editProfile=function(req,res){
 }
 //reports
 module.exports.reports =function(req,res){
-    return res.render('reports', {title:'MediCare|User-Reports'});
+    Report.find({patientId:req.user.id},function(err,reports){
+        return res.render('reports', {
+            title:'MediCare|User-Reports',
+            reports:reports
+        });
+    });
 }
 
 module.exports.signUp = function(req,res){
@@ -108,7 +113,8 @@ module.exports.uploadReports= async function(req,res){
                     console.log('********Multer error*****',err);
                 }
                 if(req.file){
-                    Report.create({report:Report.reportPath+'/'+req.file.filename,patientId:req.params.id,uploadByPat:req.params.id,title:req.body.title}, function(err, user){
+                    console.log(req.file);
+                    Report.create({report:Report.reportPath+'/'+req.file.filename,type:req.file.mimetype,patientId:req.params.id,uploadByPat:req.params.id,title:req.body.title}, function(err, user){
                         if(err){req.flash('error', err); return}
                         req.flash('File uploaded');
                         return res.redirect('back');
