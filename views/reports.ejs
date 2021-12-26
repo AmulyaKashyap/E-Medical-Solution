@@ -95,16 +95,22 @@
                 <h1 class="subheading-two" style="margin-top:0;">
                     Add new Report:
                 </h1>
-                <form action="users/add-report/<%=user.id%>" method="post" enctype="multipart/form-data">
-                    <div class="file-field input-field">
+                <form action="/users/add-report/<%=user.id%>" method="post" enctype="multipart/form-data">
+                  <div class="row">
+                    <div class="col s6 file-field input-field">
                         <div class="btn" style="width: 20%;">
                           <span>File</span>
-                          <input type="file">
+                          <input type="file" accept=".pdf,image/*" name="reportUploaded" class="upload">
                         </div>
                         <div class="file-path-wrapper">
-                          <input class="file-path validate" type="text">
+                          <input class="file-path validate" type="text" >
                         </div>
-                      </div>
+                    </div>
+                    <div class="col s6">
+                      <input type="text" name="title" placeholder="Title of Report">
+                    </div>
+                  </div>
+                  <button type="submit" class="btn-teal">Add</button>
                 </form>
             </div>
         </div>
@@ -126,6 +132,7 @@
     var image = document.getElementById('display-avt');
     image.src = URL.createObjectURL(event.target.files[0]);
   };
+  
   </script>
   <!--M script-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 

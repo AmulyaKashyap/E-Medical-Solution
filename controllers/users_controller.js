@@ -14,6 +14,7 @@ const sendCalender = require('../features/calenderInvite.js')
 
 const encrypt_decrypt = require('../features/encrypt_decrypt.js')
 const { request } = require('http')
+const Report = require('../models/reports')
 
 
 
@@ -97,6 +98,28 @@ module.exports.destroySession =function(req,res){
     req.flash('success', name +' Logged out!');
 
     return res.redirect('/');
+}
+
+//upload reports :both user and pathalogy can access it
+module.exports.uploadReports= async function(req,res){
+        try{
+            Report.uploadedReport(req,res,function(err){
+                if(err){
+                    console.log('********Multer error*****',err);
+                }
+                if(req.file){
+                    Report.create({report:Report.reportPath+'/'+req.file.filename,patientId:req.params.id,uploadByPat:req.params.id,title:req.body.title}, function(err, user){
+                        if(err){req.flash('error', err); return}
+                        req.flash('File uploaded');
+                        return res.redirect('back');
+                    })
+                }
+            });
+        }
+        catch(err){
+            req.flash('error',err);
+            return res.redirect('back');
+        }
 }
 
 

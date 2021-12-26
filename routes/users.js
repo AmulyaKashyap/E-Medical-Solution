@@ -15,6 +15,7 @@ router.get('/sign-in',users_controller.signIn);
 router.get('/sign-up',users_controller.signUp);
 router.get('/sign-out',users_controller.destroySession);
 router.post('/saveChanges/:id',users_controller.saveChanges);
+router.post('/add-report/:id',users_controller.uploadReports);
 router.get('/editProfile',users_controller.editProfile);
 router.get('/reports',users_controller.reports);
 

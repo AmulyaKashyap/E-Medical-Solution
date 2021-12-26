@@ -194,3 +194,17 @@
 .checked {
   color: orange;
 }
+.brand-logo {
+  color: white;
+  font-weight: 600;
+  font-size: 2rem;
+  width: 25%;
+  text-align: center;
+}
+nav .brand-logo {
+  position: absolute;
+  color: #fff;
+  display: inline-block;
+  font-size: 2.1rem;
+  padding: 0;
+}

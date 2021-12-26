@@ -1,4 +1,6 @@
 const Doctor = require('../models/doctor')
+const Blogs = require('../models/blogs');
+const { findById } = require('../models/doctor');
 
 module.exports.profile=function(req,res){
     res.locals.user = req.user;
@@ -92,3 +94,79 @@ module.exports.destroySession =function(req,res){
 }
 
 //editing profile
+module.exports.editProfile=function(req,res){  
+    return res.render('Doc_editProfile', {title:'MediCare|Edit-Profile'});
+}
+module.exports.saveChanges= async function(req,res){
+    if(req.user.id==req.params.id){
+        try{
+            let user =await Doctor.findById(req.params.id);
+            Doctor.uploadedAvatar(req,res,function(err){
+                if(err){
+                    console.log('********Multer error*****',err);
+                }
+                //console.log(req.file);
+                user.exp=req.body.exp;
+                user.name=req.body.fname;
+                user.lname= req.body.lname;
+                user.phoneNumber=req.body.phoneNumber;
+                user.specialization=req.body.specialization;
+                user.degree=req.body.degree;
+                user.about=req.body.about;
+                user.price=req.body.price;
+                user.isavailable=req.body.aval;
+                user.address.lane=req.body.lane;
+                user.address.city=req.body.city;
+                user.address.country=req.body.country;
+                user.address.state=req.body.state;
+                if(req.file){
+
+                    /*if(user.avatar){
+                        fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+                    }*/
+                    //saving the path of the uploaded file into the avater field of user
+                    user.avatar=Doctor.avatarPath+'/'+req.file.filename;
+                }
+                user.save();
+                return res.redirect('back');
+            });
+        }
+        catch(err){
+            req.flash('error',err);
+            return res.redirect('back');
+        }
+    }
+    else{
+        return res.status(401).send('Unauthorized Access');
+    }
+}
+
+
+//add blog
+module.exports.addblog =async function(req,res){
+   
+    try{
+        let user = await Doctor.findById(req.params.id);
+        let ame=user.name +' '+ user.lname;
+        Blogs.uploadedblogImg(req,res,function(err){
+            if(err){
+                console.log('********Multer error*****',err);
+            }
+            if(req.file){
+                Blogs.create({blogImage:Blogs.blogsPath+'/'+req.file.filename,
+                uploadBy:ame,
+                title:req.body.title,
+                category:req.body.category,content:req.body.content
+            }, function(err, user){
+                    if(err){req.flash('error', err); return}
+                    req.flash('File uploaded');
+                    return res.redirect('back');
+                })
+            }
+        });
+    }
+    catch(err){
+        req.flash('error',err);
+        return res.redirect('back');
+    }
+}

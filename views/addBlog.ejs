@@ -64,13 +64,13 @@
               <div class="row add-blog" style="background-color: white; color: rgb(7, 7, 65);padding: 50px;">
                 <div class="col s12">
                     <div>
-                        <form method="post" enctype="multipart/form-data" autocomplete="off"  action="">
+                        <form method="post" enctype="multipart/form-data" autocomplete="off"  action="/doctors/addblog/<%=user.id%>">
                             <div class="service-fields m3">
                                 <div class="row">
                                     <div class="col l12">
                                         <div class="form-group">
                                             <label style="font-size: 1.2rem; color: #363636">Blog Title <span style="color: red;">*</span></label>
-                                            <input class="form-control" type="text" name="service_title" id="service_title" required="" placeholder="Title of your blog">
+                                            <input class="form-control" type="text" name="title" id="title" required="" placeholder="Title of your blog">
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +98,7 @@
                             <div class="row">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">mode_edit</i>
-                                  <textarea id="textarea1" class="materialize-textarea" required=""></textarea>
+                                  <textarea id="textarea1" class="materialize-textarea" name="content" required=""></textarea>
                                   <label for="textarea1">Add Content for blog</label>
                                 </div>
                               </div>
@@ -106,7 +106,7 @@
                                 <div class="col l12">
                                     <div class="service-upload" style="border: 1px solid #dcdcdc; border-radius: 0.25rem;text-align: center; padding: 70px 0; margin-bottom: 30px; position: relative; ">
                                         <i class="fas fa-cloud-upload-alt" style="font-size: 60px;color: #808080b5;"></i><p>Upload Blog Images <span style="color: red;">*</span></p>
-                                        <input type="file" name="images[]" id="images" multiple="" accept="image/jpeg, image/png, image/gif," style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;opacity: 0;cursor: pointer;">
+                                        <input type="file" name="blogImage" id="images" multiple="" accept="image/*" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;opacity: 0;cursor: pointer;">
                                     </div>
                                 </div>
                             </div>

@@ -4,7 +4,6 @@ const path =require('path');//to specify paths
 const USER_AVATAR_PATH = path.join('/uploads/users/avatars');//path where user uploaded avatars are going to be stored
 
 
-
 const userSchema =new mongoose.Schema({
     email:{ type:String, required: true, unique: true,},
     phoneNumber: Number,
@@ -17,7 +16,7 @@ const userSchema =new mongoose.Schema({
     age:{ type: Number, min: 0, max: 100 },
     gender:{ type: String, enum: ["Male", "Female","Others"] },
     height: Number,
-    bodyWeight: {type:[Number]},
+    bodyWeight: {type:[Number],index:true},
     bloodGroup:String,
     temprature:{ type: Number, min: 40, max: 110 },
     address:{
@@ -26,11 +25,11 @@ const userSchema =new mongoose.Schema({
         state:String,
         country:String
     },
-    bloodSugar:[Number],
-    BP:[{
+    bloodSugar:{type:[Number],index:true},
+    BP:{type:[{
         bplvalue:Number,
         bphvalue:Number
-    }],
+    }],index:true},
     isDoctor:{ type: Boolean, required: true, default:false}
 
 },{
@@ -48,10 +47,12 @@ let storage = multer.diskStorage({
     }
  });
 
+
+
  //static function
  userSchema.statics.uploadedAvatar= multer({storage:storage}).single('avatar');
  userSchema.statics.avatarPath =USER_AVATAR_PATH; //now avatar path is publically available
-
+ 
 const User =mongoose.model('User',userSchema);
 
 module.exports = User;
