@@ -35,7 +35,7 @@ module.exports.blogs =function(req,res){
 }
 
 module.exports.aptSuccess=function(req,res){
-    return res.render('aptSuccess',{
+    return res.render('rateUs',{
         title:"MediCare|Forgot",
         layout:'layout'
     }); 
