@@ -29,8 +29,8 @@ function sendInvitaion(calendarObj){
     var smtpTransport = nodemailer.createTransport({
         service: "Gmail",
         auth: {
-            user: "TEST@gmail.com",//process.env.GMAIL_ACCOUNT,//
-            pass: "PASSWORD"//process.env.GMAIL_ACCOUNT//
+            user: "pachouriaman679@gmail.com",//process.env.GMAIL_ACCOUNT,//
+            pass: "mnblkjpoi123"//process.env.GMAIL_ACCOUNT//
         }
     });
         mailOptions = {
