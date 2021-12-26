@@ -15,16 +15,19 @@ module.exports.findDoc =function(req,res){
         layout:'layout'
     }); 
 }
+
+module.exports.forgotPass=function(req,res){
+    return res.render('forgotPass',{
+        title:"MediCare|Forgot",
+        layout:'layout'
+    }); 
+}
 module.exports.blogs =function(req,res){
     return res.render('blogs',{
         title:"MediCare|Blogs",
         layout:'layout'
     }); 
 }
-module.exports.forgotPass =function(req,res){
-    return res.render('forgotPass',{
-        title:"MediCare|Password-resizeTo"
-    });
-}
+
 
 //module.exports.action =function(req,res){}
