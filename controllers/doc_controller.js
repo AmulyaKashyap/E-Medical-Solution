@@ -67,7 +67,7 @@ module.exports.create =function(req,res){
                 if(err){req.flash('error', err); return}
                 console.log('object is created');
                 req.flash('success', 'You have signed up, login to continue!');
-                return res.redirect('back')
+                return res.redirect('back');
             })
         }else{
             req.flash('error', 'Email is already is in use');

@@ -19,6 +19,7 @@ const doctorSchema =new mongoose.Schema({
     lname:{  type: String ,default:""},
     isDoctor:{ type: Boolean, required: true, default: true },      // to render doctor specific views/pages
     rating:{ type:Number, min:0, max:5 },
+    availableService:{type:[String], default:"None"},
     isavailable:{ type:Boolean, default:false },
     address:{
         lane:String,
