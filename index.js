@@ -32,6 +32,7 @@ const peerServer = ExpressPeerServer(http, {
 app.use("/peerjs", peerServer);
 
 
+
 io.on('connection', (socket) => {
     console.log(' Socket Connected...')
     let counter =0
@@ -65,9 +66,13 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 
 //use static files:
-app.use(express.static('./assets'));
+app.use(express.static(path.join(__dirname,'/assets')));
 app.use('/users',express.static('./assets'));
 app.use('/doctors',express.static('./assets'));
+app.use('/users/bookAppointment',express.static('./assets'));
+
+//make the uploads path available to the browser
+app.use('/uploads',express.static(__dirname+'/uploads'));
 
 app.use(expressLayouts);
 // extract style and scripts from sub pages into the layout

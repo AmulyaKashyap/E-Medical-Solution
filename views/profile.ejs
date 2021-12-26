@@ -1,3 +1,58 @@
+<!--Modal sugar graph-->
+<div id="sugarGraph" class="container modal">
+  <div class="modal-content">
+    <h4 class="subheading-two">Your sugar level :</h4>
+    <div class="container graph-area">
+      <canvas id="sugChart" width="400" height="300"></canvas>
+    </div>
+  </div>
+</div>
+
+<!--Modal get sugar-->
+<div class="modal" id="getSugarValue">
+  <div class="modal-content">
+    <span>Your latest sugar level :</span>
+    <form action="/users/updateSugar/<%=user.id%>" method="post">
+      <input  type="text" name="sugLevel" placeholder="Sugar level ">
+      <button type="submit" class="btn-teal">Update</button>
+    </form>
+  </div>
+</div>
+<!--Modal get temprature-->
+<div class="modal" id="getTemp">
+  <div class="modal-content">
+    <span>Your latest Temprature measure :</span>
+    <form action="/users/updateTemp/<%=user.id%>" method="post">
+      <input type="text" name="temp" placeholder="Temprature in deg celcius">
+      <button type="submit" class="btn-teal">Update</button>
+    </form>
+  </div>
+</div>
+<!--Modal get Weight-->
+<div class="modal" id="getWeight">
+  <div class="modal-content">
+    <span>Your latest Weight measure :</span>
+    <form action="/users/updateWeight/<%=user.id%>" method="post">
+      <input type="text" name="wt" placeholder="Weight in Kg">
+      <button type="submit" class="btn-teal">Update</button>
+    </form>
+  </div>
+</div>
+<!--Modal get bp-->
+<div class="modal" id="getBP">
+  <div class="modal-content">
+    <span>Your latest Blood Pressure (mg/dl):</span>
+    <form action="/users/updateBP/<%=user.id%>" method="post">
+      <div class="row" style="display:flex;justify-content: space-between;">
+      <input class="col s5" type="text" name="bplvalue" placeholder="BP -low">
+      <input class="col s5" type="text" name="bphvalue" placeholder="BP -Up ">
+      </div>
+      <button type="submit" class="btn-teal">Update</button>
+    </form>
+  </div>
+</div>
+
+
 <div style="background-color: #f8f9fa;">
   <div class="page-header">
     Dashboard
@@ -9,7 +64,7 @@
           <div style="position:sticky; top:20px;">
             <div class="profile-slidebar">
               <div class="widget-profile" style="text-align: center;">
-                <img style=" width: 120px;height: 120px;" src="/images/patient-avatar.png">  
+                <img style=" width: 120px;height: 120px; border-radius: 10%;" src="<%=user.avatar%>">  
                 <h5 style="font-weight: 500;"><%=user.name%></h5>
                 <p style="color: gray; font-size:medium;"><%=user.age%> | <%=user.gender%> </p>
               </div>
@@ -24,7 +79,7 @@
                     </a>
                   </div>
                   <div class="nav-item" style="margin-bottom: 5px;">
-                    <a href="" class="active" aria-current="page">
+                    <a href="/users/reports" class="active" aria-current="page">
                       <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">
                         summarize
                       </i><span>Reports</span>
@@ -43,7 +98,7 @@
                     </a>
                   </div>
                   <div class="nav-item" style="margin-bottom: 5px;">
-                    <a href="" class="active" aria-current="page">
+                    <a href="/users/editProfile" class="active" aria-current="page">
                      <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">manage_accounts</i>
                      <span>Edit Profile</span>
                     </a>
@@ -62,47 +117,105 @@
         <div class="col s12 m7 l8 xl9">
           <div class="row">
             <div class="Counts-representation  col s12">
-              <div class="card-box">
+              <div class="card-box" style="margin-bottom:10px;">
                 <div class="row" style="padding: 1.5rem;">
                   <div class="col s12 m6 l3">
                    <div class="dash-widget">
                      <div class="RCP" style="margin-right: 5px;width: 105px !important;">
-                      <img style=" width: 80px;height: 80px;" src="/images/heart-clip.png">
+                      <img style=" width: 60px;height: 60px;" src="/images/weight-icon.png">
                     </div>
-                    <div class="dash-widget-info"><h6>Heart Rate</h6><h5 style="color: #32acdf;">12 <span style="font-size: x-small;">bpm</span></h5></div>
+                    <div class="dash-widget-info"><h6>Body Weight</h6><h5 style="color: #32acdf;">50 <span style="font-size: x-small;">kg</span> 
+                      <a  href="#getWeight" class="modal-trigger"><i class="material-icons tooltipped" data-position="bottom" data-tooltip="Update value" style="color:rgb(255, 0, 0);vertical-align: middle;">edit</i></a>
+                    </h5></div>
                    </div> 
                   </div>
                   <div class="col s12 m6 l3">
                     <div class="dash-widget">
                       <div class="RCP" style="margin-right: 5px;width: 105px !important;">
-                       <img style=" width: 80px;height: 80px;" src="/images/temp-clip.png">
+                       <img style=" width: 60px;height: 60px;" src="/images/temp-clip.png">
                      </div>
-                     <div class="dash-widget-info"><h6>Body Temperature</h6><h5 style="color: #32acdf;">18C</h5></div>
+                     <div class="dash-widget-info"><h6>Body Temp.</h6><h5 style="color: #32acdf;">18C
+                      <a href="#getTemp" class="modal-trigger"><i class="material-icons tooltipped" data-position="bottom" data-tooltip="Update value" style="color:rgb(255, 0, 0);vertical-align: middle;">edit</i></a>
+                     </h5></div>
                     </div> 
                    </div>
                    <div class="col s12 m6 l3">
                     <div class="dash-widget">
                       <div class="RCP" style="margin-right: 5px;width: 105px !important;">
-                       <img style=" width: 80px;height: 80px;" src="/images/glucose-clip.png">
+                       <img style=" width: 60px;height: 60px;" src="/images/glucose-clip.png">
                      </div>
-                     <div class="dash-widget-info"><h6>Glucose Level</h6><h5 style="color: #32acdf;">70-90</h5></div>
+                     <div class="dash-widget-info"><h6>Glucose Level</h6><h5 style="color: #32acdf;">90
+                      <a class="modal-trigger" href="#getSugarValue"><i class="material-icons tooltipped" data-position="bottom" data-tooltip="Update value" style="color:rgb(255, 0, 0);vertical-align: middle;">edit</i></a>
+                     </h5></div>
                     </div> 
                    </div>
                    <div class="col s12 m6 l3">
                     <div class="dash-widget">
                       <div class="RCP" style="margin-right: 5px;width: 105px !important;">
-                       <img style=" width: 80px;height: 80px;" src="/images/bp-clip.png">
+                       <img style=" width: 60px;height: 60px;" src="/images/bp-clip.png">
                      </div>
-                     <div class="dash-widget-info"><h6>Blood Pressure</h6><h5 style="color: #32acdf;">202/90<span style="font-size: x-small;">mg/dl</span></h5></div>
+                     <div class="dash-widget-info"><h6>Blood Pressure</h6><h5 style="color: #32acdf;">202/90<span style="font-size: x-small;">mg/dl</span>
+                      <a class="modal-trigger" href="#getBP"><i class="material-icons tooltipped" data-position="bottom" data-tooltip="Update value" style="color:rgb(255, 0, 0);vertical-align: middle;">edit</i></a>
+                     </h5></div>
                     </div> 
                    </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="Graph-representation  col s12">
+              <div class="card-box" style="margin-bottom:10px;">
+                <div class="card-title" style="border-bottom: 1px solid #f0f0f0; margin-bottom: 15px;">
+                <span style="font-size: 1.5rem;">Graph Status</span></div>
+                <div class="row">
+                  <div class="col s12 m6 l4 patient-graph-box" style="display: flex;">
+                    <a class="graph-box modal-trigger tooltipped" data-position="top" data-tooltip="See Graph" href="#modal1">
+                      <div>
+                        <h4 style="font-size: 1.5rem;">BMI Status</h4>
+                      </div>
+                      <div class="graph-img">
+                        <img src="images/bmi-graph.png">
+                      </div>
+                      <div class="graph-status-result mt-3">
+                        <span class="graph-update-date white-text">Last Update 6d</span>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col s12 m6 l4 patient-graph-box">
+                    <a href="#sugarGraph" class="modal-trigger graph-box tooltipped" data-position="top" data-tooltip="See Graph"style="background-color: #ffa69e; border-bottom: 8px solid #fe9286;">
+                      <div>
+                        <h4 style="font-size: 1.5rem;">Blood Sugar</h4>
+                      </div>
+                      <div class="graph-img">
+                        <img src="images/sug-graph.png">
+                      </div>
+                      <div class="graph-status-result mt-3">
+                        <span class="graph-update-date white-text">Last Update 6d</span>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col s12 m6 l4 patient-graph-box">
+                    <a href="#" class="graph-box modal-trigger tooltipped" data-position="top" data-tooltip="See Graph" style="background-color: #a9d4ff; border-bottom: 8px solid #8ec4ff;" >
+                      <div>
+                        <h4 style="font-size: 1.5rem;">Blood Pressure</h4>
+                      </div>
+                      <div class="graph-img">
+                        <img src="images/bp-graph.png">
+                      </div>
+                      <div class="graph-status-result mt-3">
+                        <span class="graph-update-date white-text">Last Update 6d</span>
+                      </div>
+                    </a>
+                  </div>
+                  
+                              
+                </div>
+            </div>
+          </div>
           <div class="appointments" style="padding-left: 20px;">
               <div class="row">
-              <div class="appointments-tabs col m12" style="font-weight: 700;">
+              <div class="appointments-tabs col m12" style="font-weight: 700; padding: 0%;">
                   <ul class="tabs">
                     <li class="tab col s3"><a class="active" href="#Appointment" >Appointments</a></li>
                     <li class="tab col s3"><a href="#prescription">Prescriptions</a></li>
@@ -208,9 +321,51 @@
   </div>
 </div>
 
+
  <!--Floating corner-->
  <div class="fixed-action-btn">
   <a class="btn-floating btn-large blue darken-9 tooltipped" data-tooltip="Consult now" href="/users/chatBot"  style = "width: 7rem; height: 7rem; background-color: #bf0e1c !important;">
     <img src="/images/consult-now.png" style="width: 5rem; height:6rem;">
   </a>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  
+  const labels = [
+    'I',
+    'II',
+    'III',
+    'IV',
+    'V',
+    'VI',
+    'VII'
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: '<%=user.name%>, its your last 7 test data',
+      backgroundColor: 'rgb(209, 16, 58)',
+      borderColor: 'rgb(209, 16, 58)',
+      data: [80,60,90,70,40,110,89],
+    }]
+  };
+  /*type: 'line',
+data: {
+  datasets: [{
+    data: [{x:'2016-12-25', y:20}, {x:'2016-12-26', y:10}]
+  }]
+}*/
+
+  const config = {
+    type: 'line',
+    data: data,
+    options: {}
+  };
+
+
+  const myChart = new Chart(
+    document.getElementById('sugChart'),
+    config
+  );
+</script>

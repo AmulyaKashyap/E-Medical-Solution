@@ -14,8 +14,9 @@ router.get('/chatBot',users_controller.chatBot);
 router.get('/sign-in',users_controller.signIn);
 router.get('/sign-up',users_controller.signUp);
 router.get('/sign-out',users_controller.destroySession);
-
-
+router.post('/saveChanges/:id',users_controller.saveChanges);
+router.get('/editProfile',users_controller.editProfile);
+router.get('/reports',users_controller.reports);
 
 router.get('/authentication/google',passport.authenticate('google', {scope:['profile', 'email']}));
 router.get('/authentication/google/callback',passport.authenticate('google', {failureRedirect: '/users/sign-in'}),users_controller.createSession);
@@ -33,6 +34,12 @@ router.get('/bookAppointment/:doctor_id', users_controller.bookAppointment);
 
 //using passport middleware
 router.post('/create-session',passport.authenticate('patient',{failureRedirect:'/users/sign-in'}), users_controller.createSession);
+
+
+router.post('/updateSugar/:id',users_controller.updateSugar);
+router.post('/updateWeight/:id',users_controller.updateWeight);
+router.post('/updateTemp/:id',users_controller.updateTemp);
+router.post('/updateBP/:id',users_controller.updateBP);
 
 
 module.exports=router;

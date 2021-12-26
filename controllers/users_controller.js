@@ -6,12 +6,14 @@ const User = require('../models/user')
 const dotenv = require('dotenv').config()
 const https =  require("https")
 const Doctor = require('../models/doctor');
+const fs=require('fs');
 const Appointment = require('../models/appointment');
-
+const path=require('path');
 //importing files for sending calender invite
 const sendCalender = require('../features/calenderInvite.js')
 
 const encrypt_decrypt = require('../features/encrypt_decrypt.js')
+const { request } = require('http')
 
 
 
@@ -31,7 +33,13 @@ module.exports.chatBot =function(req,res){
         title:"Chat with Bot"
     })
 }
-
+module.exports.editProfile=function(req,res){  
+    return res.render('editProfile', {title:'MediCare|Edit-Profile'});
+}
+//reports
+module.exports.reports =function(req,res){
+    return res.render('reports', {title:'MediCare|User-Reports'});
+}
 
 module.exports.signUp = function(req,res){
     if(req.isAuthenticated()){
@@ -58,12 +66,10 @@ module.exports.create =function(req,res){
         req.flash('error', 'Passwords do not match');
         return res.redirect('back');
     }
-
     User.findOne({email: req.body.email},  function(err, user){
         if(err){req.flash('error', err); return}
-
         if(!user){
-            User.create({name:req.body.fname, email:req.body.email, password:req.body.pass}, function(err, user){
+            User.create({name:req.body.fname,lname:req.body.lname,email:req.body.email, password:req.body.pass}, function(err, user){
                 if(err){req.flash('error', err); return}
                 req.flash('success', 'You have signed up, login to continue!');
                 return res.redirect('back')
@@ -72,9 +78,7 @@ module.exports.create =function(req,res){
             req.flash('error', 'Email is already is in use');
             return res.redirect('back');
         }
-
     });
-
 }
 
 
@@ -96,6 +100,123 @@ module.exports.destroySession =function(req,res){
 }
 
 
+//edit user profile
+//for complex file handeling using async and await
+module.exports.saveChanges= async function(req,res){
+    if(req.user.id==req.params.id){
+
+        try{
+            let user =await User.findById(req.params.id);
+            User.uploadedAvatar(req,res,function(err){
+                if(err){
+                    console.log('********Multer error*****',err);
+                }
+                //console.log(req.file);
+                user.name=req.body.fname;
+                user.lname= req.body.lname;
+                user.phoneNumber=req.body.phoneNumber;
+                user.bloodGroup=req.body.blood;
+                user.height=req.body.height;
+                user.weight=req.body.weight;
+                user.age=req.body.age;
+                user.address.lane=req.body.lane;
+                user.address.city=req.body.city;
+                user.address.country=req.body.country;
+                user.address.state=req.body.state
+                user.gender=req.body.gender;
+                if(req.file){
+
+                    /*if(user.avatar){
+                        fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+                    }*/
+                    //saving the path of the uploaded file into the avater field of user
+                    user.avatar=User.avatarPath+'/'+req.file.filename;
+                }
+                user.save();
+                return res.redirect('back');
+            });
+        }
+        catch(err){
+            req.flash('error',err);
+            return res.redirect('back');
+        }
+    }
+    else{
+        return res.status(401).send('Unauthorized Access');
+    }
+}
+
+module.exports.updateSugar =  function(req,res){
+    if(req.user.id==req.params.id){
+        let user = User.findById(req.params.id);
+        user.updateOne({
+            $push:{bloodSugar:{
+                $each:[req.body.sugLevel],
+                $slice:-10
+            }}
+        },function(err,result){
+            if(err){
+                req.flash("Error in updating sugar");
+                return res.redirect('back');
+            }
+            req.flash("Sugar level updated");
+            return res.redirect('back');
+        });
+    }
+    else{
+        return res.status(401).send('Unauthorized Access');
+    }
+}
+module.exports.updateBP =  function(req,res){
+    if(req.user.id==req.params.id){
+        let user = User.findById(req.params.id);
+        
+        user.updateOne({
+            $push:{BP:{
+                $each:[
+                {bplvalue:req.body.bplvalue},
+                {bphvalue:req.body.bphvalue}],
+                $slice:-10
+            }}
+        },function(err,result){
+            if(err){
+                req.flash("Error in updating BP");
+                return res.redirect('back');
+            }
+            req.flash("Updated BP");
+            return res.redirect('back');
+        });
+    }
+    else{
+        return res.status(401).send('Unauthorized Access');
+    }
+}
+module.exports.updateWeight =  function(req,res){
+        let user = User.findById(req.params.id);
+        user.updateOne({
+            $push:{bodyWeight:[req.body.wt]}
+        },function(err,result){
+            if(err){
+                req.flash('error',"Error in updating weight");
+                return res.redirect('back');
+            }
+            req.flash("Weight updated successfully..");
+            return res.redirect('back');
+        });
+}
+
+module.exports.updateTemp =function(req,res){
+    let user=User.findById(req.params.id);
+    user.updateOne({temprature:req.body.temp},function(err,result){
+        if(err){
+            req.flash('error', "Ther is an error");
+            return res.redirect('back');
+        }
+        req.flash("Temprature updated successfully..");
+        return res.redirect('back');
+    });
+}
+
 
 //first_id - patient_id, second_id - doctor_id
 module.exports.callnow=function(req,res){
@@ -109,10 +230,11 @@ module.exports.bookAppointment=function(req,res){
     Doctor.findOne({id: req.params.doctor_id},  function(err, doctor){
         if(err){req.flash('error', "Ther is an error in this booking"); return}
         if(doctor){
-            return res.render('bookAppointment', {title:'Book Appointment',doc:doctor})
+            return res.render('bookAppointment', {title:'MediCare|Book Appointment',doc:doctor})
         }
     });
 }
+
 
 
 //redirection from users to paytm

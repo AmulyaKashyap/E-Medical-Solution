@@ -51,20 +51,18 @@ module.exports.login = function(req,res){
     })
 }
 
-//
+//signUp
 module.exports.create =function(req,res){
     if(req.body.pass != req.body.cpass){
         req.flash('error', 'Passwords do not match');
         return res.redirect('back');
     }
-
     Doctor.findOne({email: req.body.email},  function(err, doctor){
         if(err){req.flash('error', err); return}
 
         if(!doctor){
-            Doctor.create({name:req.body.fname, email:req.body.email, password:req.body.pass, specialization:req.body.specialization}, function(err, doctor){
+            Doctor.create({name:req.body.fname,lname:req.body.lname,email:req.body.email, password:req.body.pass}, function(err, doctor){
                 if(err){req.flash('error', err); return}
-
                 console.log('object is created');
                 req.flash('success', 'You have signed up, login to continue!');
                 return res.redirect('back')
@@ -73,9 +71,7 @@ module.exports.create =function(req,res){
             req.flash('error', 'Email is already is in use');
             return res.redirect('back');
         }
-
     });
-
 }
 
 
@@ -94,3 +90,5 @@ module.exports.destroySession =function(req,res){
 
     return res.redirect('/');
 }
+
+//editing profile

@@ -1,0 +1,164 @@
+<div style="background-color: #f8f9fa;">
+    <div class="page-header">
+      Profile Setting
+    </div>
+    <div class="content" style="min-height:44.5px; padding-top: 20px;">
+      <div class="container-fluid" style="padding-left: 20px;padding-right: 20px;">
+        <div class="row">
+          <div class="col s12 m5 l4 xl3 SideBar">
+            <div style="position:sticky; top:20px;">
+              <div class="profile-slidebar">
+                <div class="widget-profile" style="text-align: center;">
+                  <img style=" width: 150px;height: 150px; box-shadow: 1px 1px 20px #16c9f6; border-radius: 50%;" src="<%=user.avatar%>">  
+                  <h5 style="font-weight: 500;"><%=user.name%></h5>
+                  <p style="color: gray; font-size:medium;"><%=user.age%> | <%=user.gender%> </p>
+                </div>
+                
+                <div class="widget-content">
+                  <div class="dashboard-menu nav" style="padding: 20px; font-size: 1.5rem;">
+                    <div class="nav-item" style="margin-bottom: 5px;">
+                      <a href="/users/profile" class="active" aria-current="page">
+                        <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">
+                          dashboard
+                        </i><span>Dashboard</span>
+                      </a>
+                    </div>
+                    <div class="nav-item" style="margin-bottom: 5px;">
+                      <a href="" class="active" aria-current="page">
+                        <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">
+                          summarize
+                        </i><span>Reports</span>
+                      </a>
+                    </div>
+                    <div class="nav-item" style="margin-bottom: 5px;">
+                      <a href="" class="active" aria-current="page">
+                       <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">local_hospital</i>
+                       <span>Medical details</span>
+                      </a>
+                    </div>
+                    <div class="nav-item" style="margin-bottom: 5px;">
+                      <a href="" class="active" aria-current="page">
+                       <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">question_answer</i>
+                       <span>Messages</span>
+                      </a>
+                    </div>
+                    <div class="nav-item" style="margin-bottom: 5px;">
+                      <a href="/users/editProfile" class="active" aria-current="page">
+                       <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">manage_accounts</i>
+                       <span>Edit Profile</span>
+                      </a>
+                    </div>
+                    <div class="nav-item">
+                      <a href="" class="active" aria-current="page">
+                       <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">logout</i>
+                       <span>LogOut</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m7 l8 xl9">
+              <div class="row add-blog" style="background-color: white; color: rgb(7, 7, 65);padding: 50px;">
+                <div class="col s12">
+                    <div>
+                        <form action="/users/saveChanges/<%=user.id%>"  method="post" enctype="multipart/form-data">
+                            <div class="row form-row" >
+                                <div class="col-12 m12" style="margin-bottom: 30px;">
+                                    <div class="form-group">
+                                        <div class="change-avatar" style="display: flex; align-items: center;">
+                                            <div class="profile-img" style="margin-right: 15px;">
+                                                <img id="display-avt" src="<%=user.avatar%>" style="border-radius: 4px;height: 100px;width: 100px;object-fit: cover;" alt="User">
+                                            </div>
+                                            <div class="upload-img">
+                                                <div class="change-photo-btn">
+                                                    <span><i class="fa fa-upload white-text"></i> Upload Photo</span>
+                                                    <input type="file" name="avatar" class="upload" onchange="loadFile(event)" id="upload">
+                                                </div>
+                                                <small class="grey-text">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s12  m6" >
+                                    <div class="form-group"><label>First Name</label><input type="text" name="fname" class="form-control" value=<%=user.name%>></div>
+                                </div>
+                                <div class="col s12 m6">
+                                    <div class="form-group"><label>Last Name</label><input type="text" name="lname" class="form-control" value=<%=user.lname%>></div>
+                                </div>
+                                <input type="hidden"  name="email" value=<%=user.email%>>
+                                <div class="col s12 m6"><div class="form-group"><label>Age</label>
+                                    <div class="age"><input type="text" name="age" class="form-control" value=<%=user.age%>></div>
+                                </div>
+                                </div>
+                                <div class="col s12 m6"><div class="form-group"><label>Blood Group</label>
+                                <select name="blood" class="form-control select"><option  selected value="<%=user.bloodGroup%>"> <%=user.bloodGroup%> </option><option value="A-">A-</option><option value="A+">A+</option><option value="B-">B-</option><option value="B+">B+</option><option value="AB-">AB-</option><option value="AB+">AB+</option><option value="O-">O-</option><option value="O+"> O+</option></select>
+                                </div>
+                                </div>
+                                <div class="col s12 m6"><div class="form-group"><label>Height</label>
+                                    <div class="height"><input type="text" name="height" class="form-control" value="<%=user.height%>"></div>
+                                </div>
+                                </div>
+                                <div class="col s12 m6"><div class="form-group"><label>Weight</label>
+                                    <div class="weight"><input type="text" name="weight" class="form-control" value="<%=user.weight%>"></div>
+                                </div>
+                                </div>
+                        <div class="col s12 m6"><div class="form-group"><label>Gender</label>
+                            <select name="gender" class="form-control select"><option value="<%=user.gender%>" selected><%=user.gender%></option><option value="Male"> Male</option><option value="Female">Female</option><option value="Others">Others</option></select> 
+                        </div>
+                    </div>
+                    <div class="col s12 m6">
+                        <div class="form-group"><label>Mobile</label>
+                            <input type="text" name="phoneNumber" class="form-control" value=<%=user.phoneNumber%>>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <div class="form-group"><label>Address</label>
+                            <input type="text" name="lane" class="form-control" value=<%=user.address.lane%>>
+                        </div>
+                    </div>
+                    <div class="col s12 m6">
+                        <div class="form-group">
+                            <label>City</label><input type="text" name="city" class="form-control" value=<%=user.address.city%>>
+                        </div>
+                    </div>
+                    <div class="col s12 m6">
+                        <div class="form-group">
+                            <label>State</label><input type="text" name="state" class="form-control" value=<%=user.address.state%>>
+                        </div>
+                    </div>
+                    <div class="col s12 m6">
+                        <div class="form-group"><label>Country</label>
+                            <input type="text" name="country" class="form-control" value=<%=user.address.country%>>
+                        </div>
+                    </div>
+                            </div>
+                <div class="submit-section">
+                    <button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
+                </div>
+              </form>   
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  
+  
+  <script>
+    $(document).ready(function(){
+     $('.tabs').tabs();});
+     $('select').formSelect();
+  </script>
+  
+<script>
+  var loadFile = function(event) {
+    var image = document.getElementById('display-avt');
+    image.src = URL.createObjectURL(event.target.files[0]);
+  };
+  </script>
+  <!--M script-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 

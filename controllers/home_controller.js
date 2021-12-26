@@ -21,5 +21,10 @@ module.exports.blogs =function(req,res){
         layout:'layout'
     }); 
 }
+module.exports.forgotPass =function(req,res){
+    return res.render('forgotPass',{
+        title:"MediCare|Password-resizeTo"
+    });
+}
 
 //module.exports.action =function(req,res){}

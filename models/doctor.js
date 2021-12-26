@@ -7,6 +7,7 @@ const doctorSchema =new mongoose.Schema({
     degree:{type:String,default:"none mentioned"},
     password:{ type:String, required:true},
     name:{  type: String ,default:"not mentioned"},
+    lname:{  type: String ,default:"not mentioned"},
     isDoctor:{ type: Boolean, required: true, default: true },      // to render doctor specific views/pages
     rating:{ type:Number, min:0, max:5 },
     isavailable:{ type:Boolean, default:false },

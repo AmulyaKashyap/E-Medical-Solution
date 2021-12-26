@@ -18,7 +18,7 @@
                <input type="password" name="pass" placeholder="Password" required>
             </div>
             <div class="pass-link">
-               <a href="#">Forgo password?</a>
+               <a href="/forgotPass">Forgot password?</a>
             </div>
             <div class="field btn">
               <div class="btn-layer"></div>
@@ -45,7 +45,7 @@
              <input name="pass" type="password" placeholder="Password" required>
           </div>
           <div class="pass-link">
-             <a href="#">Forgot password?</a>
+             <a href="/forgotPass">Forgot password?</a>
           </div>
           <div class="field btn">
              <div class="btn-layer"></div>
@@ -75,29 +75,33 @@
 <div class="container modal" id="modalSign">
 	<div class="modal-content form-container sign-up-container">
 		<form action="/doctors/create" method="POST">
-			<h1 class="subheading-two" style="font-size: 1.8rem;">As Doctor</h1>
+			<h1 class="subheading-two" style="font-size: 1.8rem; margin: 0px;">As Doctor</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
 				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
 			</div>
 			<span>or use your email for registration</span>
-			<input type="email" name="email" placeholder="Email" />
-			<input type="password" name="pass" placeholder="Password" />
-            <input type="password" name="cpass" placeholder="Confirm Password" />
+      <input type="text" class="validate" name="fname" placeholder="First Name"  required/>
+      <input type="text" class="validate" name="lname" placeholder="Last Name"  required/>
+			<input type="email" class="validate" name="email" placeholder="Email" required />
+			<input type="password" class="validate" name="pass" placeholder="Password" required />
+      <input type="password"class="validate"  name="cpass" placeholder="Confirm Password" required />
 			<button>Sign Up</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
 		<form action="/users/create" method="POST">
-			<h1 class="subheading-two" style="font-size: 1.8rem;">As Patient</h1>
+			<h1 class="subheading-two" style="font-size: 1.8rem; margin: 10px;">As Patient</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
 				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
 			</div>
 			<span>or use your email for registration</span>
-			<input type="email" name="email" placeholder="Email" />
-			<input type="password" name="pass" placeholder="Password" />
-            <input type="password" name="cpass" placeholder="Confirm Password" />
+      <input type="text" class="validate" required  name="fname" placeholder="First Name" />
+      <input type="text" class="validate"  required name="lname" placeholder="Last Name" />
+			<input type="email" class="validate"  required name="email" placeholder="Email" />
+			<input type="password" class="validate"  required name="pass" placeholder="Password" />
+            <input type="password" class="validate" required  name="cpass" placeholder="Confirm Password" />
 			<button>Sign In</button>
 		</form>
 	</div>
@@ -119,7 +123,6 @@
 </section>
 
 
-
 <!--Navigation header including parallaex-->
 <header class="header"id="top" style="clip-path:polygon(100% 0%, 100% 77%, 50% 100%, 0 75%,0 0 );">
   <nav class="navbar" style="padding: 10px;">
@@ -129,16 +132,18 @@
     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a> 
     <ul class="right hide-on-med-and-down" style="font-size: 1rem;">
       <li><a class="nav-item" href="#">Home</a></li>
-      <li><a class="nav-item"href="/findDoc">Find Doctor</a></li>
-      <li><a class="nav-item"href="">Book Appointment</a></li>
+      <li><a class="nav-item"href="/findDoc">Book-Appointment</a></li>
+      <li><a class="nav-item"href="">Consult-Now</a></li>
+      <li><a class="nav-item"href="">Lab-Test</a></li>
+      <li><a class="nav-item"href="">Medicine</a></li>
       <li><a class="nav-item"href="/blogs">Blogs</a></li>
       <% if (locals.user){%>
         <% if (locals.user.isDoctor){%>
-        <li><a href="/users/profile">Dr. <%=user.name%></a></li>
-        <li><a href="/users/sign-out">SingOut</a></li>
+        <li><a href="/doctors/profile">Dr. <%=user.name%></a></li>
+        <li><a href="/doctors/sign-out">SingOut</a></li>
         <%} else{%>
-          <li><a href="/doctors/profile"><%=user.name%></a></li>
-          <li><a href="/doctors/sign-out">SingOut</a></li>
+          <li><a href="/users/profile"><%=user.name%></a></li>
+          <li><a href="/users/sign-out">SingOut</a></li>
         <%}%>
       <%}else{%>
       <li><a class="nav-item modal-trigger" href="#modalSign">SignUp</a></li>
@@ -151,11 +156,23 @@
   <!--Mobile navigations-->
   <ul class="sidenav" id="mobile-demo">
     <li><a class="nav-item" href="#">Home</a></li>
-        <li><a class="nav-item"href="/findDoc">Find Doctor</a></li>
-        <li><a class="nav-item"href="">Book Appointment</a></li>
-        <li><a class="nav-item"href="/blogs">Blogs</a></li>
-        <li><a class="nav-item modal-trigger" href="#modalSign">Sign-Up</a></li>
-        <li><a class="nav-item" href="#" onclick="toggleModal_login();">Log-In</a></li>            
+      <li><a class="nav-item"href="/findDoc">Book-Appointment</a></li>
+      <li><a class="nav-item"href="">Consult-Now</a></li>
+      <li><a class="nav-item"href="">Lab-Test</a></li>
+      <li><a class="nav-item"href="">Medicine</a></li>
+      <li><a class="nav-item"href="/blogs">Blogs</a></li>
+      <% if (locals.user){%>
+        <% if (locals.user.isDoctor){%>
+        <li><a href="/doctors/profile">Dr. <%=user.name%></a></li>
+        <li><a href="/doctors/sign-out">SingOut</a></li>
+        <%} else{%>
+          <li><a href="/users/profile"><%=user.name%></a></li>
+          <li><a href="/users/sign-out">SingOut</a></li>
+        <%}%>
+      <%}else{%>
+      <li><a class="nav-item modal-trigger" href="#modalSign">SignUp</a></li>
+      <li><a class="nav-item" href="#" onclick="toggleModal_login();">Login</a></li>
+      <%}%>            
   </ul>
   
   <section class="header-section">
@@ -165,12 +182,13 @@
         <p style="font-size: 25px; word-spacing: 2px; margin-bottom: 25px; text-shadow: 1px 1px 1px black;">An easy way to <span class="changetext"></span></p>
         <div class="header-btns">
         <a href=""class="btn-white" style="margin:10px 10px ;">Book Appointment</a>
-        <a href=""class="btn-white hide-on-small-only">Login/Sign-Up</a>
+        <a href=""class="btn-white hide-on-small-only">Consult Now</a>
       </div>
       </div>
     </div>
   </section>
 </header>
+
 
 <!--About us and facilities section-->
 <section class="about">
@@ -519,7 +537,7 @@
           <div class="blog card-box grid-blog">
             <div class="blog-image">
                 <a href="">
-                    <img class="img-fluid" src="dental.jpg" alt="Post" >
+                    <img class="img-fluid" src="images/dental.jpg" alt="Post" >
                 </a>
             </div>
             <div class="blog-content">
@@ -529,7 +547,7 @@
                 flex-wrap: wrap;
                 margin-bottom: 0;">
                     <li><div class="post-author" style="width: 189px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;    display: flex; align-items: center; "><a href="">
-                        <span style="vertical-align:middle; position:relative; display: inline-block; height: 30px;width: 30px;"><img class="avatar-image" src="/images/doc1.png" alt="" ></span>
+                        <span style="vertical-align:middle; position:relative; display: inline-block; height: 30px;width: 30px;"><img class="avatar-image" src="images/doc1.png" alt="" ></span>
                         <span style="font-weight: 500;">Dr.Annanya</span></a></div></li>
                         <li>
                         <i class="far fa-clock"></i> 4 Dec 2019</li>
@@ -583,7 +601,7 @@
           <div class="blog card-box grid-blog">
             <div class="blog-image">
                 <a href="">
-                    <img class="images/img-fluid" src="dental.jpg" alt="Post" >
+                    <img class="images/img-fluid" src="images/dental.jpg" alt="Post" >
                 </a>
             </div>
             <div class="blog-content">

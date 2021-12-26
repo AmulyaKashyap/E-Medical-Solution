@@ -1,5 +1,5 @@
    <!--Login Form-->
-   <section class="LoginModal">
+<section class="LoginModal">
     <div class="wrapper">
     <div class="form-container modal" id="loginF" style="height: auto; overflow: hidden;">
       <div class="slide-controls">
@@ -18,7 +18,7 @@
                <input type="password" name="pass" placeholder="Password" required>
             </div>
             <div class="pass-link">
-               <a href="#">Forgot password?</a>
+               <a href="/forgotPass">Forgot password?</a>
             </div>
             <div class="field btn">
               <div class="btn-layer"></div>
@@ -45,7 +45,7 @@
              <input name="pass" type="password" placeholder="Password" required>
           </div>
           <div class="pass-link">
-             <a href="#">Forgot password?</a>
+             <a href="/forgotPass">Forgot password?</a>
           </div>
           <div class="field btn">
              <div class="btn-layer"></div>
@@ -70,78 +70,83 @@
   </section>
 
 
-  <!--Sign UP Modal-->
-<section class="signupModal">
-<div class="container modal" id="modalSign">
-	<div class="modal-content form-container sign-up-container">
-		<form action="/doctors/create" method="POST">
-			<h1 class="subheading-two" style="font-size: 1.8rem;">As Doctor</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-			</div>
-			<span>or use your email for registration</span>
-			<input type="email" name="email" placeholder="Email" />
-			<input type="password" name="pass" placeholder="Password" />
-            <input type="password" name="cpass" placeholder="Confirm Password" />
-			<button>Sign Up</button>
-		</form>
-	</div>
-	<div class="form-container sign-in-container">
-		<form action="/users/create" method="POST">
-			<h1 class="subheading-two" style="font-size: 1.8rem;">As Patient</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-			</div>
-			<span>or use your email for registration</span>
-			<input type="email" name="email" placeholder="Email" />
-			<input type="password" name="pass" placeholder="Password" />
-            <input type="password" name="cpass" placeholder="Confirm Password" />
-			<button>Sign In</button>
-		</form>
-	</div>
-	<div class="overlay-container">
-		<div class="overlay">
-			<div class="overlay-panel overlay-left">
-				<h1 class="subheading-two white-text" style="font-size: 1.8rem;">Hello, Doctor !</h1>
-				<p>Enter your personal details and keep connected with your patients.</p>
-				<button class="ghost" id="signIn">If Patient</button>
-			</div>
-			<div class="overlay-panel overlay-right">
-				<h1 class="subheading-two white-text" style="font-size: 1.8rem;">Hello, Friend!</h1>
-				<p>Enter your personal details and start journey with us</p>
-				<button class="ghost" id="signUp">If Doctor</button>
-			</div>
-		</div>
-	</div>
-</div>
-</section>
-
- 
+ <!--Sign UP Modal-->
+ <section class="signupModal">
+   <div class="container modal" id="modalSign">
+      <div class="modal-content form-container sign-up-container">
+         <form action="/doctors/create" method="POST">
+            <h1 class="subheading-two" style="font-size: 1.8rem; margin: 0px;">As Doctor</h1>
+            <div class="social-container">
+               <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+               <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            </div>
+            <span>or use your email for registration</span>
+         <input type="text" class="validate" name="fname" placeholder="First Name"  required/>
+         <input type="text" class="validate" name="lname" placeholder="Last Name"  required/>
+            <input type="email" class="validate" name="email" placeholder="Email" required />
+            <input type="password" class="validate" name="pass" placeholder="Password" required />
+         <input type="password"class="validate"  name="cpass" placeholder="Confirm Password" required />
+            <button>Sign Up</button>
+         </form>
+      </div>
+      <div class="form-container sign-in-container">
+         <form action="/users/create" method="POST">
+            <h1 class="subheading-two" style="font-size: 1.8rem; margin: 10px;">As Patient</h1>
+            <div class="social-container">
+               <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+               <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            </div>
+            <span>or use your email for registration</span>
+         <input type="text" class="validate" required  name="fname" placeholder="First Name" />
+         <input type="text" class="validate"  required name="lname" placeholder="Last Name" />
+            <input type="email" class="validate"  required name="email" placeholder="Email" />
+            <input type="password" class="validate"  required name="pass" placeholder="Password" />
+               <input type="password" class="validate" required  name="cpass" placeholder="Confirm Password" />
+            <button>Sign In</button>
+         </form>
+      </div>
+      <div class="overlay-container">
+         <div class="overlay">
+            <div class="overlay-panel overlay-left">
+               <h1 class="subheading-two white-text" style="font-size: 1.8rem;">Hello, Doctor !</h1>
+               <p>Enter your personal details and keep connected with your patients.</p>
+               <button class="ghost" id="signIn">If Patient</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+               <h1 class="subheading-two white-text" style="font-size: 1.8rem;">Hello, Friend!</h1>
+               <p>Enter your personal details and start journey with us</p>
+               <button class="ghost" id="signUp">If Doctor</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   </section>
+   
  
  <!--Navigation-->
- <nav class="navbar" style="background-color: #09859b;padding: 10px;">
+ <nav class="navbar" style="background-color: #efefef;padding: 10px;">
   <div class="container" style="width: 95%;">
   <div class="nav-wrapper">
-  <a class="brand-logo animate__animated animate__infinite	infinite animate__pulse">MEDICARE</a>
+  <a class="brand-logo animate__animated animate__infinite	infinite animate__pulse" style="font-weight: 700; color: #012e55;">MEDI<span style="color: #16c9f6;">CARE</span></a>
   <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a> 
   <ul class="right hide-on-med-and-down" style="font-size: 1rem;">
-    <li><a class="nav-item" href="/home">Home</a></li>
-    <li><a class="nav-item"href="/findDoc">Find Doctor</a></li>
-    <li><a class="nav-item"href="">Book Appointment</a></li>
-    <li><a class="nav-item"href="/blogs">Blogs</a></li>
+    <li><a class="navItem" href="/home">Home</a></li>
+    <li><a class="navItem"href="/findDoc">Book Appointment</a></li>
+    <li><a class="navItem" href="">Consult-now</a></li>
+    <li><a class="navItem"href="">Lab-Test</a></li>
+    <li><a class="navItem"href="">Medicine</a></li>
+    <li><a class="navItem"href="/blogs">Blogs</a></li>
     <% if (locals.user){%>
       <% if (locals.user.isDoctor){%>
-      <li><a href="/doctors/profile">Dr. <%=user.name%></a></li>
-      <li><a href="/doctors/sign-out">SignOut</a></li>
+      <li><a class="navItem" href="/doctors/profile">Dr. <%=user.name%></a></li>
+      <li><a class="navItem" href="/doctors/sign-out">LogOut</a></li>
       <%} else{%>
-        <li><a href="/users/profile"><%=user.name%></a></li>
-        <li><a href="/users/sign-out">SignOut</a></li>
+        <li><a class="navItem" href="/users/profile"><%=user.name%></a></li>
+        <li><a class="navItem" href="/users/sign-out">LogOut</a></li>
       <%}%>
     <%}else{%>
-    <li><a class="nav-item modal-trigger" href="#modalSign">SignUp</a></li>
-    <li><a class="nav-item" href="#" onclick="toggleModal_login();">Login</a></li>
+    <li><a class="navItem modal-trigger" href="#modalSign">SignUp</a></li>
+    <li><a class="navItem" href="#" onclick="toggleModal_login();">Login</a></li>
     <%}%>     
   </ul>
   </div>
@@ -149,10 +154,22 @@
 </nav>
 <!--Mobile navigations-->
 <ul class="sidenav" id="mobile-demo">
-  <li><a class="nav-item" href="/home">Home</a></li>
-      <li><a class="nav-item"href="/findDoc">Find Doctor</a></li>
-      <li><a class="nav-item"href="">Book Appointment</a></li>
-      <li><a class="nav-item"href="/blogs">Blogs</a></li>
-      <li><a class="nav-item modal-trigger" href="#modalSign">Sign-Up</a></li>
-      <li><a class="nav-item" href="#" onclick="toggleModal_login();">Log-In</a></li>            
+   <li><a class="navItem" href="/home">Home</a></li>
+   <li><a class="navItem"href="/findDoc">Book-Appointment</a></li>
+   <li><a class="navItem"href="">Consult-Now</a></li>
+   <li><a class="navItem"href="">Lab-Test</a></li>
+   <li><a class="navItem"href="">Medicine</a></li>
+   <li><a class="navItem"href="/blogs">Blogs</a></li>
+   <% if (locals.user){%>
+     <% if (locals.user.isDoctor){%>
+     <li><a href="/doctors/profile">Dr. <%=user.name%></a></li>
+     <li><a href="/doctors/sign-out">LogOut</a></li>
+     <%} else{%>
+       <li><a href="/users/profile"><%=user.name%></a></li>
+       <li><a href="/users/sign-out">LogOut</a></li>
+     <%}%>
+   <%}else{%>
+   <li><a class="navItem modal-trigger" href="#modalSign">SignUp</a></li>
+   <li><a class="navItem" href="#" onclick="toggleModal_login();">Login</a></li>
+   <%}%>            
 </ul>
