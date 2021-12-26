@@ -9,9 +9,9 @@
           <div style="position:sticky; top:20px;">
             <div class="profile-slidebar">
               <div class="widget-profile" style="text-align: center;">
-                <img style="border:4px solid #32acdf;border-radius: 50%; width: 120px;height: 120px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="/images/doc1.png">  
-                <h5 style="font-weight: 500;">Dr. <%=user.name%></h5>
-                <p style="color: gray; font-size:medium;"><%=user.specialization%><!--BDS, MDS - Oral & Maxillofacial Surgery--></p>
+                <img style="border:4px solid #32acdf;border-radius: 50%; width: 120px;height: 120px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="<%=user.avatar%>">  
+                <h5 style="font-weight: 500;">Dr. <%=user.name%> <%=user.lname%></h5>
+                <p style="color: gray; font-size:medium;"><%=user.specialization%> <br><%=user.degree%><!--BDS, MDS - Oral & Maxillofacial Surgery--></p>
               </div>
               
               <div class="widget-content">
@@ -28,12 +28,6 @@
                       <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">
                        date_range
                       </i><span>Appointements</span>
-                    </a>
-                  </div>
-                  <div class="nav-item" style="margin-bottom: 5px;">
-                    <a href="" class="active" aria-current="page">
-                     <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">question_answer</i>
-                     <span>Messages</span>
                     </a>
                   </div>
                   <div class="nav-item" style="margin-bottom: 5px;">
@@ -76,7 +70,7 @@
                      <div class="RCP" style="margin-right: 5px;width: 105px !important;">
                       <img style="border:4px solid #32acdf;border-radius: 50%; width: 120px;height: 120px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="/images/rating-icon.png">
                     </div>
-                    <div class="dash-widget-info"><h5>Rating</h5><h4>5</h4><p style="font-size:small;color: gray;">till today</p></div>
+                    <div class="dash-widget-info"><h5>Rating</h5><h4><%=user.rating%></h4><p style="font-size:small;color: gray;">till today</p></div>
                    </div> 
                   </div>
                   <div class="col m12 l4">
@@ -84,7 +78,7 @@
                       <div class="RCP" style="margin-right: 5px;width: 105px !important;">
                        <img style="border:4px solid #32acdf;border-radius: 50%; width: 120px;height: 120px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="/images/pat-today-clip.jpg">
                      </div>
-                     <div class="dash-widget-info"><h5>Today's Appointments</h5><h4>237</h4><p style="font-size:small;color: gray;">12,Dec,2021</p></div>
+                     <div class="dash-widget-info"><h5>Today's Appointments</h5><h4><%=apts.length%></h4><p style="font-size:small;color: gray;">12,Dec,2021</p></div>
                     </div> 
                    </div>
                    <div class="col m12 l4">
@@ -92,7 +86,7 @@
                       <div class="RCP" style="margin-right: 5px;width: 105px !important;">
                        <img style="border:4px solid #32acdf;border-radius: 50%; width: 120px;height: 120px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="/images/appointment-clip.jpg">
                      </div>
-                     <div class="dash-widget-info"><h5>Total Appointments</h5><h4>88</h4><p style="font-size:small;color: gray;">12,Dec,2021</p></div>
+                     <div class="dash-widget-info"><h5>Total Appointments</h5><h4><%=apts.length%></h4><p style="font-size:small;color: gray;">12,Dec,2021</p></div>
                     </div> 
                    </div>
                 </div>
@@ -115,29 +109,31 @@
                   <tr>
                     <th>Patient Name</th>
                     <th>Appt Date</th>
-                    <th>Purpose</th>
+                    <th>Time</th>
                     <th>Type</th>
                     <th class="text-center">Paid Amount</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
+                  <% for(apt of apts){%>
                   <tr>
                     <td><p class="table-avatar"><a class="avatar avatar-sm mr-2" href="/images/doc1.png">
-                      <img class="avatar-img rounded-circle" src="/images/doc1.png" alt="User" style="float:left; vertical-align: middle; width: 50px;height: auto;border-radius: 100%;"></a>
-                      <a href="/template/doctor/patient-profile" style="font-weight: 500;font-size:1.2rem;">Amodita Rastogi<span style="color: rgb(78, 78, 78); font-size: x-small; display: block;">#392819</span></a></p>
+                      <img class="avatar-img rounded-circle" src="<%=apt.patientId.avatar%>" alt="User" style="float:left; vertical-align: middle; width: 50px;height: 50px;border-radius: 100%;"></a>
+                      <a href="/patient-profile" style="font-weight: 500;font-size:1.2rem;"><%=apt.patientId.name%> <%=apt.patientId.lname%><span style="color: rgb(78, 78, 78); font-size: x-small; display: block;"><%=apt.patientId.email%></span></a></p>
                     </td>
-                    <td>11 Nov 2019 <span style="color: rgb(31, 142, 233); display: block;">10.00 AM</span></td>
-                    <td>General</td>
-                    <td>New Patient</td>
-                    <td class="text-center">$150</td>
+                    <td><%=apt.date.getDate()%>/<%=apt.date.getMonth()%>/<%=apt.date.getYear()%></td>
+                    <td><%=apt.time%></td>
+                    <td>Online</td>
+                    <td class="text-center">$ <%=user.price%></td>
                     <td class="text-right">
                       <div class="table-action">
-                      <a class="waves-effect waves-light btn-small" href="/template/doctor/doctor-dashboard#0" style="color: #1db9aa; background-color: rgba(2, 182, 179,0.12);"><i class="far fa-eye"></i> View</a>
-                      <a class="waves-effect waves-light btn-small" style="color: #26af48; background-color: rgba(15, 183, 107,0.12);" href="/template/doctor/doctor-dashboard#0"><i class="fas fa-check"></i> Accept</a>
-                      <a class="waves-effect waves-light btn-small" style="color: #e63c3c; background-color: #e63c3c7c;" href="/template/doctor/doctor-dashboard#0"><i class="fas fa-times"></i> Cancel</a></div>
-                    </td>
+                        <%if(apt.isDone){%>
+                          <a class="waves-effect waves-light btn-small" href="" style="color: #1db9aa; background-color: rgba(2, 182, 179,0.12);"><i class="far fa-eye"></i> View Prescriptions</a>
+                          <%}else{%><a class="waves-effect waves-light btn-small" style="color: #26af48; background-color: rgba(15, 183, 107,0.12);" href=""><i class="material-icons">send</i>Goto Session</a>
+                          <%}%></td>
                   </tr>
+                  <%}%>
                 </tbody>
               </table>
             </div>
@@ -147,29 +143,31 @@
                   <tr>
                     <th>Patient Name</th>
                     <th>Appt Date</th>
-                    <th>Purpose</th>
+                    <th>Time</th>
                     <th>Type</th>
                     <th class="text-center">Paid Amount</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><p class="table-avatar"><a class="avatar avatar-sm mr-2" href="/images/doc1.png">
-                      <img class="avatar-img rounded-circle" src="/images/doc1.png" alt="User" style="float:left; vertical-align: middle; width: 50px;height: auto;border-radius: 100%;"></a>
-                      <a href="/template/doctor/patient-profile" style="font-weight: 500;font-size:1.2rem;">Somil Mishra<span style="color: rgb(78, 78, 78); font-size: x-small; display: block;">#392819</span></a></p>
-                    </td>
-                    <td>11 Nov 2019 <span style="color: rgb(31, 142, 233); display: block;">10.00 AM</span></td>
-                    <td>General</td>
-                    <td>New Patient</td>
-                    <td class="text-center">$150</td>
-                    <td class="text-right">
-                      <div class="table-action">
-                      <a class="waves-effect waves-light btn-small" href="/template/doctor/doctor-dashboard#0" style="color: #1db9aa; background-color: rgba(2, 182, 179,0.12);"><i class="far fa-eye"></i> View</a>
-                      <a class="waves-effect waves-light btn-small" style="color: #26af48; background-color: rgba(15, 183, 107,0.12);" href="/template/doctor/doctor-dashboard#0"><i class="fas fa-check"></i> Accept</a>
-                      <a class="waves-effect waves-light btn-small" style="color: #e63c3c; background-color: #e63c3c7c;" href="/template/doctor/doctor-dashboard#0"><i class="fas fa-times"></i> Cancel</a></div>
-                    </td>
-                  </tr>
+                  <% for(apt of apts){%>
+                    <tr>
+                      <td><p class="table-avatar"><a class="avatar avatar-sm mr-2" href="/images/doc1.png">
+                        <img class="avatar-img rounded-circle" src="<%=apt.patientId.avatar%>" alt="User" style="float:left; vertical-align: middle; width: 50px;height: 50px;border-radius: 100%;"></a>
+                        <a href="/patient-profile" style="font-weight: 500;font-size:1.2rem;"><%=apt.patientId.name%> <%=apt.patientId.lname%><span style="color: rgb(78, 78, 78); font-size: x-small; display: block;"><%=apt.patientId.email%></span></a></p>
+                      </td>
+                      <td><%=apt.date.getDate()%>/<%=apt.date.getMonth()%>/<%=apt.date.getYear()%></td>
+                      <td><%=apt.time%></td>
+                      <td>Online</td>
+                      <td class="text-center">$ <%=user.price%></td>
+                      <td class="text-right">
+                        <div class="table-action">
+                          <%if(apt.isDone){%>
+                            <a class="waves-effect waves-light btn-small" href="" style="color: #1db9aa; background-color: rgba(2, 182, 179,0.12);"><i class="far fa-eye"></i> View Prescriptions</a>
+                            <%}else{%><a class="waves-effect waves-light btn-small" style="color: #26af48; background-color: rgba(15, 183, 107,0.12);" href=""><i class="material-icons">send</i>Goto Session</a>
+                            <%}%></td>
+                    </tr>
+                    <%}%>
                 </tbody>
               </table>
             </div>

@@ -6,6 +6,7 @@ const User = require('../models/user')
 const dotenv = require('dotenv').config()
 const https =  require("https")
 const Doctor = require('../models/doctor');
+const Prescriptions=require('../models/prescriptions');
 const fs=require('fs');
 const Appointment = require('../models/appointment');
 const path=require('path');
@@ -17,17 +18,17 @@ const { request } = require('http')
 const Report = require('../models/reports')
 
 
-
-//render user profile
-module.exports.profile=function(req,res){
-    Appointment.findOne({patientId:req.user.id}).populate("doctorId").exec(function(err,p){
-        if(err) console.log("error ",err)
-       // console.log(p.doctorId.id)
-    })
-    return res.render('profile', {title:"MediCare|User-Dashboard"})
+//render user profile-populating user
+module.exports.profile =function(req,res){
+    Appointment.find({patientId:req.user.id}).populate('doctorId').exec(function(err,appointments){
+        return res.render('profile', {
+            title:'MediCare|User-Dashboard',
+            apts:appointments
+        });
+    });
 }
-
 //render chatBot to collect information
+
 module.exports.chatBot =function(req,res){
     req.flash('success','Please select a doctor to consult')
     return res.render('chatBot', {
@@ -46,6 +47,16 @@ module.exports.reports =function(req,res){
         });
     });
 }
+
+module.exports.prescriptions=function(req,res){
+    Prescriptions.find({patientId:req.user.id},function(err,reports){
+        return res.render('prescriptions', {
+            title:'MediCare|User-Prescriptions',
+           pres:reports
+        });
+    });
+}
+
 
 module.exports.signUp = function(req,res){
     if(req.isAuthenticated()){
