@@ -7,12 +7,12 @@ const sendEmail = require("../features/sendEmail");
 const crypto = require("crypto");
 const Joi = require("joi");
 const Blogs = require("../models/blogs");
-const Doctor =require("../models/doctor");
 
-module.exports.home =function(req,res){
-    return res.render('home',{
-        title:"MediCare"
-    }); 
+module.exports.msg=function(req,res){
+    return res.render('message',{
+        title:"MediCare",
+        layout:'layout'
+    });
 }
 module.exports.homeP =function(req,res){
     return res.render('home-page',{

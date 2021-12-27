@@ -1,7 +1,10 @@
+<div class="page-header">
+   LET US HELP YOU
+  </div>
 <div id="paytm-checkoutjs">
-    <section class="chat__section">
+    <section class="chat__section conatiner" style=" height: 70vh; background-color:rgb(0 0 0 / 4%)">
 
-    <div class="message__area">
+    <div class="message__area ">
         <div class="incoming message">
             <p hidden id="userId"><%=details['id']%></p>
             <h4>Medicare</h4>
@@ -20,8 +23,9 @@
             <p id="username">If above details are blank/incorrect then please type "Update" otherwise type "Continue"</p>
         </div>
     </div>
-    <div id="text" >
-        <textarea id="textarea" cols="30" rows="1"  onkeypress='validate(event)'  placeholder="Write a message..."></textarea>
+    <div id="text" class="row" style="text-align: center;" >
+        <textarea class="col s11" id="textarea" cols="30" rows="1"  onkeypress='validate(event)'  placeholder="Write a message..." style="color:white;background-color: #012e55;border: none;border-radius: 50px; padding:10px 15px;"></textarea>
+        <button type="button" class="msg-send-btn" style="transition: background-color .2s ease-out;border-radius: 50%; color: white; border: none;line-height: 36px;padding: 0px 16px;background-color:rgb(10, 83, 131)"><i class="fab fa-telegram-plane"></i></button>      
     </div>
     </section>
 
