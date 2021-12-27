@@ -131,11 +131,20 @@
     <a class="brand-logo animate__animated animate__infinite	infinite animate__pulse">MEDICARE</a>
     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a> 
     <ul class="right hide-on-med-and-down" style="font-size: 1rem;">
-      <li><a class="nav-item" href="#">Home</a></li>
+      <li><a class="nav-item" href="/">Home</a></li>
       <li><a class="nav-item"href="/findDoc">Book-Appointment</a></li>
-      <li><a class="nav-item"href="">Consult-Now</a></li>
-      <li><a class="nav-item"href="">Lab-Test</a></li>
-      <li><a class="nav-item"href="">Medicine</a></li>
+      <li><a class="modal-trigger nav-item"href=
+        <% if (locals.user){%>
+          <% if (locals.user.isDoctor){%>
+          "#"
+          <%} else{%>
+            "#"
+          <%}%>
+        <%}else{%>
+          "#" onclick="M.toast({html: 'Login First'})"
+          <%}%> 
+      >Consult-Now</a></li>
+      <li><a class="nav-item"href="#" onclick="M.toast({html: 'Link Disable'})">Lab-Test</a></li>
       <li><a class="nav-item"href="/blogs">Blogs</a></li>
       <% if (locals.user){%>
         <% if (locals.user.isDoctor){%>
@@ -159,7 +168,6 @@
       <li><a class="nav-item"href="/findDoc">Book-Appointment</a></li>
       <li><a class="nav-item"href="">Consult-Now</a></li>
       <li><a class="nav-item"href="">Lab-Test</a></li>
-      <li><a class="nav-item"href="">Medicine</a></li>
       <li><a class="nav-item"href="/blogs">Blogs</a></li>
       <% if (locals.user){%>
         <% if (locals.user.isDoctor){%>
@@ -181,7 +189,7 @@
         <h1 class="subheading" style="margin: 30px 0 20px 0;font-weight: 700; text-shadow: 2px 1px 5px black; text-transform: uppercase;">Complete Medical Solution</h1>
         <p style="font-size: 25px; word-spacing: 2px; margin-bottom: 25px; text-shadow: 1px 1px 1px black;">An easy way to <span class="changetext"></span></p>
         <div class="header-btns">
-        <a href=""class="btn-white" style="margin:10px 10px ;">Book Appointment</a>
+        <a href="/findDoc" class="btn-white" style="margin:10px 10px ;">Book Appointment</a>
         <a href=""class="btn-white hide-on-small-only">Consult Now</a>
       </div>
       </div>

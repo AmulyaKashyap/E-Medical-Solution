@@ -41,7 +41,7 @@ module.exports.editProfile=function(req,res){
 }
 //reports
 module.exports.reports =function(req,res){
-    Report.find({patientId:req.user.id},function(err,reports){
+    Report.find({patientId:req.user.id}).populate('uploadByPat').exec(function(err,reports){
         return res.render('reports', {
             title:'MediCare|User-Reports',
             reports:reports
