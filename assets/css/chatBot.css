@@ -8,12 +8,12 @@ section .chat__section {
   }
   
   .message__area{
-    height: 73%;
-    padding: 16px;
+    height: 90%;
+    padding: 36px;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    padding-top: 80px;
+    padding-top: 20px;
   }
   textarea {
     width: 100%;
