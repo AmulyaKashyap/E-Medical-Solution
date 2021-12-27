@@ -10,7 +10,23 @@ router.get('/findDoc',home_controller.findDoc);
 router.get('/blogs',home_controller.blogs);
 router.use('/users',require('./users'));
 router.use('/doctors',require('./doctors'));
-router.use('/forgotPass',home_controller.forgotPass);
+router.get('/findDoc',home_controller.findDoc);
+
+
+
+router.get('/forgotPass',home_controller.forgotPass);
+router.post("/resetPass", home_controller.resetPass);
+
+router.get("//password-reset/:userId/:token", home_controller.resettingPass);
+router.get("//password-reset/:userId/:token", home_controller.resettingPass);
+
+router.post("/password-reset/:userId/:token", home_controller.resettedPass);
+
+
+
+
+
+module.exports = router;
 
 //for any further routes access from here
 //router.use('/routeName',require('./routerfile'));

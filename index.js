@@ -34,7 +34,7 @@ app.use("/peerjs", peerServer);
 
 
 io.on('connection', (socket) => {
-    console.log(' Socket Connected...current user - ',req.user.name)
+    console.log(' Socket Connected...',)
     let counter =0
     let text=['May i know your age sir','Your weight','Please describe your syptoms so we can connect you to our best doctor','Ok,let me find a best doctor for consultant and we all are praying for your speedy recovery']
     socket.on('message', (msg) => {

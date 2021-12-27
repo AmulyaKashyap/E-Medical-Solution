@@ -3,6 +3,9 @@ let userName = document.querySelector('#username').textContent
 
 userName = userName.slice(9,)
 
+console.log(detail['height'])
+
+
 let textarea = document.querySelector('#textarea')
 let messageArea = document.querySelector('.message__area')
 

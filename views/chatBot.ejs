@@ -1,13 +1,21 @@
 <div id="paytm-checkoutjs">
     <section class="chat__section">
-    <div class="brand">
-        <img height="40" src="/images/wassup.png" alt="not found">
-        <h1>Wassup</h1>
-    </div>
+
     <div class="message__area">
         <div class="incoming message">
             <h4>Medicare</h4>
-            <p id="username">How are u <%=locals.user.name%></p>
+            <p id="username">We hope you all are safe and gud <%=locals.user.name%></p>
+        </div>
+        <div class="incoming message">
+            <h4>Medicare</h4>
+            <p id="userAge">To proceed further we wuld like to confirm these details so we can assist you better</p>
+            <p id="userAge">Your age is <%=detail.age%></p>
+            <p id="userHeight">Your Height is <%=detail.height%></p>
+            <p id="userWeight">Your weight is <%=detail.weight%></p>
+        </div>
+        <div class="incoming message">
+            <h4>Medicare</h4>
+            <p id="userWeight">If above details are up to date then type "confirm" otherwise type "update" to update the details</p>
         </div>
     </div>
     <div id="text" >

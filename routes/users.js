@@ -9,6 +9,7 @@ const users_controller =require('../controllers/users_controller');
 
 router.get('/profile', passport.checkAuthentication, users_controller.profile);
 
+
 //open chatBot
 router.get('/chatBot',users_controller.chatBot);    
 router.get('/sign-in',users_controller.signIn);
