@@ -75,15 +75,23 @@
                       <tbody>
                         <% for(report of reports){%>
                         <tr>
-                          <td><p class="table-avatar"><a class="avatar avatar-sm mr-2" href="/images/doc1.png">
+                          <td><p class="table-avatar"><a class="avatar avatar-sm mr-2" href="<%=report.report%>">
                             <img class="uploader-avatar rounded-circle" src="<%=report.report%>" alt="User"></a>
-                            <a href="/template/doctor/patient-profile" class="uploader-name"><%if(report.uploadByPat){%><%=report.uploadByPat%><%}else{%><%=report.uploadByDoc%><%}%><span style="color: rgb(78, 78, 78); font-size: x-small; display: block;">Dental</span></a></p>
+                            <a href="/template/doctor/patient-profile" class="uploader-name"><%=report.uploadByPat.name%><%=report.uploadByPat.lname%><span style="color: rgb(78, 78, 78); font-size: x-small; display: block;">Dental</span></a></p>
                           </td>
                           <td><%=report.date%></td>
                           <td><%=report.title%></td>
                           <td class="text-right">
                             <div class="table-action">
-                            <a class="waves-effect waves-light btn-small view-btn" href="" ><i class="far fa-eye"></i> View</a>
+                            <a class="modal-trigger waves-effect waves-light btn-small view-btn" href="#modalImage" 
+                             data-name="{<%=report.title%>}" data-path="{<%=report.report%>}}" >
+                            <i class="far fa-eye"></i> View</a>
+                            <div id="modalImage" class="modal">
+                              <div class="modal-content center-align" >
+                                <h4>Your Report: <%=report.title%></h4>
+                                <embed type="image/jpeg" src="<%=report.report%>" width="300" height="auto">
+                              </div>
+                            </div>
                             <a class="waves-effect waves-light btn-small cancel-btn" href="#"><i class="material-icons" style="vertical-align: middle;" >cancel</i>Delete</a>
                            </td>
                         </tr>
@@ -102,7 +110,7 @@
                     <div class="col s6 file-field input-field">
                         <div class="btn" style="width: 20%;">
                           <span>File</span>
-                          <input type="file" accept=".pdf,image/*" name="reportUploaded" class="upload">
+                          <input type="file" accept="image/*" name="reportUploaded" class="upload">
                         </div>
                         <div class="file-path-wrapper">
                           <input class="file-path validate" type="text" >
@@ -130,11 +138,18 @@
   </script>
   
 <script>
-  var loadFile = function(event) {
-    var image = document.getElementById('display-avt');
-    image.src = URL.createObjectURL(event.target.files[0]);
-  };
-  
+  $(function () {
+  $('#modalImage').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var title = button.data('title'); // Extract info from data-* attributes
+    var path = button.data('path'); // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this);
+    modal.find('#title').val(title);
+    modal.find('#path').val(path);
+  });
+});
   </script>
   <!--M script-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 

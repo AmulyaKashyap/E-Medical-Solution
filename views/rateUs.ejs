@@ -1,4 +1,4 @@
-<section class="book-appontment" style="background-image:url(images/rate.jpg);">
+<section class="book-appontment" style="background-image:url(images/review-background.jpg);">
     <div class="container  cont1">
         <div class="  docInfo" style="font-size: 1.2rem; align-items: center; text-align: center; color: #fff;">
             <h5 class="subheading-two" style="font-size: 1rem;">Doctor's Information:</h5>
@@ -18,14 +18,24 @@
             </ul>
         </div>
         
-        <div class="book-info" style="background-color:#0000005c; color: white;">
+        <div class="book-info" style="background-color:#000000a6; color: white;">
             <h5 class="heading-slot" style="color: #fff;">How was your Experience with doctor:</h5>
             <form action="/users/paynow" method="post" style="padding: 20px;">
-                <div class="rating col s12">
-                    <input placeholder="Rating" name="rating" type="text">
-                    <label for="rating">Rating</label>
-                </div>
-                <div class="input-field col s12">
+                <h6>Rating</h6>
+                <div class="rate">
+                    <input type="radio" id="star5" name="rate" value="5" />
+                    <label for="star5" title="text">5 stars</label>
+                    <input type="radio" id="star4" name="rate" value="4" />
+                    <label for="star4" title="text">4 stars</label>
+                    <input type="radio" id="star3" name="rate" value="3" />
+                    <label for="star3" title="text">3 stars</label>
+                    <input type="radio" id="star2" name="rate" value="2" />
+                    <label for="star2" title="text">2 stars</label>
+                    <input type="radio" id="star1" name="rate" value="1" />
+                    <label for="star1" title="text">1 star</label>
+                  </div>
+
+                <div class="input-field col s12" style="margin-top: 15vw;">
                     <textarea id="textarea1" class="materialize-textarea"></textarea>
                     <label for="textarea1" style="color: rgb(255, 254, 254); font-weight: 500;">Write your review</label>
                   </div>
