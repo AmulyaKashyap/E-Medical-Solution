@@ -17,9 +17,12 @@ module.exports.home =function(req,res){
 module.exports.videoCall =function(req,res){
     console.log('calling')
     return res.render('videoroom',{
-        title:"Calling",first_id:req.params.userId,second_id:req.params.doctorId
+        title:"Calling",
+        first_id:req.params.userId,
+        second_id:req.params.doctorId
     }); 
 }
+
 
 
 module.exports.homeP =function(req,res){

@@ -21,7 +21,6 @@ router.get("/videocall/:userId/:docterId", home_controller.videoCall);
 
 
 
-module.exports = router;
 router.use('/forgotPass',home_controller.forgotPass);
 router.use('/aptSuccess',home_controller.aptSuccess);
 
