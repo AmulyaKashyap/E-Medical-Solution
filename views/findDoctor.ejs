@@ -1,22 +1,80 @@
+<div class="page-header" style="position:absolute; width:100%;background-color: #0a3f6da1;">
+  Find the right Doctor
+</div>
+<section style="background-color: #9fa4b22e; padding-bottom: 30px;">
 <div class="find-doc" >
 <div class="centered">
-  <h1 class="subheading-two white-text">Find the right Doctor</h1>
-  <form action="#">
+  <form action="/findDocS" method="post">
     <div class="row">
     <div class="col s12 l4">
-    <input type="text" name="City" placeholder="Enter the name " style=" height: 2.5rem; background-color: #fafafa; text-align:center;">
+    <input type="text" name="docName" placeholder="Enter the name " style=" height: 2.5rem; background-color: #fafafa; text-align:center;">
   </div>
   <div class="col s12 l4">
     <input type="text" name="City" id="search-city" placeholder="Enter the name of City" style=" height: 2.5rem; background-color: #fafafa; text-align:center; ">
   </div>
+  <div class="input-field col s12 l4" style="margin-top: 0;background: #fafafa;height: 40px;">
+    <select name="dept" >
+      <option value="" disabled selected>Choose Specialization</option>
+      <option value="Cardiologist">Cardiologist</option>
+      <option value="Phycologist">Phycologist</option>
+      <option value="Orthopedic">Orthopedic</option>
+    </select>
+  </div>
+
   <div class="col s12 l4">
     <button type="submit" style="padding: 5px 10px;" class="btn-teal body-content-min search-btn" ><i class="material-icons" style="font-weight: 700; vertical-align: middle;">search</i>SEARCH NOW</button>
   </div>
   </div>
   </form>
+ 
 </div>
 </div>
 
+<div class="doc-list container" style="background-color: white;width: 90vw; padding: 20px;margin-top: 30px;">
+  <hi class="subheading-two">
+    List of Available doctors:
+    <span> <div>
+      <a  href="/findDoc" style="padding: 5px 10px;" class="btn-teal body-content-min search-btn" ><i class="material-icons" style="font-weight: 700; vertical-align: middle;">list</i>SEE ALL</a>
+    </div></span>
+  </hi>
+  <div id="docList" class="col m12" style="background-color: white;" style="overflow: scroll; max-width: 50vh;">
+    <table class="highlight" style="overflow-x: scroll;">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Specialization</th>
+          <th>Degree</th>
+          <th>Fees</th>
+          <th>Address</th>
+          <th>Rating</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(doc of docs){%>
+        <tr>
+          <td><p class="table-avatar"><a class="avatar avatar-sm mr-2" href="/doctors/docProfile/<%=doc.id%>">
+            <img class="uploader-avatar rounded-circle" src="<%=doc.avatar%>" alt="User"></a>
+            <a href="/doctors/docProfile/<%=doc.id%>" class="tooltipped uploader-name" data-position="bottom" data-tooltip="View Profile">Dr.<%=doc.name%> <%=doc.lname%><span style="color: rgb(78, 78, 78); font-size: x-small; display: block;">Dental</span></a></p>
+          </td>
+          <td><%=doc.specialization%></td>
+          <td><%=doc.degree%></td>
+          <td>$ <%=doc.price%></td>
+          <td><%=doc.address.city%>, <%=doc.address.country%></td>
+          <td><%=doc.rating%></td>
+          <td class="text-right">
+            <div class="table-action">
+              <%if (doc.isavailable){%>
+            <a class="waves-effect waves-light btn-small view-btn tooltipped"  data-position="bottom" data-tooltip="Book Online appointments" href="/doctors/docProfile/<%=doc.id%>" style="margin:5px;font-weight: 600;" ><i class="far fa-eye"></i> Online Appointment</a>
+            <%}%><a class="waves-effect waves-light btn-small view-btn tooltipped" data-position="bottom" data-tooltip="Book offline/ clinic appointment"  href="/doctors/docProfile/<%=doc.id%>" style="margin:5px;background-color: #f443368f;color: #e00000;font-weight: 600;" ><i class="far fa-eye"></i>Offline Appointment</a>
+           </td>
+        </tr>
+        <%}%>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
 
 
 <!--custom js-->

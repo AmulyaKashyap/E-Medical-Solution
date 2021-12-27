@@ -104,9 +104,9 @@
                     </a>
                   </div>
                   <div class="nav-item" style="margin-bottom: 5px;">
-                    <a href="" class="active" aria-current="page">
+                    <a href="/users/prescriptions" class="active" aria-current="page">
                      <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">local_hospital</i>
-                     <span>Medical details</span>
+                     <span>Prescriptions</span>
                     </a>
                   </div>
                   <div class="nav-item" style="margin-bottom: 5px;">
@@ -122,7 +122,7 @@
                     </a>
                   </div>
                   <div class="nav-item">
-                    <a href="" class="active" aria-current="page">
+                    <a href="/users/sign-out" class="active" aria-current="page">
                      <i class="large material-icons" style="font-size: 1.5rem; vertical-align: middle;padding-right: 15px;">logout</i>
                      <span>LogOut</span>
                     </a>
@@ -246,29 +246,39 @@
                   <tr>
                     <th>Doctor Name</th>
                     <th>Appt Date</th>
-                    <th>Booking Date</th>
+                    <th>Appt Time</th>
                     <th class="text-center">Paid Amount</th>
                     <th>Status</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-              
+                  <% for(apt of apts){%>
                   <tr>
                     <td><p class="table-avatar"><a class="avatar avatar-sm mr-2" href="/images/doc1.png">
-                      <img class="avatar-img rounded-circle" src="/images/doc1.png" alt="User" style="float:left; vertical-align: middle; width: 50px;height: auto;border-radius: 100%;"></a>
-                      <a href="" class="tooltipped" data-tooltip="See profile" style="font-weight: 500;font-size:1.2rem;">Dr. Amodita Rastogi<span style="color: rgb(78, 78, 78); font-size: x-small; display: block;">#392819</span></a></p>
+                      <img class="avatar-img rounded-circle" src="<%=apt.doctorId.avatar%>" alt="User" style="float:left; vertical-align: middle; width: 50px;height: auto;border-radius: 100%;"></a>
+                      <a href="/doctors/docProfile/<%=apt.doctorId._id%>" class="tooltipped" data-tooltip="See profile" style="font-weight: 500;font-size:1.2rem;">Dr.<%=apt.doctorId.name%> <%=apt.doctorId.lname%><span style="color: rgb(78, 78, 78); font-size: x-small; display: block;">#392819</span></a></p>
                     </td>
-                    <td>11 Nov 2019 <span style="color: rgb(31, 142, 233); display: block;">10.00 AM</span></td>
-                    <td>9 Nov 2019 <span style="color: rgb(31, 142, 233); display: block;">10.00 AM</span></td>
-                    <td class="text-center">$150</td>
-                    <td class="text-center"><span style="padding:3px;color: #034e16; background-color: #26af488c; font-size: 12px; font-weight: 500;">Confirm</span></td>
+                    <td><%=apt.date.getDate()%>/<%=apt.date.getMonth()%>/<%=apt.date.getYear()%></td>
+                    <td><%=apt.time%></td>
+                    <td class="text-center">$ <%=apt.doctorId.price%></td>
+                    <td class="text-center"><%if(apt.isDone){%><span style="padding:3px;color: #034e16; background-color: #26af488c; font-size: 12px; font-weight: 500;">Done</span><%}else{%>
+                      <span style="padding:3px;color: #0a1f80; background-color: #d8fa408c; font-size: 12px; font-weight: 500;">Coming</span><%}%>
+                    </td>
                     <td class="text-right">
                       <div class="table-action">
-                      <a class="waves-effect waves-light btn-small" href="" style="color: #1db9aa; background-color: rgba(2, 182, 179,0.12);"><i class="far fa-eye"></i> View</a>
-                      <a class="waves-effect waves-light btn-small" style="color: #26af48; background-color: rgba(15, 183, 107,0.12);" href=""><i class="material-icons">print</i> Print</a>
-                      </td>
+                        <%if(apt.isDone){%>
+                          
+                      <a class="waves-effect waves-light btn-small" href="" style="color: #1db9aa; background-color: rgba(2, 182, 179,0.12);"><i class="far fa-eye"></i> View Prescriptions</a>
+                      <%}else{%><% var d1 =new Date();
+                              var d2=new Date(apt.date);
+                              if(d2.getTime()>d1.getTime()){ %> <a class="waves-effect waves-light btn-small" style="color: #af9a26; background-color: rgba(217, 253, 10, 0.12);" href=""><i class="material-icons">send</i>Upcoming</a>
+                              <%}else {%>
+                                <a class="waves-effect waves-light btn-small" style="color: #26af48; background-color: rgba(15, 183, 107,0.12);" href=""><i class="material-icons">send</i>Go to session</a>
+                              <%}%>
+                      <%}%></td>
                   </tr>
+                  <%}%>
                 </tbody>
               </table>
             </div>
@@ -286,7 +296,7 @@
                   <tr>
                     <td><p class="table-avatar"><a class="avatar avatar-sm mr-2" href="/images/doc1.png">
                       <img class="avatar-img rounded-circle" src="/images/doc1.png" alt="User" style="float:left; vertical-align: middle; width: 50px;height: auto;border-radius: 100%;"></a>
-                      <a href="/template/doctor/patient-profile" style="font-weight: 500;font-size:1.2rem;">Dr. Somil Mishra<span style="color: rgb(78, 78, 78); font-size: x-small; display: block;">Dental</span></a></p>
+                      <a href="" style="font-weight: 500;font-size:1.2rem;">Dr. Somil Mishra<span style="color: rgb(78, 78, 78); font-size: x-small; display: block;">Dental</span></a></p>
                     </td>
                     <td>11 Nov 2019</td>
                     <td>General</td>

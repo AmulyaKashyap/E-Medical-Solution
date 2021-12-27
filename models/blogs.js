@@ -7,7 +7,7 @@ const Schema =mongoose.Schema;
 
 const blogsSchema =new mongoose.Schema({
     blogImage:{type:String},
-    uploadBy:String ,
+    uploadBy:{ type: Schema.Types.ObjectId, ref: 'Doctor' } ,
     category:String,
     content:String,
     date:Date,

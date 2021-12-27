@@ -6,28 +6,30 @@ const User = require('../models/user')
 const dotenv = require('dotenv').config()
 const https =  require("https")
 const Doctor = require('../models/doctor');
+const Prescriptions=require('../models/prescriptions');
 const fs=require('fs');
 const Appointment = require('../models/appointment');
 const path=require('path');
 //importing files for sending calender invite
-const sendCalender = require('../features/calenderInvite.js')
+const sendCalender = require('../features/calenderInvite.js');
+const moment =require('moment'); 
 
 const encrypt_decrypt = require('../features/encrypt_decrypt.js')
 const { request } = require('http')
 const Report = require('../models/reports')
 
 
-
-//render user profile
-module.exports.profile=function(req,res){
-    Appointment.findOne({patientId:req.user.id}).populate("doctorId").exec(function(err,p){
-        if(err) console.log("error ",err)
-       // console.log(p.doctorId.id)
-    })
-    return res.render('profile', {title:"MediCare|User-Dashboard"})
+//render user profile-populating user
+module.exports.profile =function(req,res){
+    Appointment.find({patientId:req.user.id}).sort({date:1}).populate('doctorId').exec(function(err,appointments){
+        return res.render('profile', {
+            title:'MediCare|User-Dashboard',
+            apts:appointments
+        });
+    });
 }
-
 //render chatBot to collect information
+
 module.exports.chatBot =function(req,res){
     User.findOne({_id:req.user.id}, function(err,user){
             var details={}
@@ -53,6 +55,16 @@ module.exports.reports =function(req,res){
         });
     });
 }
+
+module.exports.prescriptions=function(req,res){
+    Prescriptions.find({patientId:req.user.id},function(err,reports){
+        return res.render('prescriptions', {
+            title:'MediCare|User-Prescriptions',
+           pres:reports
+        });
+    });
+}
+
 
 module.exports.signUp = function(req,res){
     if(req.isAuthenticated()){
@@ -275,7 +287,6 @@ module.exports.bookAppointment=function(req,res){
 
 //redirection from users to paytm
 module.exports.payment =function(req,res){
-
     var paymentDetails = {
         amount: req.body.amount,
         customerId: req.user.id,

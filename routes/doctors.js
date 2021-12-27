@@ -7,7 +7,7 @@ const passport=require('passport');
 const doc_controller =require('../controllers/doc_controller');
 
 router.get('/profile', passport.checkAuthentication,  doc_controller.profile);
-
+router.get('/docprofile/:id', doc_controller.docprofile);
 router.get('/login',doc_controller.login);
 router.get('/sign-up',doc_controller.signUp);
 router.get('/sign-out',doc_controller.destroySession);

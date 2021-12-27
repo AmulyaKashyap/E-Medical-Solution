@@ -1,12 +1,16 @@
 const Doctor = require('../models/doctor')
 const Blogs = require('../models/blogs');
+const Appointment = require('../models/appointment');
 const { findById } = require('../models/doctor');
 
 module.exports.profile=function(req,res){
-    res.locals.user = req.user;
-    return res.render('doc-dashboard', {
-        title:"MediCare|Doctor's-Dashboard"
-    })
+    Appointment.find({doctorId:req.user.id}).populate('patientId').exec(function(err,appointments){
+        res.locals.user = req.user;
+        return res.render('doc-dashboard', {
+            title:"MediCare|Doctor's-Dashboard",
+            apts:appointments
+        });
+    });
 }
 module.exports.addBlog=function(req,res){
     res.locals.user = req.user;
@@ -113,12 +117,12 @@ module.exports.saveChanges= async function(req,res){
                 user.specialization=req.body.specialization;
                 user.degree=req.body.degree;
                 user.about=req.body.about;
-                user.price=req.body.price;
                 user.isavailable=req.body.aval;
                 user.address.lane=req.body.lane;
                 user.address.city=req.body.city;
                 user.address.country=req.body.country;
                 user.address.state=req.body.state;
+                user.price=req.body.fees;
                 if(req.file){
 
                     /*if(user.avatar){
@@ -141,6 +145,16 @@ module.exports.saveChanges= async function(req,res){
     }
 }
 
+
+//doctor profile
+module.exports.docprofile=async function(req,res){
+    Doctor.findById(req.params.id).exec(function(err,doctor){
+        return res.render('docProfile', {
+            title:'MediCare|Doctor-profile',
+            doctor:doctor
+        });
+    });
+}
 
 //add blog
 module.exports.addblog =async function(req,res){

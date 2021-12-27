@@ -852,7 +852,7 @@ background-color: #fff;
   /****************************FIND DOCTORS PAGE************************************/
   .find-doc{  
     width: 100vw;
-    height: 60vh;
+    height: 40vh;
     display: flex;
     align-items: center;
     text-align: center;
@@ -1037,5 +1037,59 @@ background-color: #fff;
   }
   .uploader-name{
     font-size: 1rem;
+  }
+}
+
+/*Rating shown as stars*/
+.stars-outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+}
+
+.stars-outer::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
+}
+
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
+}
+
+.success-cont i {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #09e5ab;
+  border-radius: 50%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+  background-color: #09e5ab;
+}
+.apt-success{
+  width: 50%;
+}
+@media (max-width:700px){
+  .apt-success{
+    width: 100%;
   }
 }

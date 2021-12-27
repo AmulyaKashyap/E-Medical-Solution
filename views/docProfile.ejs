@@ -1,0 +1,149 @@
+<div class="page-header">
+    Doctor's Profile 
+  </div>
+
+<div class="content" style="background-color: #ecf1f5; padding: 2rem 0rem; ">
+    <div class="container" style="width: 90%; ">
+        <div class="card-box">
+            <div class="card-body">
+                <div class="User-info" style="display:flex;">
+                    <div class="info-left" style="display: flex;">
+                        <div class="doctor-img">
+                            <img src="<%=doctor.avatar%>" class="img-fluid" alt="" style="border-radius: 5%;">
+                        </div>
+                        <div class="info" style="margin: 0px 25px;">
+                            <h4 class="name" style="font-size: 2rem; font-weight: 600;">Dr. <%=doctor.name%> <%=doctor.lname%></h4>
+                            <p class="degree"><%=doctor.degree%></p>
+                            <p class="department"><%=doctor.specialization%></p>
+                            <div class="rating">
+                                <%for(let i=1;i<=doctor.rating;i++){%>
+                                    <li class="fa fa-star checked"></li>
+                                    <%}%>
+                                    <%for(let i=doctor.rating;i<5;i++){%>
+                                      <li class="fa fa-star "></li>
+                                      <%}%>
+                                <!--Fill satr according to rating doctor has-->
+                              <!-- <div class="stars-outer">
+                                    <div class="stars-inner"></div>
+                                </div>
+                                <script> 
+                                    const starPercentage = (3/5) * 100;
+                                    const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+                                    document.querySelector(`.stars-inner`).style.width = starPercentageRounded; 
+                                </script>
+                                <span class="average-rating">(10)</span>
+                            </div>-->
+                            <div class="clinic-details">
+                                <p class="doc-location">
+                                    <i class="fas fa-map-marker-alt"></i><%=doctor.address.city%>, <%=doctor.address.country%>
+                                    <!--<a href="#0">Get Directions</a>-->
+                                </p>
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-right" style="margin-left: auto;">
+                    <div class="clini-infos">
+                        <ul>
+                            <li><i class="far fa-thumbs-up"></i> 92%</li>
+                            <li><i class="far fa-comment"></i> 10 Reviews</li>
+                            <li><i class="fas fa-map-marker-alt"></i> <%=doctor.address.city%>, <%=doctor.address.country%></li>
+                            <li><i class="far fa-money-bill-alt"></i> Rs. <%=doctor.price%> per Appointment </li>
+                        </ul>
+                    </div>
+                    <div class="booking-options">
+                        <a class="btn-teal offline-booking" href="/users/bookAppointment/<%=user.id%>" style="margin-top:30px;display:block; margin-bottom:10px;">Book offline Appointment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+         </div>
+         <div class="card-box">
+             <div class="card-body">
+                <div class="appointments-tabs col m12" style="font-weight: 700;">
+                    <ul class="tabs">
+                      <li class="tab col s3"><a class="active" href="#Overview" >Overview</a></li>
+                      <li class="tab col s3"><a href="#Business-hour">Business hours</a></li>
+                      <li class="tab col s3"><a href="#Reviews" >Reviews</a></li>
+                    </ul>
+                  </div>
+                  <div id="Overview" class="col m12" style="background-color: white; padding: 20px;">
+                    <%=doctor.about%><br>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam corporis, esse quos, minus libero, velit aut exercitationem soluta ut non praesentium! Quaerat labore expedita, commodi autem vel dolorum esse consequuntur ipsa, accusantium cupiditate, mollitia impedit necessitatibus aperiam voluptate ad placeat quia pariatur. Aperiam, tempore ipsa accusantium alias tempora blanditiis magnam rem, voluptatibus aspernatur et culpa. Eum illo impedit accusantium praesentium quidem quisquam debitis, dicta deserunt at? Ipsam dolores at ex minima harum cum consequatur, iusto, itaque eos voluptatum sed quaerat nesciunt accusamus eum rem reprehenderit molestias ducimus veritatis.
+                    </div>
+                    <div id="Reviews" class="col m12" style="background-color: white; padding: 20px;">
+                    <ul> <!--Load various comments as follows-->
+                    <li>
+                        <div class="review" style="border: 1px solid rgb(0 0 0 / 5%); padding: 15px; display: flex;margin-bottom: 30px; color: rgb(10, 10, 119);">
+                        <img src="/images/doc1.png" alt="" style="border: 50%; height:2.5rem; position: relative; display: inline-block;">
+                         <div class="review-body" style="margin-left: 16px; width: 100%;">
+                            <div class="review-info" style="margin-bottom: 10px; position: relative;">
+                               <span class="review-writer" style="font-size: 1.5rem; font-weight: 600; color: black;">Writer Name</span>
+                                <span class="review-time" style=" display:block;font-size: 1rem; color: rgba(128, 128, 128, 0.616);">Reviewed on Date</span>
+                            </div>
+                            <div class="rating" style="display: flex;;">
+                                <!--Fill satr according to rating doctor has-->
+                                <div class="review-count rating" style="color: #f8ce0b;"><i class="fas fa-star filled"></i><i class="fas fa-star filled"></i><i class="fas fa-star filled"></i><i class="fas fa-star filled"></i><i class="fas fa-star"></i></div>
+                            </div>
+                         </div>
+                         <p style="color: #666565;margin-top: 15px ; margin-bottom: 15px;font-size: 14px;">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis labore voluptates sapiente, quae ab omnis sed ipsam quaerat cumque quas, nobis sunt reiciendis magni dolor incidunt saepe officiis impedit fuga. Suscipit nobis cum laboriosam, blanditiis perferendis soluta rerum itaque vitae officia illo ipsam nemo voluptatibus dicta quod pariatur rem fugiat.
+                         </p>   
+                        </div>
+                    </li>
+                    </ul>
+                    </div>
+                    <div id="Business-hour" class="col m12" style="background-color: white; padding: 20px;">
+                        <div class="row" style="font-size: 1.2rem; display: flex;flex-wrap: wrap;margin-right: -15px;margin-left: -15 px;">
+                            <div class="col m6 offset-m3">
+                                <div class="widget business-widget" >
+                                    <div class="widget-content" style="background-color:rgb(35 130 148 / 10%); padding:20px;">
+                                        <div class="listing-hours">
+                                            <div class="listing-day today" style=" display:flex; justify-content: space-between;border-bottom: 1px solid #ddd; padding-bottom: 13px; margin-bottom: 13px;">
+                                                <div class="day"><b>Today</b> <span style="display: block;">5 Nov 2019</span></div>
+                                                <div class="time-items">
+                                                    <span class="time" style="color: #666565;">07:00 AM - 09:00 PM</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-day" style=" display:flex; justify-content: space-between; padding-bottom: 13px; margin-bottom: 13px;">
+                                                <div class="day">Monday</div>
+                                                <div class="time-items" style="color: #666565;"><span class="time">07:00 AM - 09:00 PM</span></div>
+                                            </div>
+                                            <div class="listing-day" style=" display:flex; justify-content: space-between; padding-bottom: 13px; margin-bottom: 13px;">
+                                                <div class="day">Tuesday</div>
+                                                <div class="time-items" style="color: #666565;"><span class="time">07:00 AM - 09:00 PM</span></div>
+                                            </div>
+                                            <div class="listing-day" style=" display:flex; justify-content: space-between; padding-bottom: 13px; margin-bottom: 13px;">
+                                                <div class="day">Wednesday</div>
+                                                <div class="time-items" style="color: #666565;"><span class="time">07:00 AM - 09:00 PM</span></div>
+                                            </div>
+                                            <div class="listing-day" style=" display:flex; justify-content: space-between; padding-bottom: 13px; margin-bottom: 13px;">
+                                                <div class="day">Thursday</div>
+                                                <div class="time-items" style="color: #666565;"><span class="time">07:00 AM - 09:00 PM</span></div>
+                                            </div>
+                                            <div class="listing-day" style=" display:flex; justify-content: space-between; padding-bottom: 13px; margin-bottom: 13px;">
+                                                <div class="day">Friday</div>
+                                                <div class="time-items" style="color: #666565;"><span class="time">07:00 AM - 09:00 PM</span></div>
+                                            </div>
+                                            <div class="listing-day" style=" display:flex; justify-content: space-between; padding-bottom: 13px; margin-bottom: 13px;">
+                                                <div class="day">Saturday</div>
+                                                <div class="time-items" style="color: #666565;"><span class="time">07:00 AM - 09:00 PM</span></div>
+                                            </div>
+                                            <div class="listing-day closed" style=" display:flex; justify-content: space-between; padding-bottom: 13px; margin-bottom: 13px;">
+                                                <div class="day">Sunday</div>
+                                                <div class="time-items" style="color: #666565;"><span class="time"><span style="color: white; border-radius: 5px;background-color: rgba(255, 0, 0, 0.603); padding: 5px;">Closed</span></span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+             </div>
+         </div>
+    </div>
+</div>       
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
