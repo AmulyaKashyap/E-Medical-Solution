@@ -429,7 +429,7 @@ module.exports.paymentCallback =function(req,res){
 
 
                })
-               res.render('payment_status',{title:'Payment Status',status:status})
+               res.render('aptStatus',{title:'Appointment Status',status:status})
              });
          });
   
