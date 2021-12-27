@@ -172,7 +172,7 @@
                       <div class="RCP" style="margin-right: 5px;width: 105px !important;">
                        <img style=" width: 60px;height: 60px;" src="/images/bp-clip.png">
                      </div>
-                     <div class="dash-widget-info"><h6>Blood Pressure</h6><h5 style="color: #32acdf;"><%=(user.BP[user.BP.length -1]).bphvalue%>/<%=(user.BP[user.BP.length -1]).bphvalue%><span style="font-size: x-small;">mg/dl</span>
+                     <div class="dash-widget-info"><h6>Blood Pressure</h6><h5 style="color: #32acdf;">80/110<span style="font-size: x-small;">mg/dl</span>
                       <a class="modal-trigger" href="#getBP"><i class="material-icons tooltipped" data-position="bottom" data-tooltip="Update value" style="color:rgb(255, 0, 0);vertical-align: middle;">edit</i></a>
                      </h5></div>
                     </div> 
@@ -274,7 +274,7 @@
                               var d2=new Date(apt.date);
                               if(d2.getTime()>d1.getTime()){ %> <a class="waves-effect waves-light btn-small" style="color: #af9a26; background-color: rgba(217, 253, 10, 0.12);" href=""><i class="material-icons">send</i>Upcoming</a>
                               <%}else {%>
-                                <a class="waves-effect waves-light btn-small" style="color: #26af48; background-color: rgba(15, 183, 107,0.12);" href="/../videocall/<%=user.id%>/<%=apt.doctorId%>"><i class="material-icons">send</i>Go to session</a>
+                                <a class="waves-effect waves-light btn-small" style="color: #26af48; background-color: rgba(15, 183, 107,0.12);" href="/../videocall/<%=user.id%>/<%=apt.doctorId._id%>"><i class="material-icons">send</i>Go to session</a>
                               <%}%>
                       <%}%></td>
                   </tr>

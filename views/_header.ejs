@@ -132,7 +132,17 @@
   <ul class="right hide-on-med-and-down" style="font-size: 1rem;">
     <li><a class="navItem" href="/home">Home</a></li>
     <li><a class="navItem"href="/findDoc">Book Appointment</a></li>
-    <li><a class="navItem" href="">Consult-now</a></li>
+    <li><a class="navItem" href=
+      <% if (locals.user){%>
+         <% if (locals.user.isDoctor){%>
+           "#" onclick="M.toast({html: 'You are doctor, don't have access'})"
+         <%} else{%>
+           "/users/chatBot"
+         <%}%>
+       <%}else{%>
+         "#" onclick="M.toast({html: 'Login First'})"
+         <%}%>
+      >Consult-now</a></li>
     <li><a class="navItem"href="">Lab-Test</a></li>
     <li><a class="navItem"href="/blogs">Blogs</a></li>
     <% if (locals.user){%>
@@ -155,7 +165,17 @@
 <ul class="sidenav" id="mobile-demo">
    <li><a class="navItem" href="/home">Home</a></li>
    <li><a class="navItem"href="/findDoc">Book-Appointment</a></li>
-   <li><a class="navItem"href="">Consult-Now</a></li>
+   <li><a class="navItem"href=
+      <% if (locals.user){%>
+         <% if (locals.user.isDoctor){%>
+           "#" onclick="M.toast({html: 'You are doctor, don't have access'})"
+         <%} else{%>
+           "/users/chatBot"
+         <%}%>
+       <%}else{%>
+         "#" onclick="M.toast({html: 'Login First'})"
+         <%}%>
+      >Consult-Now</a></li>
    <li><a class="navItem"href="">Lab-Test</a></li>
    <li><a class="navItem"href="/blogs">Blogs</a></li>
    <% if (locals.user){%>

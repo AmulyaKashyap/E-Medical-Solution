@@ -46,6 +46,11 @@ module.exports.chatBot =function(req,res){
 module.exports.editProfile=function(req,res){  
     return res.render('editProfile', {title:'MediCare|Edit-Profile'});
 }
+
+module.exports.review=function(req,res){  
+    return res.render('rateUs', {title:'MediCare|Review'});
+}
+
 //reports
 module.exports.reports =function(req,res){
     Report.find({patientId:req.user.id}).populate('uploadByPat').exec(function(err,reports){

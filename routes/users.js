@@ -20,7 +20,7 @@ router.post('/add-report/:id',users_controller.uploadReports);
 router.get('/editProfile',users_controller.editProfile);
 router.get('/reports',users_controller.reports);
 router.get('/prescriptions',users_controller.prescriptions);
-
+router.get('/review',users_controller.review);
 router.get('/authentication/google',passport.authenticate('google', {scope:['profile', 'email']}));
 router.get('/authentication/google/callback',passport.authenticate('google', {failureRedirect: '/users/sign-in'}),users_controller.createSession);
 

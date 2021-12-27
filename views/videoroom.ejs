@@ -3,7 +3,7 @@
       <div class="head__back">
         <i class="fas fa-angle-left"></i>
       </div>
-      <h3 id="username"><%=user.name%></h2>
+      <h3 id="username"><%if(user.isDoctor){%>Dr.<%=user.name%><%}else{%><%=user.name%><%}%></h2>
     </div>
   </div>  
   <div class="main">  
@@ -45,6 +45,10 @@
       </div>
     </div>
   </div>
+
+  <div><a href=<%if(user.isDoctor){%>"/doctors/profile"<%}else{%>"/users/review"<%}%>
+    
+     class="btn-teal">End-Call</a></div>
 </div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/videocall.js"></script>
