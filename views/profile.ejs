@@ -274,7 +274,7 @@
                               var d2=new Date(apt.date);
                               if(d2.getTime()>d1.getTime()){ %> <a class="waves-effect waves-light btn-small" style="color: #af9a26; background-color: rgba(217, 253, 10, 0.12);" href=""><i class="material-icons">send</i>Upcoming</a>
                               <%}else {%>
-                                <a class="waves-effect waves-light btn-small" style="color: #26af48; background-color: rgba(15, 183, 107,0.12);" href="/../videocall/<%=user.id%>/<%=apt.doctorId%>"><i class="material-icons">send</i>Go to session</a>
+                                <a class="waves-effect waves-light btn-small" style="color: #26af48; background-color: rgba(15, 183, 107,0.12);" href="/../videocall/<%=user.id%>/<%=apt.doctorId._id%>"  target="_blank"><i class="material-icons">send</i>Go to session</a>
                               <%}%>
                       <%}%></td>
                   </tr>

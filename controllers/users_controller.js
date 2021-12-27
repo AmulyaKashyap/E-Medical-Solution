@@ -414,6 +414,7 @@ module.exports.paymentCallback =function(req,res){
                 const eventSummary =  "Save the date and time of Your Appointment"       // 'Summary of your event'
                 const eventDescription =  "Be Ready to consult with Dr.Aman within 15 mintues" // 'More description'
                 const eventLocation =  "Online - Medicare "
+                //const mailto = appointment.doctorId.
                 //const organizerName = appointment.doctorId.name
                 //console.log("organizerName ",organizerName)
 

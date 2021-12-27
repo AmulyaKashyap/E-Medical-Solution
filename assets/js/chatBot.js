@@ -9,7 +9,7 @@ let textarea = document.querySelector('#textarea')
 let messageArea = document.querySelector('.message__area')
 
 // Recieve messages 
-socket.on('message', (msg) => {
+socket.on('message_send', (msg) => {
     appendMessage(msg, 'incoming')
     scrollToBottom()
 })
