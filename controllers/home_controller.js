@@ -28,7 +28,17 @@ module.exports.homeP =function(req,res){
         layout:'layoutN'
     }); 
 }
-module.exports.findDocS =function(req,res){
+module.exports.findDoc =function(req,res){
+    Doctor.find({},function(err,docs){
+        return res.render('findDoctor',{
+            title:"MediCare|Find-Doctors",
+            layout:'layout',
+            docs:docs
+        });
+    }); 
+}
+
+module.exports.findDocs =function(req,res){
     Doctor.find({$or:[ {'name':req.body.docName}, {'address.city':req.body.City},{'specialization':req.body.dept} ]},function(err,docs){
         return res.render('findDoctor',{
             title:"MediCare|Find-Doctors",

@@ -6,11 +6,9 @@ console.log('Router is loaded.');
 
 router.get('/',home_controller.homeP);
 router.get('/home',home_controller.homeP);
-router.post('/findDocS',home_controller.findDocS);
+router.get('/findDoc',home_controller.findDoc);
+router.post('/findDocS',home_controller.findDocs);
 router.get('/blogs',home_controller.blogs);
-router.use('/users',require('./users'));
-router.use('/doctors',require('./doctors'));
-
 
 
 router.get('/forgotPass',home_controller.forgotPass);
@@ -26,6 +24,11 @@ router.get("/videocall/:userId/:docterId", home_controller.videoCall);
 module.exports = router;
 router.use('/forgotPass',home_controller.forgotPass);
 router.use('/aptSuccess',home_controller.aptSuccess);
+
+
+
+router.use('/users',require('./users'));
+router.use('/doctors',require('./doctors'));
 
 //for any further routes access from here
 //router.use('/routeName',require('./routerfile'));
