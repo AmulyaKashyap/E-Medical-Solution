@@ -6,14 +6,22 @@ const Doctor = require('../models/doctor')
 const sendEmail = require("../features/sendEmail");
 const crypto = require("crypto");
 const Joi = require("joi");
-const Blogs = require("../models/blogs");
 
-module.exports.msg=function(req,res){
-    return res.render('message',{
-        title:"MediCare",
-        layout:'layout'
-    });
+module.exports.home =function(req,res){
+    return res.render('home',{
+        title:"MediCare"
+    }); 
 }
+
+
+module.exports.videoCall =function(req,res){
+    console.log('calling')
+    return res.render('videoroom',{
+        title:"Calling",first_id:req.params.userId,second_id:req.params.doctorId
+    }); 
+}
+
+
 module.exports.homeP =function(req,res){
     return res.render('home-page',{
         title:"MediCare",
@@ -29,7 +37,8 @@ module.exports.findDoc =function(req,res){
         });
     }); 
 }
-module.exports.findDocS =function(req,res){
+
+module.exports.findDocs =function(req,res){
     Doctor.find({$or:[ {'name':req.body.docName}, {'address.city':req.body.City},{'specialization':req.body.dept} ]},function(err,docs){
         return res.render('findDoctor',{
             title:"MediCare|Find-Doctors",

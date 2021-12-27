@@ -13,7 +13,7 @@
   padding: 0;
 }
 
-.header {
+.head {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -162,7 +162,7 @@ video {
   display: none;
 }
 
-.header__back {
+.head__back {
   display: none;
   position: absolute;
   font-size: 1.3rem;
