@@ -1,28 +1,27 @@
-<div class="container-fluid" style="margin-top: 30px;">
-    <div class="row">
-        <div class="col m9 offset-m2">
-            <div class="account-content">
-                <div class="row center" style="display:flex; align-items: center;justify-content: center;">
-                    <div class="col m7 l6 login-left"><img src="/images/forgot.png" style="max-width: 100%; height: auto;" class="img-fluid" alt="Login Banner">
-                    </div>
-                    <div class="col m12 l6 login-right" style="background-color: #fff;
-                    border: 1px solid #f0f0f0;border-radius: 4px; padding: 25px ;">
-                        <div class="login-header">
-                            <h3 class="subheading-two">Forgot Password?</h3>
-                            <p class="grey-text">
-                                Enter your email to get a password reset link</p></div>
-                                <form action="/admin/login"><div class="form-group form-focus">
-                                    <input type="email" class="form-control floating">
-                                    <label class="focus-label">Email</label>
-                                </div>
-                                <div class="text-right">
-                                    <a class="forgot-link" href="/">Remember your password? </a>
-                                </div>
-                                <button class="btn-teal" type="submit">Reset Password</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div id="paytm-checkoutjs">
+    <section class="chat__section">
+    <div class="message__area">
+        <div class="incoming message">
+            <h4>Medicare</h4>
+            <p id="username">Hope you are well <%=locals.user.name%></p>
+        </div>
+        <div class="incoming message">
+            <h4>Medicare</h4>
+            <p id="output">Please check your details : </p>
+            <p> Height - <%= details['height']%> foot</p>
+            <p>Weight - <%= details['weight']%> Kg</p>
+            <p>Age - <%= details['age']%> years</p>
+        </div>
+        <div class="incoming message">
+            <h4>Medicare</h4>
+            <p id="username">If above details are blank/incorrect then please type "Update" otherwise type "Continue"</p>
         </div>
     </div>
+    <div id="text" >
+        <textarea id="textarea" cols="30" rows="1" placeholder="Write a message..."></textarea>
+    </div>
+    </section>
+
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chatBot.js"></script>

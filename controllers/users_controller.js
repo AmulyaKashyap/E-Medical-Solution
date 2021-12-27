@@ -34,9 +34,10 @@ module.exports.chatBot =function(req,res){
             details['height']=user.height
             details['weight']=user.bodyWeight
             details['age']=user.age
+            details['id']=user._id
 
             return res.render('chatBot', {
-                title:"Chat with Bot",detail:details
+                title:"Chat with Bot",details:details
             })
     })
 }
