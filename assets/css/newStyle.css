@@ -852,7 +852,7 @@ background-color: #fff;
   /****************************FIND DOCTORS PAGE************************************/
   .find-doc{  
     width: 100vw;
-    height: 60vh;
+    height: 40vh;
     display: flex;
     align-items: center;
     text-align: center;

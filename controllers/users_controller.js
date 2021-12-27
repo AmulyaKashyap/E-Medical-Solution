@@ -11,7 +11,8 @@ const fs=require('fs');
 const Appointment = require('../models/appointment');
 const path=require('path');
 //importing files for sending calender invite
-const sendCalender = require('../features/calenderInvite.js')
+const sendCalender = require('../features/calenderInvite.js');
+const moment =require('moment'); 
 
 const encrypt_decrypt = require('../features/encrypt_decrypt.js')
 const { request } = require('http')
@@ -20,7 +21,7 @@ const Report = require('../models/reports')
 
 //render user profile-populating user
 module.exports.profile =function(req,res){
-    Appointment.find({patientId:req.user.id}).populate('doctorId').exec(function(err,appointments){
+    Appointment.find({patientId:req.user.id}).sort({date:1}).populate('doctorId').exec(function(err,appointments){
         return res.render('profile', {
             title:'MediCare|User-Dashboard',
             apts:appointments
@@ -279,7 +280,6 @@ module.exports.bookAppointment=function(req,res){
 
 //redirection from users to paytm
 module.exports.payment =function(req,res){
-
     var paymentDetails = {
         amount: req.body.amount,
         customerId: req.user.id,

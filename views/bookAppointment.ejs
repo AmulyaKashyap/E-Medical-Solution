@@ -1,37 +1,4 @@
-<!--<section class="appointment">
-        <div class="color"></div>
-        <div class="color"></div>
-        <div class="color"></div>
-        <div class="box">
-		<div class="square" style="--i:0;"></div>
-		<div class="square" style="--i:1;"></br>Booking for Dr. <%=doc.name%></br><%=doc.rating%> Rated</div>
-		<div class="square" style="--i:2;">Available Timing Slot</br> 9-10, 11-12</div>
-		<div class="square" style="--i:3;"></div>
-		<div class="square" style="--i:4;"></div>
-            <div class="container">
-            <form action="/users/paynow" method="post">
-                <div class="form">
-                    <h2>Appointment form</h2>
-                    <div class="inputBox">
-                        <input type="text" placeholder="Time">
-                    </div>
-                    <div class="inputBox">
-                        <input type="date" >
-                    </div>
-                        <input type="hidden" name="doctor_id" value="<%=doc.id%>">
-                        <input type="hidden" name="date" value="2/1/22">
-                        <input type="hidden" name="time" value="12:35:45">
-                        <input type="hidden" name="meeting" value="<%=doc.id%>">
-                        <input type="hidden" name="amount" value="<%=doc.price%>">
-                        <div class="inputBox">
-                            <input type="submit" value="Pay Now">
-                        </div>
-                </div>
-            </form>
-            </div>  
-        </div>
-</section>
--->
+
 
         <section class="book-appontment">
             <div class="container  cont1">
@@ -40,7 +7,7 @@
                     <ul class="info">
                         <li>
                             <span><img src="images/sethes.jpg" alt="" class="avatar-img"></span>
-                            <span><br>Dr. RD Singh<br>Cardiologist<br><i style="color:white;" class="fas fa-map-marker-alt"></i> Delhi,India</span>
+                            <span><br>Dr.<%=doc.name%> <%=doc.lname%><br><%=doc.specialization%><br><i style="color:white;" class="fas fa-map-marker-alt"></i> <%=doc.city%>, <%=doc.country%></span>
                             <br>
                             <span>
                             <ul class="inline-list" style="padding: 15px 40px;">
@@ -63,13 +30,13 @@
                             </div>
                             <div class="input-field col s12" style="margin-bottom: 45px;">
                                 <span><i class="fas fa-hourglass-half"></i> Select appropriate Slot:</span>
-                                <select class="slot-options" name="time">
-                                <option value="10:00">10:00am - 11:00am</option>
-                                <option value="11:00">11:00am - 12:00pm</option>
-                                <option value="13:00">1:00pm - 2:00pm</option>
-                                <option value="14:00">2:00pm - 3:00pm</option>
-                                <option value="15:00">3:00pm - 4:00pm</option>
-                                <option value="16:00">4:00pm - 5:00pm</option>
+                                <select class="slot-options"id="slot" name="time">
+                                <option value="10:00:00">10:00am - 11:00am</option>
+                                <option value="11:00:00">11:00am - 12:00pm</option>
+                                <option value="13:00:00">1:00pm - 2:00pm</option>
+                                <option value="14:00:00">2:00pm - 3:00pm</option>
+                                <option value="15:00:00">3:00pm - 4:00pm</option>
+                                <option value="16:00:00">4:00pm - 5:00pm</option>
                                 </select>
                             </div>
                             <input type="hidden" name="doctor_id" value="<%=doc.id%>">
@@ -91,5 +58,7 @@
                 </div>
             </div>
         </section>
+<script>
 
+</script>
          

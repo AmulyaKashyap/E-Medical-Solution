@@ -1,4 +1,5 @@
 const Blogs = require("../models/blogs");
+const Doctor =require("../models/doctor");
 
 module.exports.home =function(req,res){
     return res.render('home',{
@@ -12,9 +13,21 @@ module.exports.homeP =function(req,res){
     }); 
 }
 module.exports.findDoc =function(req,res){
-    return res.render('findDoctor',{
-        title:"MediCare|Find-Doctors",
-        layout:'layout'
+    Doctor.find({},function(err,docs){
+        return res.render('findDoctor',{
+            title:"MediCare|Find-Doctors",
+            layout:'layout',
+            docs:docs
+        });
+    }); 
+}
+module.exports.findDocS =function(req,res){
+    Doctor.find({$or:[ {'name':req.body.docName}, {'address.city':req.body.City},{'specialization':req.body.dept} ]},function(err,docs){
+        return res.render('findDoctor',{
+            title:"MediCare|Find-Doctors",
+            layout:'layout',
+            docs:docs
+        });
     }); 
 }
 

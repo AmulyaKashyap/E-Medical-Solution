@@ -7,6 +7,7 @@ console.log('Router is loaded.');
 router.get('/',home_controller.homeP);
 router.get('/home',home_controller.homeP);
 router.get('/findDoc',home_controller.findDoc);
+router.post('/findDocS',home_controller.findDocS);
 router.get('/blogs',home_controller.blogs);
 router.use('/users',require('./users'));
 router.use('/doctors',require('./doctors'));

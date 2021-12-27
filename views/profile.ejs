@@ -268,8 +268,14 @@
                     <td class="text-right">
                       <div class="table-action">
                         <%if(apt.isDone){%>
+                          
                       <a class="waves-effect waves-light btn-small" href="" style="color: #1db9aa; background-color: rgba(2, 182, 179,0.12);"><i class="far fa-eye"></i> View Prescriptions</a>
-                      <%}else{%><a class="waves-effect waves-light btn-small" style="color: #26af48; background-color: rgba(15, 183, 107,0.12);" href=""><i class="material-icons">send</i>Goto Session</a>
+                      <%}else{%><% var d1 =new Date();
+                              var d2=new Date(apt.date);
+                              if(d2.getTime()>d1.getTime()){ %> <a class="waves-effect waves-light btn-small" style="color: #af9a26; background-color: rgba(217, 253, 10, 0.12);" href=""><i class="material-icons">send</i>Upcoming</a>
+                              <%}else {%>
+                                <a class="waves-effect waves-light btn-small" style="color: #26af48; background-color: rgba(15, 183, 107,0.12);" href=""><i class="material-icons">send</i>Go to session</a>
+                              <%}%>
                       <%}%></td>
                   </tr>
                   <%}%>
