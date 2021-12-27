@@ -261,7 +261,7 @@
                     </td>
                     <td><%=apt.date.getDate()%>/<%=apt.date.getMonth()%>/<%=apt.date.getYear()%></td>
                     <td><%=apt.time%></td>
-                    <td class="text-center">$ <%=apt.doctorId.price%></td>
+                    <td class="text-center"> ₹ <%=apt.doctorId.price%></td>
                     <td class="text-center"><%if(apt.isDone){%><span style="padding:3px;color: #034e16; background-color: #26af488c; font-size: 12px; font-weight: 500;">Done</span><%}else{%>
                       <span style="padding:3px;color: #0a1f80; background-color: #d8fa408c; font-size: 12px; font-weight: 500;">Coming</span><%}%>
                     </td>
@@ -274,7 +274,7 @@
                               var d2=new Date(apt.date);
                               if(d2.getTime()>d1.getTime()){ %> <a class="waves-effect waves-light btn-small" style="color: #af9a26; background-color: rgba(217, 253, 10, 0.12);" href=""><i class="material-icons">send</i>Upcoming</a>
                               <%}else {%>
-                                <a class="waves-effect waves-light btn-small" style="color: #26af48; background-color: rgba(15, 183, 107,0.12);" href=""><i class="material-icons">send</i>Go to session</a>
+                                <a class="waves-effect waves-light btn-small" style="color: #26af48; background-color: rgba(15, 183, 107,0.12);" href="/../videocall/<%=user.id%>/<%=apt.doctorId%>"><i class="material-icons">send</i>Go to session</a>
                               <%}%>
                       <%}%></td>
                   </tr>
