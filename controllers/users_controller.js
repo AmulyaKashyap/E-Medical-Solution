@@ -31,9 +31,16 @@ module.exports.profile =function(req,res){
 //render chatBot to collect information
 
 module.exports.chatBot =function(req,res){
-    req.flash('success','Please select a doctor to consult')
-    return res.render('chatBot', {
-        title:"Chat with Bot"
+    User.findOne({_id:req.user.id}, function(err,user){
+            var details={}
+            details['height']=user.height
+            details['weight']=user.bodyWeight
+            details['age']=user.age
+            details['id']=user._id
+
+            return res.render('chatBot', {
+                title:"Chat with Bot",details:details
+            })
     })
 }
 module.exports.editProfile=function(req,res){  

@@ -8,14 +8,8 @@
                     <div class="col m12 l6 login-right" style="background-color: #fff;
                     border: 1px solid #f0f0f0;border-radius: 4px; padding: 25px ;">
                         <div class="login-header">
-                            <h3 class="subheading-two">Forgot Password?</h3>
-                            <p class="grey-text">
-                                Enter your email to get a password reset link</p></div>
-                                <form action="/resetPass" method="post"><div class="form-group" style="margin-bottom: 25px;">
-                                    <input type="email" name="email" class="form-control floating" placeholder="email">
-                                </div>
-                                <div class="right-align">
-                                    <a class="forgot-link" href="/">Remember your password? </a>
+                                <form action="/password-reset/<%=userId%>/<%=token%>" method="post"><div class="form-group" style="margin-bottom: 25px;">
+                                    <input type="password" name="password" class="form-control floating" placeholder="Enter password">
                                 </div>
                                 <button class="btn-teal" type="submit">Reset Password</button>
                             </form>

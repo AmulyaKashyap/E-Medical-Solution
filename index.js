@@ -33,15 +33,39 @@ app.use("/peerjs", peerServer);
 
 
 
+
+let userId=''
 io.on('connection', (socket) => {
-    console.log(' Socket Connected...')
-    let counter =0
-    let text=['May i know your age sir','Your weight','Please describe your syptoms so we can connect you to our best doctor','Ok,let me find a best doctor for consultant and we all are praying for your speedy recovery']
-    socket.on('message', (msg) => {
+    console.log(' Socket Connected... ',)
+    let counter =0,firsttime=0;
+    let text=['Please, be specific as this i am still in learning phase','Please enter Only Numbers.Your Age     (in yrs)','Your Height  (in foot)','Your weight   (in kg)','Please describe your syptoms so we can connect you to our best doctor','Ok,let me find a best doctor for consultant and we all are praying for your speedy recovery']
+    socket.on('message', (msg) => { 
+        userId=msg.Id
+        console.log(userId)
+        if(firsttime==0){
+            if(msg.message.toLowerCase()=='update'){
+                counter=1
+            }
+            else if(msg.message.toLowerCase()=='continue'){
+                counter=4
+            }
+            firsttime++
+        }
         let msgg={
             user: 'Medicare',
             message: text[counter],
             count:counter++
+        }
+        if(counter>1 && firsttime!=1){
+            if(msg.message-0 !=Number(msg.message)){
+                msgg.message="Please, be specific as this i am still in learning phase"
+                counter--
+            }
+        }
+        console.log(msg.message-0 ==Number(msg.message))
+        console.log(msgg)
+        if(counter==0){
+            counter=0
         }
         io.emit('message', msgg)
     })

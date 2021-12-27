@@ -1,0 +1,62 @@
+<div class="chat-window">
+    <div class="chat-cont" style="flex: 100%; max-width: 100%;">
+        <div class="chat-header" style="justify-content: space-between;font-weight: 500; font-size:1.5rem; padding: 0 15px;display: flex; height: 72px;align-items: center;background-color: #fff;border-bottom: 1px solid #f0f0f0; color: #272b41;">
+            <div class="media" style="display: flex;">
+                <div class="media-img-wrap">
+                    <div class="avatar avatar-online" style="position: relative; display: inline-block; height: 50px;width: 50px; ">
+                        <img src="/images/doc1.png" alt="User" class="avatar-img" style="object-fit: cover; border-radius: 50%; height: 100%; width: 100%;">
+                    </div>
+                </div>
+                <div class="media-body">
+                    <div class="user-name" style="padding: 0px 7px;">MediCare</div><div class="user-status" style="padding: 0px 7px; color: #666; font-size: 14px;">online</div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-body">
+            <div class="chat-scroll" style=" overflow-y: auto;">
+                <ul class="list-unstyled" style="list-style: none; padding: 15px;">
+                    <li class="media sent" style="align-items:flex-end;">
+                        <div class="media-body" style="display: flex; flex-direction: column; align-items: flex-end;">
+                        <div class="msg-box">
+                            <div style="background-color: #e3e3e3; padding: 5px 10px;border-radius: 0.25rem;">
+                            <p>Hello. </p>
+                            <ul class="chat-msg-info" style="display:flex; flex-direction: row-reverse;">
+                                <li><div class="chat-time" style="color: rgba(50, 65, 72, 0.4);"><span>8:30 AM</span></div>
+                                </li>
+                            </ul>
+                            </div>
+                        </div>
+                        </div>
+                    </li>
+                     <li class="media received" style="align-items:flex-start;" >
+                        <div class="media-body" style="display: flex; flex-direction: column; align-items: flex-start;">
+                            <div class="msg-box">
+                                <div style="background-color: #ffffff; padding: 5px 10px; border-radius: 0.25rem;">
+                                    <p>AMAMANA AMAKAA LAPAKA ALAK</p>
+                                    <p>What can i do for u?</p>
+                                    <ul class="chat-msg-info" style="display:flex; flex-direction: row-reverse;">
+                                        <li><div class="chat-time" style="color: rgba(50, 65, 72, 0.4);"><span>8:35 AM</span></div></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                     </li> 
+                </ul>
+            </div>
+        </div>                        
+        <div class="chat-footer" style="background-color: #fff;border-top: 1pxsolid #f0f0f0;padding: 10px15px; position: relative;">
+            <div class="input-group" style="position: relative;display:flex; align-items:stretch; padding: 10px;">
+                <div class="input-group-prepend" style="display: flex;">
+                    <div class="btn-file">
+                        <i class="fa fa-paperclip"></i>
+                        <input type="file">
+                    </div>
+                </div>
+                <input type="text" class="input-msg-send form-control" placeholder="Type something" style="background-color: #f5f5f6;border: none;border-radius: 50px; padding:0px 15px;">
+                <div class="input-group-append">
+                    <button type="button" class="msg-send-btn" style="transition: background-color .2s ease-out;border-radius: 50%; color: white; border: none;line-height: 36px;padding: 0px 16px;background-color:rgb(10, 83, 131)"><i class="fab fa-telegram-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,7 @@
 const socket = io()
 let userName = document.querySelector('#username').textContent
+let userId = document.querySelector('#userId').textContent
+console.log(userId)
 
 userName = userName.slice(9,)
 
@@ -19,9 +21,11 @@ textarea.addEventListener('keyup', (e) => {
     }
 })
 
+//let counter=0
 function sendMessage(message) {
     let msg = {
         user: userName,
+        id:userId,
         message: message.trim(),
         count:0
     }
@@ -32,7 +36,8 @@ function sendMessage(message) {
 
     // Send to server 
     socket.emit('message', msg)
-
+ //   counter=msg.count
+   // console.log(counter)
 }
 
 function appendMessage(msg, type) {
@@ -44,7 +49,7 @@ function appendMessage(msg, type) {
         <h4>${msg.user}</h4>
         <p>${msg.message}</p>`
 
-    if(msg.count==3){
+    if(msg.count==5){
         markup = `
         <h4>${msg.user}</h4>
         <p>${msg.message}</p>
@@ -60,5 +65,22 @@ function scrollToBottom() {
     messageArea.scrollTop = messageArea.scrollHeight
 }
 
-
-
+/*
+function validate(evt) {
+    var theEvent = evt || window.event;
+  
+    // Handle paste
+    if (theEvent.type === 'paste') {
+        key = event.clipboardData.getData('text/plain');
+    } else {
+    // Handle key press
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+    }
+    var regex = /[0-9]|\./;
+    if( !regex.test(key) ) {
+      theEvent.returnValue = false;
+      if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+   // }
+  }*/

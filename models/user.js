@@ -49,6 +49,18 @@ let storage = multer.diskStorage({
 
 
 
+const validate = (user) => {
+    const schema = Joi.object({
+        name: Joi.string().required(),
+        email: Joi.string().email().required(),
+        password: Joi.string().required(),
+    });
+    return schema.validate(user);
+};
+
+
+
+
  //static function
  userSchema.statics.uploadedAvatar= multer({storage:storage}).single('avatar');
  userSchema.statics.avatarPath =USER_AVATAR_PATH; //now avatar path is publically available

@@ -1,17 +1,27 @@
 <div id="paytm-checkoutjs">
     <section class="chat__section">
-    <div class="brand">
-        <img height="40" src="/images/wassup.png" alt="not found">
-        <h1>Wassup</h1>
-    </div>
+
     <div class="message__area">
         <div class="incoming message">
+            <p hidden id="userId"><%=details['id']%></p>
             <h4>Medicare</h4>
             <p id="username">How are u <%=locals.user.name%></p>
         </div>
+        <div class="incoming message">
+            <h4>Medicare</h4>
+            <p id="output">Please check your details : </p>
+            <p> Height - <%= details['height']%> foot</p>
+            <p>Weight - <%= details['weight']%> Kg</p>
+            <p>Age - <%= details['age']%> years</p>
+            
+        </div>
+        <div class="incoming message">
+            <h4>Medicare</h4>
+            <p id="username">If above details are blank/incorrect then please type "Update" otherwise type "Continue"</p>
+        </div>
     </div>
     <div id="text" >
-        <textarea id="textarea" cols="30" rows="1" placeholder="Write a message..."></textarea>
+        <textarea id="textarea" cols="30" rows="1"  onkeypress='validate(event)'  placeholder="Write a message..."></textarea>
     </div>
     </section>
 
