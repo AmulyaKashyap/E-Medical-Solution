@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const BASE_URL = "http://localhost:8000"
 const Token = require("../models/Usertoken");
 const DoctorToken = require("../models/Doctortoken");
@@ -7,10 +6,8 @@ const Doctor = require('../models/doctor')
 const sendEmail = require("../features/sendEmail");
 const crypto = require("crypto");
 const Joi = require("joi");
-=======
 const Blogs = require("../models/blogs");
 const Doctor =require("../models/doctor");
->>>>>>> 3feb31ef945673d1780df56a1bd0cbebe60de90a
 
 module.exports.home =function(req,res){
     return res.render('home',{
