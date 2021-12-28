@@ -408,7 +408,7 @@ module.exports.paymentCallback =function(req,res){
                const transactionStatus=_result.STATUS
                const appointmentDetails = encrypt_decrypt.decrypt(req.cookies.details)
                
-               Appointment.findOne({_id: appointmentDetails}).then(function(appointment) {
+               Appointment.findOne({_id: appointmentDetails}).populate('doctorId').populate('patientId').then(function(appointment) {
                 appointment.transactionId=transactionId,             
                 appointment.transactionStatus=transactionStatus,
                 appointment.isDone=false
@@ -419,13 +419,15 @@ module.exports.paymentCallback =function(req,res){
                 const eventSummary =  "Save the date and time of Your Appointment"       // 'Summary of your event'
                 const eventDescription =  "Be Ready to consult with Dr.Aman within 15 mintues" // 'More description'
                 const eventLocation =  "Online - Medicare "
-                //const mailto = appointment.doctorId.
-                //const organizerName = appointment.doctorId.name
-                //console.log("organizerName ",organizerName)
+                const mailtouser = appointment.patientId.email
+                const mailtodoctor = appointment.doctorId.email
+                console.log(mailtouser)
+                console.log(mailtodoctor)
+
 
                 //generatring ics object to send over mail....ics object which is a media type that allows users to store and exchange calendaring and scheduling information 
                 const calenderObject = sendCalender.getIcalObjectInstance(startTime,endTime,eventSummary,eventDescription,eventLocation)
-                sendCalender.sendInvitaion(calenderObject)
+                sendCalender.sendInvitaion(calenderObject,mailtouser,mailtodoctor)
                   
 
 

@@ -27,7 +27,7 @@
       </div>
       <div class="options__right">
         <div id="endcall" class="options__button">
-          <i class="fas fa-phone-slash"></i>
+          <a href=<%if(user.isDoctor){%>"/doctors/profile"<%}else{%>"/users/review"<%}%>><i class="fas fa-phone-slash"></i></a>
         </div>
       </div>
     </div>
@@ -45,10 +45,6 @@
       </div>
     </div>
   </div>
-
-  <div><a href=<%if(user.isDoctor){%>"/doctors/profile"<%}else{%>"/users/review"<%}%>
-    
-     class="btn-teal">End-Call</a></div>
 </div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/videocall.js"></script>

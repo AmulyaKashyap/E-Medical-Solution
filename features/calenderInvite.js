@@ -25,7 +25,7 @@ function getIcalObjectInstance(startTime,endTime,eventSummary,eventDescription,e
 }
 
     
-function sendInvitaion(calendarObj){
+function sendInvitaion(calendarObj,mailtouser,mailtodoctor){
     var smtpTransport = nodemailer.createTransport({
         service: "Gmail",
         auth: {
@@ -34,7 +34,8 @@ function sendInvitaion(calendarObj){
         }
     });
         mailOptions = {
-            to: 'vippuagrawal98@gmail.com',
+            to: mailtouser,
+            cc:mailtodoctor,
             subject: 'Booking Confirmed With Medicare',
             html: '<h1>Welcome to Medicare</h1></br><h2>Please Explore our service</h2>'
         }

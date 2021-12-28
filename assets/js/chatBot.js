@@ -35,7 +35,7 @@ function sendMessage(message) {
     scrollToBottom()
 
     // Send to server 
-    socket.emit('message', msg)
+    socket.emit('message_send', msg)
  //   counter=msg.count
    // console.log(counter)
 }

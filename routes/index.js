@@ -14,15 +14,12 @@ router.get('/blogs',home_controller.blogs);
 router.get('/forgotPass',home_controller.forgotPass);
 router.post("/resetPass", home_controller.resetPass);
 
-router.get("//password-reset/:userId/:token", home_controller.resettingPass);
+router.get("/password-reset/:userId/:token", home_controller.resettingPass);
 router.post("/password-reset/:userId/:token", home_controller.resettedPass);
 
 router.get("/videocall/:userId/:docterId", home_controller.videoCall);
 
-
-
-router.use('/forgotPass',home_controller.forgotPass);
-router.use('/aptSuccess',home_controller.aptSuccess);
+router.get('/aptSuccess',home_controller.aptSuccess);
 
 
 

@@ -2,10 +2,15 @@ const BASE_URL = "http://localhost:8000"
 const Token = require("../models/Usertoken");
 const DoctorToken = require("../models/Doctortoken");
 const User = require('../models/user')
+const Blogs = require('../models/blogs')
 const Doctor = require('../models/doctor')
 const sendEmail = require("../features/sendEmail");
 const crypto = require("crypto");
 const Joi = require("joi");
+
+
+
+
 
 module.exports.home =function(req,res){
     return res.render('home',{
@@ -57,6 +62,7 @@ module.exports.forgotPass=function(req,res){
         layout:'layout'
     }); 
 }
+
 
 
 module.exports.resetPass =async (req, res) => {
@@ -134,13 +140,11 @@ module.exports.resettingPass =async (req, res) => {
 
 module.exports.resettedPass =async (req, res) => {
     try {
-        const schema = Joi.object({ password: Joi.string().required() });
-        const { error } = schema.validate(req.body);
-        if (error) return res.status(400).send(error.details[0].message);
-
+        console.log("enter")
         const user = await User.findOne({_id:req.params.userId});
         const doctor = await Doctor.findOne({_id:req.params.userId});
         if (!user && !doctor){
+            console.log("checked")
             const msg ="invalid link or expired" 
             res.render('PasswordReset',{title:"Status", message:msg})
             //return res.status(400).send("invalid link or expired")
@@ -209,3 +213,5 @@ module.exports.aptSuccess=function(req,res){
 
 
 //module.exports.action =function(req,res){}
+
+

@@ -67,7 +67,7 @@ io.on('connection', (socket) => {
         if(counter==0){
             counter=0
         }
-        io.emit('message', msgg)
+        io.emit('message_send', msgg)
     })
     socket.on("join-room", (roomId, userId, userName) => {
         console.log(' Socket Join...')
