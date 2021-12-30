@@ -414,8 +414,7 @@ module.exports.paymentCallback =function(req,res){
                 appointment.isDone=false
                 appointment.save()
 
-                const startTime = appointment.date
-                console.log("appointment.date - ",startTime.slice(0,22))      // eg : moment()
+                const startTime = appointment.date      // eg : moment()
                 const endTime =  appointment.date       // eg : moment(1,'days')
                 const eventSummary =  "Save the date and time of Your Appointment"       // 'Summary of your event'
                 const eventDescription =  "Be Ready to consult with Dr.Aman within 15 mintues" // 'More description'
@@ -424,7 +423,7 @@ module.exports.paymentCallback =function(req,res){
                 const mailtodoctor = appointment.doctorId.email
 
             
-                //console.log("appointment.date - ",startTime)
+                console.log("appointment.date - ",startTime)
 
                 //generatring ics object to send over mail....ics object which is a media type that allows users to store and exchange calendaring and scheduling information 
                 const calenderObject = sendCalender.getIcalObjectInstance(startTime,endTime,eventSummary,eventDescription,eventLocation)
