@@ -1,3 +1,51 @@
+
+<!--Modal get sugar-->
+<div class="modal" id="getSugarValue">
+  <div class="modal-content">
+    <span>Your latest sugar level :</span>
+    <form action="/users/updateSugar/<%=user.id%>" method="post">
+      <input  type="text" name="sugLevel" placeholder="Sugar level ">
+      <button type="submit" class="btn-teal">Update</button>
+    </form>
+  </div>
+</div>
+<!--Modal get temprature-->
+<div class="modal" id="getTemp">
+  <div class="modal-content">
+    <span>Your latest Temprature measure :</span>
+    <form action="/users/updateTemp/<%=user.id%>" method="post">
+      <input type="text" name="temp" placeholder="Temprature in deg celcius">
+      <button type="submit" class="btn-teal">Update</button>
+    </form>
+  </div>
+</div>
+<!--Modal get Weight-->
+<div class="modal" id="getWeight">
+  <div class="modal-content">
+    <span>Your latest Weight measure :</span>
+    <form action="/users/updateWeight/<%=user.id%>" method="post">
+      <input type="text" name="wt" placeholder="Weight in Kg">
+      <button type="submit" class="btn-teal">Update</button>
+    </form>
+  </div>
+</div>
+<!--Modal get bp-->
+<div class="modal" id="getBP">
+  <div class="modal-content">
+    <span>Your latest Blood Pressure (mg/dl):</span>
+    <form action="/users/updateBP/<%=user.id%>" method="post">
+      <div class="row" style="display:flex;justify-content: space-between;">
+      <input class="col s5" type="text" name="bplvalue" placeholder="BP -low">
+      <input class="col s5" type="text" name="bphvalue" placeholder="BP -Up ">
+      </div>
+      <button type="submit" class="btn-teal">Update</button>
+    </form>
+  </div>
+</div>
+
+
+
+
 <div class="head">
     <div class="logo">
       <div class="head__back">
@@ -5,7 +53,50 @@
       </div>
       <h3 id="username"><%if(user.isDoctor){%>Dr.<%=user.name%><%}else{%><%=user.name%><%}%></h2>
     </div>
-  </div>  
+  </div>  <%if(user.isDoctor){%>
+  <div class="pat_data">
+    <h6>Patient information:
+    </h6>
+    <div class="row">
+      <div class="col s2">
+        <div class="dash-widget">
+          <div class="RCP" style="margin-right: 5px;width: 105px !important;">
+           <img style=" width: 20px;height: 20px;" src="/images/weight-icon.png">
+         </div>
+         <div class="dash-widget-info"><h6>Body Weight</h6><h5 style="color: #32acdf;">54<span style="font-size: x-small;">kg</span> 
+           <a  href="#getWeight" class="modal-trigger"><i class="material-icons tooltipped" data-position="bottom" data-tooltip="Update value" style="color:rgb(255, 0, 0);vertical-align: middle;">edit</i></a>
+         </h5></div>
+        </div>
+      </div>
+      <div class="col s2"><div class="dash-widget">
+        <div class="RCP" style="margin-right: 5px;width: 105px !important;">
+         <img style=" width: 20px;height: 20px;" src="/images/temp-clip.png">
+       </div>
+       <div class="dash-widget-info"><h6>Body Temp.</h6><h5 style="color: #32acdf;">100
+        <a href="#getTemp" class="modal-trigger"><i class="material-icons tooltipped" data-position="bottom" data-tooltip="Update value" style="color:rgb(255, 0, 0);vertical-align: middle;">edit</i></a>
+       </h5></div>
+      </div> </div>
+      <div class="col s2"><div class="dash-widget">
+        <div class="RCP" style="margin-right: 5px;width: 105px !important;">
+         <img style=" width: 20px;height: 20px;" src="/images/glucose-clip.png">
+       </div>
+       <div class="dash-widget-info"><h6>Glucose Level</h6><h5 style="color: #32acdf;">110
+        <a class="modal-trigger" href="#getSugarValue"><i class="material-icons tooltipped" data-position="bottom" data-tooltip="Update value" style="color:rgb(255, 0, 0);vertical-align: middle;">edit</i></a>
+       </h5></div>
+      </div></div>
+      <div class="col s2"><div class="dash-widget">
+        <div class="RCP" style="margin-right: 5px;width: 105px !important;">
+         <img style=" width: 20px;height: 20px;" src="/images/bp-clip.png">
+       </div>
+       <div class="dash-widget-info"><h6>Blood Pressure</h6><h5 style="color: #32acdf;">80/110<span style="font-size: x-small;">mg/dl</span>
+        <a class="modal-trigger" href="#getBP"><i class="material-icons tooltipped" data-position="bottom" data-tooltip="Update value" style="color:rgb(255, 0, 0);vertical-align: middle;">edit</i></a>
+       </h5></div>
+      </div> </div>
+      <div class="col s3 hid_notes"><input type="text" placeholder="HIDDEN NOTES"></div>
+    </div>
+  </div>
+  <%}%>
+
   <div class="main">  
   <div class="main__left">
     <div class="videos__group">

@@ -43,6 +43,7 @@
                             <!--need to add "meeting" feild in the form-->                            
                             <input type="hidden" name="meeting" value="online">                 
                             <input type="hidden" name="amount" value="<%=doc.price%>">
+                            <input type="hidden"  id="timezone" name="timezone" value="">
                             <div class=" col m12 buttons" >
                             <div class="row">
                                 <button class="col s12 m12 l4 btn waves-effect waves-light" name="action" style="margin:10px 10px;">Cancel
@@ -58,7 +59,7 @@
                 </div>
             </div>
         </section>
-<script>
-
+<script defer>
+    document.getElementById('timezone').value = moment.tz.guess();
 </script>
          

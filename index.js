@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const http  = require('http').createServer(app);
@@ -15,7 +16,6 @@ const MongoStore = require('connect-mongo')(session);
 //own created middleware
 const flash = require('connect-flash');
 const ownMiddleware = require('./config/ownMiddleware');
-
 
 
 const io = require('socket.io')(http, {
@@ -41,7 +41,6 @@ io.on('connection', (socket) => {
     let text=['Please, be specific as this i am still in learning phase','Please enter Only Numbers.Your Age     (in yrs)','Your Height  (in foot)','Your weight   (in kg)','Please describe your syptoms so we can connect you to our best doctor','Ok,let me find a best doctor for consultant and we all are praying for your speedy recovery']
     socket.on('message_send', (msg) => { 
         userId=msg.Id
-        console.log(userId)
         if(firsttime==0){
             if(msg.message.toLowerCase()=='update'){
                 counter=1
@@ -62,8 +61,6 @@ io.on('connection', (socket) => {
                 counter--
             }
         }
-        console.log(msg.message-0 ==Number(msg.message))
-        console.log(msgg)
         if(counter==0){
             counter=0
         }

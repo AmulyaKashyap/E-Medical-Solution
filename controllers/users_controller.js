@@ -157,7 +157,6 @@ module.exports.uploadReports= async function(req,res){
 //for complex file handeling using async and await
 module.exports.saveChanges= async function(req,res){
     if(req.user.id==req.params.id){
-
         try{
             let user =await User.findById(req.params.id);
             User.uploadedAvatar(req,res,function(err){
@@ -303,11 +302,12 @@ module.exports.payment =function(req,res){
    const appointment = new Appointment({
         patientId : req.user.id,
         doctorId :  req.body.doctor_id,
-        date :      req.body.date,
-        time  :     req.body.time,      
+        date :      req.body.date+" "+req.body.time,     
         meeting :   true                    //need to received from the form
     })
     appointment.save()
+    //console.log("appointment payment - ",req.body.date)
+    //console.log("appointment payment - ",appointment.timezone)
     //saving the id  of appointment in cookie so we can access it when paytm send response
     var detail = encrypt_decrypt.encrypt(appointment.id)
     res.cookie("details", detail)
@@ -414,16 +414,17 @@ module.exports.paymentCallback =function(req,res){
                 appointment.isDone=false
                 appointment.save()
 
-                const startTime = appointment.date       // eg : moment()
-                const endTime =  appointment.date             // eg : moment(1,'days')
+                const startTime = appointment.date
+                console.log("appointment.date - ",startTime.slice(0,22))      // eg : moment()
+                const endTime =  appointment.date       // eg : moment(1,'days')
                 const eventSummary =  "Save the date and time of Your Appointment"       // 'Summary of your event'
                 const eventDescription =  "Be Ready to consult with Dr.Aman within 15 mintues" // 'More description'
                 const eventLocation =  "Online - Medicare "
                 const mailtouser = appointment.patientId.email
                 const mailtodoctor = appointment.doctorId.email
-                console.log(mailtouser)
-                console.log(mailtodoctor)
 
+            
+                //console.log("appointment.date - ",startTime)
 
                 //generatring ics object to send over mail....ics object which is a media type that allows users to store and exchange calendaring and scheduling information 
                 const calenderObject = sendCalender.getIcalObjectInstance(startTime,endTime,eventSummary,eventDescription,eventLocation)

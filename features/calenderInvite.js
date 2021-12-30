@@ -1,9 +1,10 @@
-//for generating calender object to send over mail
-const ical = require('ical-generator');
+
+require('dotenv').config({path: '../.env'})
+const ical = require('ical-generator');   //for generating calender object to send over mail
 //for sending mail 
 var nodemailer = require("nodemailer");
 //const moment= require('moment') 
-require('dotenv').config()
+
 
 
 
@@ -18,7 +19,7 @@ function getIcalObjectInstance(startTime,endTime,eventSummary,eventDescription,e
             url: "http://localhost:8000/users/profile",                 // 'event url'
             organizer: {              // 'organizer details'
                 name: "Medicare",
-                email: "pachouriaman679@gmail.com"
+                email: process.env.GMAIL_ACCOUNT
             },
         });
     return cal;
@@ -29,8 +30,8 @@ function sendInvitaion(calendarObj,mailtouser,mailtodoctor){
     var smtpTransport = nodemailer.createTransport({
         service: "Gmail",
         auth: {
-            user: "pachouriaman679@gmail.com",//process.env.GMAIL_ACCOUNT,//
-            pass: "mnblkjpoi123"//process.env.GMAIL_ACCOUNT//
+            user: process.env.GMAIL_ACCOUNT,//process.env.GMAIL_ACCOUNT,//
+            pass: process.env.GMAIL_PASSWORD//process.env.GMAIL_ACCOUNT//
         }
     });
         mailOptions = {
