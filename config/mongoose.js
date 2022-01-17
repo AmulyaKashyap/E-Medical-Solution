@@ -2,7 +2,7 @@
 const mongoose =require('mongoose');//required library
 
 //connected to db
-mongoose.connect('mongodb://localhost/MediCare');
+mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/MediCare');
 const db = mongoose.connection;
 
 //if there is error in connection

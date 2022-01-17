@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express');
 const app = express();
 const http  = require('http').createServer(app);
-const port=8000; //80 while deploying
+const port=  process.env.PORT || 8000; //80 while deploying
 const cookieParser =require('cookie-parser');
 const db = require('./config/mongoose');
 const session = require('express-session');
@@ -109,7 +109,7 @@ app.set('views','./views');
 //mongostore is used to store session cookie in the db
 app.use( session({
     name:'aman',
-    secret:'Pachouri',
+    secret:process.env.SESSION_SECRET,
     saveUninitialized:false,
     resave:false,
     cookie:{
