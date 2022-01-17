@@ -16,7 +16,7 @@
     "chart.js": "^3.7.0",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^3.2.0",
-    "cookie-parser": "^1.4.6",
+    "cookie-Parser": "^1.4.6",
     "cron": "^1.8.2",
     "crypto": "^1.0.1",
     "dotenv": "^10.0.0",
