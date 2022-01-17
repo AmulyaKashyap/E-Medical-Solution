@@ -81,7 +81,7 @@ io.on('connection', (socket) => {
 const expressLayouts = require('express-ejs-layouts');
 
 //reading from post request
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended:true}));
 
 //cookie parser
 app.use(cookieParser());
