@@ -1,6 +1,6 @@
 const { localsName } = require('ejs')
 var checksum_lib = require('./Paytm/checksum')
-var cookieParser = require('cookie-Parser')
+var cookieParser = require('cookie-parser')
 const config = require('./Paytm/config')
 const User = require('../models/user')
 const dotenv = require('dotenv').config()
