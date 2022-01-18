@@ -9,7 +9,7 @@ const User = require('../models/user');
 passport.use(new googleStrategy({
     clientID: '953138738247-7im47lh42ohvideom2o7204kbau7poht.apps.googleusercontent.com',
     clientSecret:'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', 
-    callbackURL: "http://localhost:8000/users/authentication/google/callback",
+    callbackURL: "https://medicare-solution.herokuapp.com/users/authentication/google/callback",
 },
 
     function(accessToken, refreshToken, profile, done){

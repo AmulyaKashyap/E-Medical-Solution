@@ -324,7 +324,7 @@ module.exports.payment =function(req,res){
         params['ORDER_ID'] = 'TEST_'  + new Date().getTime();
         params['CUST_ID'] = paymentDetails.customerId;
         params['TXN_AMOUNT'] = paymentDetails.amount;
-        params['CALLBACK_URL'] = 'http://localhost:8000/users/paytm/callback';
+        params['CALLBACK_URL'] = 'https://medicare-solution.herokuapp.com//users/paytm/callback';
         params['EMAIL'] = paymentDetails.customerEmail;
         params['MOBILE_NO'] = paymentDetails.customerPhone;
         checksum_lib.genchecksum(params, config.PaytmConfig.key, function (err, checksum) {
