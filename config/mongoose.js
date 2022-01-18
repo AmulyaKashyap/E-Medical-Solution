@@ -2,7 +2,12 @@
 const mongoose =require('mongoose');//required library
 
 //connected to db
-mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/MediCare');
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }).then(() => {
+    console.log('Connected to mongoDB')
+}).catch(e => {
+    console.log('Error while DB connecting');
+    console.log(e);
+});
 const db = mongoose.connection;
 
 //if there is error in connection

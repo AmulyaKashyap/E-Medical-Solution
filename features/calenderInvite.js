@@ -15,7 +15,8 @@ function getIcalObjectInstance(startTime,endTime,eventSummary,eventDescription,e
             end: endTime,             // eg : moment(1,'days')
             summary: eventSummary,         // 'Summary of your event'
             description: eventDescription, // 'More description'
-            location: eventLocation,       // 'Delhi'
+            location: eventLocation, 
+            timezone: 'Asia/Calcutta',      // 'Delhi'
             url: "http://localhost:8000/users/profile",                 // 'event url'
             organizer: {              // 'organizer details'
                 name: "Medicare",
